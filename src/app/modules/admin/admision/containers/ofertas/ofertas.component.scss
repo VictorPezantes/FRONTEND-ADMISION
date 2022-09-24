@@ -1,0 +1,43 @@
+table {
+  td {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.mat-paginator {
+  display: flex;
+  justify-content: right;
+}
+
+.mat-column-actions {
+  width: 50px;
+  text-align: center;
+}
+
+.mat-column-estado {
+  width: 120px;
+  text-align: left;
+}
+
+
+.status-success {
+  width: 5px;
+  margin: 10px 10px;
+  padding: 15px;
+  background-color: forestgreen;
+}
+
+.status-created {
+  width: 5px;
+  margin: 5px 10px;
+  padding: 15px;
+  background-color: gold;
+}
+
+.status-warning {
+  width: 5px;
+  margin: 10px 100px;
+  padding: 15px;
+  background-color: brown;
+}
