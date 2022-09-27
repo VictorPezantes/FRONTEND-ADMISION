@@ -16,7 +16,7 @@ export class registraradminComponent implements OnInit {
 
     dataSource: Usuarios[] = [];
 
-    displayedColumns: string[] = ['ID', 'NOMBRES', 'USUARIO', 'EMAIL', 'actions'];
+    displayedColumns: string[] = ['ID', 'NOMBRES', 'USUARIO', 'EMAIL', 'ROL','actions'];
 
     signAdminForm: FormGroup;
 
@@ -28,7 +28,7 @@ export class registraradminComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.listarAdmin();
+        this.listarUsuarios();
 
     }
 
@@ -39,27 +39,12 @@ export class registraradminComponent implements OnInit {
         //this.initPagination();
     }
 
-    listarAdmin(): void {
+    listarUsuarios(): void {
         this._adminService.getAdmins().subscribe((reponse: any) => {
-
             this.dataSource = reponse;
-            //console.log(this.dataSource);
+            console.log(reponse)
+            console.log(reponse?.[0]?.roles.id)
         });
     }
-
-    /*createFormActions(): void {
-        this.signAdminForm = this._formBuilder.group({
-            nombre: ['', Validators.required],
-            apellidos: ['', Validators.required],
-            nombreUsuario: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required],
-            foto: ['foto.jpg'],
-            roles: [
-                ['admin'],
-            ]
-        }
-        );
-    }*/
 
 }

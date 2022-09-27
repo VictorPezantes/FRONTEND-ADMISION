@@ -29,7 +29,6 @@
           <input matInput autocomplete="off" placeholder="Ingrese su segundo apellido"
             [formControlName]="'apellidoMaterno'">
         </mat-form-field>
-
       </div>
     </div>
     <div class="flex flex-col gap-2">
@@ -39,6 +38,12 @@
           <input matInput autocomplete="off" placeholder="Ingrese su numero documento" [formControlName]="'dni'">
           <mat-error *ngIf="formActions.get('dni').hasError('required')">
             Este campo es requerido
+          </mat-error>
+          <mat-error *ngIf="formActions.get('dni').hasError('minlength')"> Minimo 8 digitos
+          </mat-error>
+          <mat-error *ngIf="formActions.get('dni').hasError('maxlength')"> Superaste los 8 digitos
+          </mat-error>
+          <mat-error *ngIf="formActions.get('dni').hasError('pattern')"> Solo ingresar numeros
           </mat-error>
         </mat-form-field>
         <mat-form-field class="w-full" appearance="fill">
