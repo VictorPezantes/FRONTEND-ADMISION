@@ -11,20 +11,27 @@
         fuseScrollbar
         [fuseScrollbarOptions]="{wheelPropagation: inner, suppressScrollX: true}"
         #navigationContent>
+        
 
         <!-- Content header -->
         <div class="fuse-vertical-navigation-content-header">
+            
             <ng-content select="[fuseVerticalNavigationContentHeader]"></ng-content>
         </div>
 
         <!-- Items -->
         <ng-container *ngFor="let item of navigation; trackBy: trackByFn">
+ 
+ 
+            <!-- Bloquear barra -->
+       <!--      <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_USER' ">-->
 
             <!-- Skip the hidden items -->
             <ng-container *ngIf="(item.hidden && !item.hidden(item)) || !item.hidden">
 
                 <!-- Aside -->
                 <ng-container *ngIf="item.type === 'aside'">
+                    
                     <fuse-vertical-navigation-aside-item
                         [item]="item"
                         [name]="name"
@@ -72,6 +79,8 @@
                 </ng-container>
 
             </ng-container>
+
+        <!--     </div>	-->
 
         </ng-container>
 
