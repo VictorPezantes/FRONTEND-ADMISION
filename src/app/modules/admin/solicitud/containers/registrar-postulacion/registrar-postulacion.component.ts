@@ -70,7 +70,7 @@ export class RegistrarPostulacionComponent implements OnInit {
             segundoNombre: [null],
             apellidoPaterno: [null, [Validators.required]],
             apellidoMaterno: [null],
-            dni: [null, [Validators.required]],
+            dni: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
             idEstadoCivil: [null, [Validators.required]],
             fechaNacimiento: [null, [Validators.required]],
             direccion: [null, [Validators.required]],
@@ -82,7 +82,7 @@ export class RegistrarPostulacionComponent implements OnInit {
             celular: [null, [Validators.required]],
             celularFamiliar: [null],
             email: [null, [Validators.required, Validators.email]],
-            emailSecundario: [null],
+            emailSecundario: [null, [Validators.email]],
             // Datos Academicos
             profesion: [null],
             lugarEstudios: [null],
@@ -108,27 +108,22 @@ export class RegistrarPostulacionComponent implements OnInit {
     uploadCV(event): any {
         const cv = event.target.files[0];
         this.formData.append('curriculum', cv);
+        console.log(cv);
     }
 
     uploadDNI1(event): any {
         const img1 = event.target.files[0];
-        const dni1 = new Blob([img1], { type: 'multipart/form-data' });
-        this.formData.append('dniFrontal', dni1);
-        console.log(img1);
+        this.formData.append('dniFrontal', img1);
     }
 
     uploadDNI2(event): any {
         const img2 = event.target.files[0];
-        const dni2 = new Blob([img2], { type: 'multipart/form-data' });
-        this.formData.append('dniPosterior', dni2);
-        console.log(img2);
+        this.formData.append('dniPosterior', img2);
     }
 
     uploadFOTO(event): any {
         const img3 = event.target.files[0];
-        const foto = new Blob([img3], { type: 'multipart/form-data' });
-        this.formData.append('foto', foto);
-        console.log(img3);
+        this.formData.append('foto', img3);
     }
 
     createRequest(): void {
