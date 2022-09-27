@@ -1,9 +1,11 @@
 <article class="flex flex-row gap-5 w-full">
     <section class="flex flex-col gap-2">
         <mat-card class="mat-elevation-z0">
+            <br>
             <mat-card-content>
-                <h1 class="text-center text-primary-500">Filtrar informacion del postulante</h1>
-                <hr>
+                <button mat-raised-button color="primary">Gestionar Examen Medico</button>
+                <br>
+                <br>
                 <app-postulant-filters></app-postulant-filters>
             </mat-card-content>
         </mat-card>
@@ -41,10 +43,14 @@
                 <td mat-cell *matCellDef="let element">
                     <div class="flex flex-col">
                         <div class="font-extrabold text-primary-700">
-                            {{(element?.name || '')+ ' ' + (element?.secondName || '') + ' ' + (element?.lastName || '') + ' ' + (element?.surName || '')}}
+                            {{(element?.name || '')+ '#Nombre1' + (element?.secondName || '#Nombre2') + ' ' + (element?.lastName || '#Apellido1') + ' ' + (element?.surName || '#Apellido2')}}
                         </div>
                         <div class="font-extralight">
-                            {{(element?.department?.name || '') + ' - ' + (element?.province?.name || '') + ' - ' + (element?.district?.name || '')}}
+                            {{('Tipo de Examen Médico a realizar')}}
+                        </div>
+                        <div class="font-Bold">
+                            <div class="container">
+                          {{(element?.department?.name || '#Nombre de examen Medico')}}</div>
                         </div>
                         <div class="font-light">
                             {{element?.email || '-'}}
