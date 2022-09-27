@@ -119,8 +119,8 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/admin/solicitud/solicitud.module').then(m => m.SolicitudModule)
             },
             {
-                path: 'administrador',
-                loadChildren: () => import('app/modules/admin/registrar-admin/registrar-admin.module').then(m => m.registraradminmodule)
+                path: 'usuario',
+                loadChildren: () => import('app/modules/admin/usuario/usuario.module').then(m => m.usuariomodule)
             },
             {
                 path: 'recursos-humanos',

@@ -74,11 +74,11 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
                 //link: '/recursos-humanos/admision',
                 children: [
                     {
-                        id: 'registrarAdmin',
-                        title: 'Administrador',
+                        id: 'usuario',
+                        title: 'Usuarios',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/administrador',
+                        link: '/usuario',
                     },
                     {
                         id: 'personal',
