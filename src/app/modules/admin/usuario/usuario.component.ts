@@ -3,14 +3,14 @@ import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Usuarios } from 'app/shared/interfaces/common.interface';
 import { response } from 'express';
-import { RegistrarAdminService } from './registrar-admin.service';
+import { UsuarioService } from './usuario.service';
 
 @Component({
-    selector: 'app-registrar-admin',
-    templateUrl: './registrar-admin.component.html',
-    styleUrls: ['./registrar-admin.component.scss']
+    selector: 'app-usuario',
+    templateUrl: './usuario.component.html',
+    styleUrls: ['./usuario.component.scss']
 })
-export class registraradminComponent implements OnInit {
+export class usuarioComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -22,7 +22,7 @@ export class registraradminComponent implements OnInit {
 
     constructor(
         private _formBuilder: UntypedFormBuilder,
-        private _adminService: RegistrarAdminService
+        private _adminService: UsuarioService
     ) {
         //this.createFormActions();
     }

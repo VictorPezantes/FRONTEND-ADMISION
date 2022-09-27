@@ -11,7 +11,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { Route, RouterModule } from "@angular/router";
 import { MaterialFileInputModule } from "ngx-material-file-input";
-import { registraradminComponent } from "./registrar-admin.component";
+import { usuarioComponent } from "./usuario.component";
 import { MatTableModule } from "@angular/material/table";
 import { MatMenuModule } from "@angular/material/menu";
 import { CommonModule } from '@angular/common';
@@ -20,13 +20,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 const Routes: Route[] = [
     {
         path     : '',
-        component: registraradminComponent
+        component: usuarioComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        registraradminComponent
+        usuarioComponent
     ],
     imports     : [
         RouterModule.forChild(Routes),
@@ -47,6 +47,6 @@ const Routes: Route[] = [
         MatPaginatorModule
     ]
 })
-export class registraradminmodule
+export class usuariomodule
 {
 }
