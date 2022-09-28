@@ -1,3 +1,4 @@
+import { User } from './../../../../app/core/user/user.types';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, OnDestroy, OnInit, Output, QueryList, Renderer2, SimpleChanges, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
 import { NavigationEnd, Router } from '@angular/router';
@@ -21,6 +22,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class FuseVerticalNavigationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy
 {
+
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_inner: BooleanInput;
     static ngAcceptInputType_opened: BooleanInput;
@@ -69,7 +71,8 @@ export class FuseVerticalNavigationComponent implements OnChanges, OnInit, After
         private _router: Router,
         private _scrollStrategyOptions: ScrollStrategyOptions,
         private _fuseNavigationService: FuseNavigationService,
-        private _fuseUtilsService: FuseUtilsService
+        private _fuseUtilsService: FuseUtilsService,
+  
     )
     {
         this._handleAsideOverlayClick = (): void => {

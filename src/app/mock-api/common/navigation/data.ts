@@ -2,6 +2,7 @@
 import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const defaultItemsNavigations: FuseNavigationItem[] = [
+    
     {
         id: 'empresa',
         title: 'Empresa',
@@ -91,6 +92,7 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
             },
         ]
     }
+
 ];
 
 export const defaultNavigation: FuseNavigationItem[] = [...defaultItemsNavigations];

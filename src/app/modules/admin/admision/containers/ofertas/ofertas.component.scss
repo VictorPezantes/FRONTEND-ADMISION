@@ -15,29 +15,49 @@ table {
   text-align: center;
 }
 
-.mat-column-estado {
-  width: 120px;
-  text-align: left;
-}
-
-
 .status-success {
   width: 3px;
   margin: 5px 5px;
-  padding: 10px;
+  padding: 15px;
+  
   background-color: forestgreen;
 }
 
 .status-created {
   width: 3px;
-  margin: 5px 5px;
-  padding: 10px;
+  margin: 2px 2px;
+  padding: 15px;
+  
   background-color: gold;
 }
 
 .status-warning {
   width: 3px;
   margin: 5px 5px;
-  padding: 10px;
+  padding: 15px;
+  
   background-color: brown;
+}
+.mat-column-postulantes {
+  width: 150px;
+  text-align: center;
+
+}
+.mat-column-creador {
+  width: 120px;
+  text-align: center;
+}
+.mat-column-estado {
+  width: 7%;
+  text-align: left;
+  
+}
+.mat-column-fecha_publicacion {
+  width: 90px;
+  text-align: center;
+}
+
+.mat-column-ofertas {
+  width: 450px;
+  text-align: left;
 }
