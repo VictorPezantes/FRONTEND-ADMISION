@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class UsuarioService {
 
   private apiUrl = environment.apiUrl;
+  public eventCreateU: Subject<void> = new Subject<void>();
 
   constructor(
     private _httpClient: HttpClient,
