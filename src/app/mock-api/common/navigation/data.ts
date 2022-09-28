@@ -12,7 +12,7 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
     },
     {
         id: 'rrhh',
-        title: 'R.R.H.H.',
+        title: 'Recursos Humanos',
         type: 'group',
         children: [
             {
