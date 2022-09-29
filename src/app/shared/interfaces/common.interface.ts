@@ -1,7 +1,7 @@
 export interface IPagination<T> {
     count: number;
-    maxPages: number;
-    page: number;
+    totalPages: number;
+    size: number;
     totalElements: number;
     content: Array<T>;
 }

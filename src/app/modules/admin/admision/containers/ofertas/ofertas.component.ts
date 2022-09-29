@@ -24,7 +24,9 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
     dataSource: Oferta[] = [];
     displayedColumns: string[] = ['estado', 'ofertas', 'postulantes', 'creador', 'fecha_publicacion', 'actions'];
 
-    count = 0;
+    count;
+    maxPages;
+    page;
 
     changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     unsubscribe: Subject<void> = new Subject<void>();
@@ -65,8 +67,11 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                 })
             ).subscribe((response) => {
                 this._ngxSpinner.hide();
-                this.count = response.count;
+                this.count = response.totalElements;
+                this.maxPages = response.totalPages;
+                this.page = response.size;
                 this.dataSource = response.content;
+                console.log(response);
             });
     }
 

@@ -47,17 +47,15 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
     }
 
     castToParams(filters) {
-        filters.fechaPublicacion = filters?.fechaPublicacion ?
-            moment(filters?.fechaPublicacion).format('DD-MM-git YYYY')
-            : null
+        filters.publication_date = filters?.publication_date
         return filters;
     }
 
     createFormFilters(): void {
         this.formFilters = this._fb.group({
-            search: [''],
-            status: [''],
-            offer_creator: [''],
+            titulo: [''],
+            estado: [''],
+            creador: [''],
             fechaPublicacion: [''],
         });
     }
