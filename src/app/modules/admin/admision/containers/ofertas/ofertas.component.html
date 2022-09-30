@@ -9,11 +9,11 @@
         </mat-card>
     </section>
     <section class="flex flex-col w-10/12">
-        <mat-paginator [length]="count" [pageIndex]="maxPages" [pageSize]="page"
+        <mat-paginator [length]="count" [pageIndex]="0" [pageSize]="10"
             [pageSizeOptions]="[5, 10, 25, 50, 100]">
         </mat-paginator>
 
-        <ng-container *ngIf="dataSource.length; else notResults">
+        <ng-container *ngIf="dataSource?.length; else notResults">
 
             <mat-card-content>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">

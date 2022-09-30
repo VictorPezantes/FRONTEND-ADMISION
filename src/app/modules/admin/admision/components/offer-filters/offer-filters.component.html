@@ -17,8 +17,8 @@
         <mat-label>Creador de la oferta</mat-label>
         <mat-select formControlName="creador" placeholder="Creador de la oferta">
             <mat-option [value]="null">----</mat-option>
-            <ng-container *ngFor="let option of employees$ | async">
-                <mat-option [value]="option.id">{{ option?.nombre }}</mat-option>
+            <ng-container *ngFor="let option of creador">
+                <mat-option [value]="option.id">{{ option?.nombreUsuario }}</mat-option>
             </ng-container>
         </mat-select>
     </mat-form-field>

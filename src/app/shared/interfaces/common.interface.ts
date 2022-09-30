@@ -2,7 +2,7 @@ export interface IPagination<T> {
     count: number;
     totalPages: number;
     size: number;
-    totalElements: number;
+    numberOfElements: number;
     content: Array<T>;
 }
 

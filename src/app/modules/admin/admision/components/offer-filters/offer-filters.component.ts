@@ -18,7 +18,8 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
     formFilters: FormGroup;
 
     status: Estado[];
-    employees$: Observable<User[]>;
+    //employees$: Observable<User[]>;
+    creador: User[];
 
     unsubscribe: Subject<void> = new Subject<void>();
 
@@ -33,7 +34,8 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
         this._commonService.getStatus().subscribe(estado => (this.status = estado));
-        this.employees$ = this._userService.getAll({ paginated: false });
+        //this.employees$ = this._userService.getAll({ paginated: false });
+        this._userService.getAll().subscribe(response => (this.creador = response));
     }
 
     ngAfterViewInit(): void {
@@ -47,7 +49,7 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
     }
 
     castToParams(filters) {
-        filters.publication_date = filters?.publication_date
+        filters.fechaPublicacion = filters?.fechaPublicacion ? moment(filters?.fechaPublicacion).format('DD/MM/YYYY') : null;
         return filters;
     }
 

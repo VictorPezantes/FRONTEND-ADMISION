@@ -1,10 +1,10 @@
 export interface User
 {
-    id?: string;
+    id?: number;
     name?: string;
     nombre?: string;
     email?: string;
-    username?: string;
+    nombreUsuario?: string;
     role?: any;
     rol?: any;
     avatar?: string;

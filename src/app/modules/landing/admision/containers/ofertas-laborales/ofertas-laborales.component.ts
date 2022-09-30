@@ -46,7 +46,7 @@ export class OfertasLaboralesComponent implements OnInit {
         //console.log(id + ' ' + titulo);
         this.idofertas = id;
         //console.log(this.idofertas);
-        this._router.navigateByUrl('registro');
+        this._router.navigateByUrl('solicitud/registrar-solicitud');
     }
 
     cancel(): void {
