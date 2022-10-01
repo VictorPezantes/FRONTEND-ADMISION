@@ -1,0 +1,125 @@
+
+
+        <!-- Main -->
+        <div class="flex flex-col flex-auto">
+
+            <!-- Header -->
+            <div
+                class="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between p-6 sm:py-5 md:px-8 border-b bg-card dark:bg-transparent">
+                <!-- Title -->
+                <div>
+                    <div class="title-main text-2xl font-extrabold tracking-tight leading-none">Bandeja de Usuarios
+                    </div>
+                </div>
+                <div class="flex flex-row gap-2 justify-end">
+                    <!-- <button class="uppercase" mat-raised-button color="primary">
+                        Crear Administrador
+                    </button> -->
+                </div>
+
+                <!-- (click)="createUsuario()" -->
+
+            </div>
+
+            <div class="p-6">
+
+                <article class="flex flex-row gap-5 w-full">
+                    <!-- <section class="flex flex-col gap-2">
+                        <mat-card class="mat-elevation-z0">
+                            <mat-card-content>
+                                <app-offer-actions></app-offer-actions>
+                                <hr>
+                                <app-offer-filters></app-offer-filters>
+                            </mat-card-content>
+                        </mat-card>
+                    </section> -->
+                    <section class="flex flex-col flex-auto">
+                       
+                        <ng-container *ngIf="dataSource.length; else notResults">
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Codigo
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.id}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="NOMBRES">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Nombres y
+                                        Apellidos </th>
+                                    <td mat-cell *matCellDef="let element"> {{(element?.nombre || 'Nombres')+ ' '
+                                        +(element?.apellidos || 'Apellidos')}}
+                                    </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="USUARIO">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Usuario
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.nombreUsuario}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="EMAIL">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Correo
+                                        Electronico
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="ROL">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Rol del
+                                        Usuario
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element?.roles?.[0]?.rolNombre === 'ROLE_ADMIN'">
+                                            ADMINISTRATIVO</div>
+                                        <div *ngIf="element?.roles?.[0]?.rolNombre === 'ROLE_USER'">
+                                            POSTULANTE</div>
+                                    </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-icon-button [matMenuTriggerFor]="offerActions" color="primary">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu [xPosition]="'before'" #offerActions="matMenu">
+                                            <button mat-menu-item>
+                                                Editar
+                                            </button>
+                                            <button mat-menu-item>
+                                                Cambiar Estado
+                                            </button>
+                                        </mat-menu>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </ng-container>
+
+                        <!-- No results -->
+                        <ng-template #notResults>
+                            <div
+                                class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+                                <mat-icon class="icon-size-24" [svgIcon]="'heroicons_outline:document-search'">
+                                </mat-icon>
+                                <div class="mt-6 text-2xl font-semibold tracking-tight text-secondary">Sin resultados!
+                                </div>
+                            </div>
+                        </ng-template>
+                    </section>
+
+                </article>
+
+            </div>
+
+        </div>
+
+   

@@ -99,7 +99,7 @@ export const appRoutes: Route[] = [
     // Admin routes
     {
         path: '',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard], 
         canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
