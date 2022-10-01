@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
@@ -22,13 +22,17 @@ export class AuthSignUpComponent implements OnInit {
     signUpForm: FormGroup;
     showAlert: boolean = false;
 
+    id: String;
+    titulo: String;
+
     /**
      * Constructor
      */
     constructor(
         private _authService: AuthService,
         private _formBuilder: FormBuilder,
-        private _router: Router
+        private _router: Router,
+        private _activatedRoute: ActivatedRoute
     ) {
     }
 
@@ -40,6 +44,13 @@ export class AuthSignUpComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
+        const params = this._activatedRoute.snapshot.params;
+        if (params.id && params.titulo) {
+            this.id = params.id 
+            this.titulo = params.titulo 
+            console.log("Recibiendo parámetros del landing ofertas: " + params.id + " - " + params.titulo)
+        }
+
         // Create the form
         this.signUpForm = this._formBuilder.group({
             nombre: ['', Validators.required],
@@ -108,7 +119,31 @@ export class AuthSignUpComponent implements OnInit {
                     };
 
                     if (response.mensaje == 'Usuario registrado correctamente') {
-                        this._router.navigateByUrl('/iniciar-sesion'); // Navigate to the confirmation required page
+                        //this._router.navigateByUrl('/iniciar-sesion'); // Navigate to the confirmation required page
+
+                        // Automatic Login
+                        const credentials = { email: form.email, password: form.password }
+                        // Sign in
+                        this._authService.signIn(credentials)
+                            .subscribe(
+                                () => {
+                                    const params = this._activatedRoute.snapshot.params;
+                                    if (params.id && params.titulo) {
+
+                                        console.log("Enviando parámetros id y título a registrar-solicitud: " + params.id + " - " + params.titulo)
+
+                                        // const redirectURL = `/solicitud/registrar-solicitud?id=${params.id}&titulo=${params.titulo}`
+                                        // this._router.navigateByUrl(redirectURL);
+
+                                        this._router.navigate(['/solicitud/registrar-solicitud', { id: params.id, titulo: params.titulo }]);
+                                        // http://localhost:4200/solicitud/registrar-solicitud;id=3;titulo=titulo3
+                                    }
+                                },
+                                (response) => {
+                                    console.log("")
+                                }
+                            );
+
                     } else {
                         this.showAlert = true; // Show the alert
                     }

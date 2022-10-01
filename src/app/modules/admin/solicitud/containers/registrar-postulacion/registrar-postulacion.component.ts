@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OfertasLaboralesComponent } from 'app/modules/landing/admision/containers/ofertas-laborales/ofertas-laborales.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-registrar-postulacion',
@@ -34,6 +35,9 @@ export class RegistrarPostulacionComponent implements OnInit {
         { id: 2, name: "Callao Distrito" }
     ];
 
+    id: string;
+    titulo: string;
+
     unsubscribe = new Subject<void>();
 
     formData = new FormData();
@@ -44,12 +48,19 @@ export class RegistrarPostulacionComponent implements OnInit {
         private _requestService: SolicitudService,
         private _commonService: CommonService,
         private _snackService: MatSnackBar,
+        private router: Router, private activatedRoute: ActivatedRoute
         //private _ofertaLaboral: OfertasLaboralesComponent
     ) {
         this.createFormActions();
     }
 
     ngOnInit(): void {
+        if (this.activatedRoute.snapshot.paramMap.get('id') && this.activatedRoute.snapshot.paramMap.get('titulo')) {
+            this.id = this.activatedRoute.snapshot.paramMap.get('id')
+            this.titulo = this.activatedRoute.snapshot.paramMap.get('titulo')
+            console.log("Recibiendo parámetros id y título desde registro: " + this.id + " - " + this.titulo)
+        }
+
         this.civilStatus$ = this._commonService.getCivilStatus({ paginated: false });
         this._commonService.getDepartamento().subscribe(departament => { this.departamento = departament; });
         //this._commonService.getProvincia().subscribe(provincia => { this.provincia = provincia; });
@@ -157,15 +168,17 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('fechaSalidaTrabajoReciente', payload.fechaSalidaTrabajoReciente);
             this.formData.append('empresaTrabajoReciente', payload.empresaTrabajoReciente);
             this.formData.append('motivoSalidaTrabajoReciente', payload.motivoSalidaTrabajoReciente);
-            this.formData.append('fechaPostulacion', payload.fechaNacimiento); //** */
+            //this.formData.append('fechaPostulacion', payload.fechaNacimiento); //** */
 
             this.formData.append('disponibilidadViajar', payload.disponibilidadViajar);
             this.formData.append('experienciaRubro', payload.experienciaRubro);
 
             this.formData.append('estado', '1'); /** */
             this.formData.append('estadoPostulacion', '1'); /** */
-            this.formData.append('idOferta', '1');
-            this.formData.append('ofertaPostulada', '1');
+            // this.formData.append('idOferta', '1');
+            this.formData.append('idOferta', this.id);
+            // this.formData.append('ofertaPostulada', '1');
+            this.formData.append('ofertaPostulada', this.titulo);
             this.formData.append('procedencia', 'procencia');
             this.formData.append('urlCurriculumVitae', 'ruta de archivos');
             this.formData.append('urlDniFrontal', 'ruta de archivos');

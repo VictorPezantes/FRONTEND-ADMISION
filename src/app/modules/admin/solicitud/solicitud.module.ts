@@ -29,6 +29,10 @@ const routes: Routes = [
                 path: 'registrar-solicitud',
                 component: RegistrarPostulacionComponent,
             },
+            {
+                path: 'registrar-solicitud/off/:id/:titulo',
+                component: RegistrarPostulacionComponent,
+            },
         ]
     }
 ];
