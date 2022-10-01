@@ -35,11 +35,11 @@ export class RegistrarPostulacionComponent implements OnInit {
         { id: 2, name: "Callao Distrito" }
     ];
 
-    id: string;
+    id: number;
     titulo: string;
 
     unsubscribe = new Subject<void>();
-
+    
     formData = new FormData();
 
     constructor(
@@ -56,7 +56,7 @@ export class RegistrarPostulacionComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.activatedRoute.snapshot.paramMap.get('id') && this.activatedRoute.snapshot.paramMap.get('titulo')) {
-            this.id = this.activatedRoute.snapshot.paramMap.get('id')
+            this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
             this.titulo = this.activatedRoute.snapshot.paramMap.get('titulo')
             console.log("Recibiendo parámetros id y título desde registro: " + this.id + " - " + this.titulo)
         }
@@ -149,7 +149,7 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('apellidoMaterno', payload.apellidoMaterno);
             this.formData.append('dni', payload.dni);
             this.formData.append('idEstadoCivil', payload.idEstadoCivil);
-            this.formData.append('fechaNacimiento', payload.fechaNacimiento);
+            this.formData.append('fechaNacimiento', payload.fechaNacimiento ? moment(payload.fechaNacimiento).format('DD/MM/YYYY') : null);
             this.formData.append('direccion', payload.direccion);
             this.formData.append('idDepartamento', payload.idDepartamento);
             this.formData.append('idProvincia', payload.idProvincia);
@@ -164,8 +164,8 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('ultimoCursoRealizado', payload.ultimoCursoRealizado);
             this.formData.append('empresaCurso', payload.empresaCurso);
             this.formData.append('trabajoReciente', payload.trabajoReciente);
-            this.formData.append('fechaIngresoTrabajoReciente', payload.fechaIngresoTrabajoReciente);
-            this.formData.append('fechaSalidaTrabajoReciente', payload.fechaSalidaTrabajoReciente);
+            this.formData.append('fechaIngresoTrabajoReciente', payload.fechaIngresoTrabajoReciente ? moment(payload.fechaIngresoTrabajoReciente).format('DD/MM/YYYY') : null);
+            this.formData.append('fechaSalidaTrabajoReciente', payload.fechaSalidaTrabajoReciente ? moment(payload.fechaSalidaTrabajoReciente).format('DD/MM/YYYY') : null);
             this.formData.append('empresaTrabajoReciente', payload.empresaTrabajoReciente);
             this.formData.append('motivoSalidaTrabajoReciente', payload.motivoSalidaTrabajoReciente);
             //this.formData.append('fechaPostulacion', payload.fechaNacimiento); //** */
@@ -175,8 +175,8 @@ export class RegistrarPostulacionComponent implements OnInit {
 
             this.formData.append('estado', '1'); /** */
             this.formData.append('estadoPostulacion', '1'); /** */
-            // this.formData.append('idOferta', '1');
-            this.formData.append('idOferta', this.id);
+            //this.formData.append('idOferta', '1');
+            this.formData.append('idOferta', this.id.toString());
             // this.formData.append('ofertaPostulada', '1');
             this.formData.append('ofertaPostulada', this.titulo);
             this.formData.append('procedencia', 'procencia');
@@ -186,6 +186,7 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('urlFotografia', 'ruta de archivos');
 
             this.createTransaction(this.formData);
+            console.log(payload);
         } else {
             this.formActions.markAllAsTouched();
         }

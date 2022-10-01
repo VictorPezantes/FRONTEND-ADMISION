@@ -65,7 +65,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
       this._ngxSpinner.hide();
       this.count = response.count;
       this.dataSource = response.content;
-      //console.log(this.dataSource);
+      console.log(this.dataSource);
     });
   }
 

@@ -30,7 +30,6 @@ import { SharedModule } from '../../../shared/shared.module';
 import { PostulantFiltersComponent } from './components/postulant-filters/postulant-filters.component';
 import { EditOfferComponent } from './components/edit-offer/edit-offer.component';
 import { CreatePostulantComponent } from './components/create-postulant/create-postulant.component';
-import { ViewInformationComponent } from './components/view-information/view-information.component';
 
 
 const routes: Routes = [
@@ -49,13 +48,7 @@ const routes: Routes = [
                 component: PostulacionesComponent,
                 
             },
-                /*Se agrega para crear la vista http://localhost:4200/recursos-humanos/admision/ver-informacion*/   
-                {path: '', pathMatch: 'full', redirectTo: 'postulante/ver-informacion'},
-                {
-                    path: 'postulante/ver-informacion',
-                    component: ViewInformationComponent,
-                },
-       
+ 
 
             {
                 path: 'ofertas',
@@ -96,8 +89,7 @@ const routes: Routes = [
         ChangeStatusComponent,
         PostulantFiltersComponent,
         EditOfferComponent,
-       ViewInformationComponent,
-        
+
         
     ],
     imports: [

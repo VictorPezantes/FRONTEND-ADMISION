@@ -1,3 +1,5 @@
+import { MatDateFormats } from "@angular/material/core";
+
 export interface Oferta {
     CargoPostular: string;
     cantidadPostulantes: number;
@@ -37,10 +39,10 @@ export interface Postulante {
     ultimoCursoRealizado:string;
     empresaCurso:string;
     trabajoReciente:string;
-    fechaIngresoTrabajoReciente:string;
-    fechaSalidaTrabajoReciente:string;
-    empresaTrabajoReciente:string;
-    motivoSalidaTrabajoReciente:string;
+    fechaIngresoTrabajoReciente: string;
+    fechaSalidaTrabajoReciente: string;
+    empresaTrabajoReciente: string;
+    motivoSalidaTrabajoReciente: string;
     disponibilidadViajar:number;
     experienciaRubro:number;
     estadoPostulacion:number;
