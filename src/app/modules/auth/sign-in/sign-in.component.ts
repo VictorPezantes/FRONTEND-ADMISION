@@ -21,6 +21,8 @@ export class AuthSignInComponent implements OnInit {
     signInForm: UntypedFormGroup;
     showAlert: boolean = false;
 
+    id: string
+    titulo: string
     /**
      * Constructor
      */
@@ -40,6 +42,15 @@ export class AuthSignInComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
+
+        const params = this._activatedRoute.snapshot.params;
+        if (params.id && params.titulo) {
+            this.id = params.id 
+            this.titulo = params.titulo 
+            console.log("Recibiendo parámetros del landing ofertas: " + params.id + " - " + params.titulo)
+        }
+
+
         // Create the form
         this.signInForm = this._formBuilder.group({
             email: ['jtorresr1403@gmail.com', [Validators.required, Validators.email]],
@@ -75,10 +86,17 @@ export class AuthSignInComponent implements OnInit {
                     // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
                     // to the correct page after a successful sign in. This way, that url can be set via
                     // routing file and we don't have to touch here.
-                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('empresa') || '/signed-in-redirect';
-                    
-                    // Navigate to the redirect url
-                    this._router.navigateByUrl(redirectURL);
+
+                    const params = this._activatedRoute.snapshot.params;
+                    if (params.id && params.titulo) {
+                        console.log("Existen parámetros id y títutlo")
+                        this._router.navigate(['/solicitud/registrar-solicitud', { id: this.id, titulo: this.titulo }]);
+                    } else {
+                        const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('empresa') || '/signed-in-redirect';
+                        // Navigate to the redirect url
+                        console.log("Redirigiendo a empresa")
+                        this._router.navigateByUrl(redirectURL);
+                    }
 
                 },
                 (response) => {

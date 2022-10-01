@@ -47,4 +47,9 @@ export class SolicitudComponent implements OnInit {
     this._requestService.eventCreate.next();
   }
 
+  cancelOffer(): void {
+    // alert("alerta")
+    this._router.navigateByUrl('admision/ofertas-laborales');
+  }
+
 }

@@ -50,9 +50,17 @@ export const appRoutes: Route[] = [
                     .then(m => m.AuthSignInModule)
             },
             {
-                path: 'registro', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module')
-                    .then(m => m.AuthSignUpModule)
+                path: 'iniciar-sesion/off/:id/:titulo', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module')
+                    .then(m => m.AuthSignInModule)
             },
+            // {
+            //     path: 'registro', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module')
+            //         .then(m => m.AuthSignUpModule)
+            // },
+            {
+                path: 'registro/off/:id/:titulo', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module')
+                    .then(m => m.AuthSignUpModule)
+            }
         ]
     },
 
