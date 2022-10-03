@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, UntypedFormBuilder} from '@angular/forms';
-import {debounceTime, Subject, takeUntil} from 'rxjs';
-import {PostulacionesService} from '../../containers/postulaciones/postulaciones.service';
+import { FormGroup, UntypedFormBuilder } from '@angular/forms';
+import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { PostulacionesService } from '../../containers/postulaciones/postulaciones.service';
 import moment from 'moment';
+import { Encargado } from 'app/shared/interfaces/common.interface';
 
 @Component({
   selector: 'app-postulant-filters',
@@ -14,24 +15,26 @@ export class PostulantFiltersComponent implements OnInit {
   formFilters: FormGroup;
 
   unsubscribe: Subject<void> = new Subject<void>();
+  encargado: Encargado[] = [];
 
   constructor(
-      private _fb: UntypedFormBuilder,
-      private _postulantServices: PostulacionesService
+    private _fb: UntypedFormBuilder,
+    private _postulantServices: PostulacionesService
   ) {
     this.createFormFilters();
   }
 
   ngOnInit(): void {
+    this._postulantServices.getEncargado().subscribe(encargados => { this.encargado = encargados; });
   }
 
   ngAfterViewInit(): void {
     this.formFilters.valueChanges
-        .pipe(takeUntil(this.unsubscribe), debounceTime(500))
-        .subscribe(value => {
-          const parsedData = this.castToParams(value);
-          this._postulantServices.eventFilters.next(parsedData);
-        });
+      .pipe(takeUntil(this.unsubscribe), debounceTime(500))
+      .subscribe(value => {
+        const parsedData = this.castToParams(value);
+        this._postulantServices.eventFilters.next(parsedData);
+      });
   }
 
   castToParams(filters) {

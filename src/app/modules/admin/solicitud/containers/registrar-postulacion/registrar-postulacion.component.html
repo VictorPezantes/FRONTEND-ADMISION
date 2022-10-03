@@ -94,7 +94,7 @@
           <mat-select formControlName="idProvincia" placeholder="Selecciona provincia">
             <mat-option [value]="null">----</mat-option>
             <ng-container *ngFor="let option of provincia">
-              <mat-option [value]="option.id">{{ option.name }}</mat-option>
+              <mat-option [value]="option.id" (click)="obtenerDistrito(option)">{{ option.nombre }}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error *ngIf="formActions.get('idProvincia').hasError('required')"> Este campo es requerido </mat-error>
@@ -104,7 +104,7 @@
           <mat-select formControlName="idDistrito" placeholder="Selecciona distrito">
             <mat-option [value]="null">----</mat-option>
             <ng-container *ngFor="let option of distrito">
-              <mat-option [value]="option.id">{{ option.name }}</mat-option>
+              <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error *ngIf="formActions.get('idDistrito').hasError('required')"> Este campo es requerido </mat-error>

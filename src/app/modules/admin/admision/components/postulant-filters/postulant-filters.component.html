@@ -21,8 +21,8 @@
         <mat-label>Responsable asignado</mat-label>
         <mat-select placeholder="Responsable asignado">
             <mat-option [value]="null">----</mat-option>
-            <ng-container *ngFor="let option of []">
-                <mat-option [value]="option.id">{{ option.name }}</mat-option>
+            <ng-container *ngFor="let option of encargado">
+                <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
             </ng-container>
         </mat-select>
     </mat-form-field>

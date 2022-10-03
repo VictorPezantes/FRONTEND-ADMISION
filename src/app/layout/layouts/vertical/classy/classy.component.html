@@ -2,22 +2,16 @@
 <fuse-loading-bar></fuse-loading-bar>
 
 <!-- Navigation -->
-<fuse-vertical-navigation
-    class="dark bg-gray-900 print:hidden"
-    [mode]="isScreenSmall ? 'over' : 'side'"
-    [name]="'mainNavigation'"
-    [navigation]="navigation.default"
-    [opened]="!isScreenSmall">
+<fuse-vertical-navigation class="dark bg-gray-900 print:hidden" [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'" [navigation]="navigation.default" [opened]="!isScreenSmall">
     <!-- Navigation header hook -->
-    
+
     <ng-container fuseVerticalNavigationContentHeader>
-        
+
         <div class="flex items-left w-full p-1 pl-0 ">
             <!-- Logo -->
             <div class="flex flex-auto items-left ml-auto pl-0">
-                <img
-                    class="w-20"
-                    src="assets/images/technotankers/logo_1.png">
+                <img class="w-20" src="assets/images/technotankers/logo_1.png">
             </div>
             <!-- Components -->
             <div class="flex items-center ml-auto">
@@ -26,31 +20,27 @@
             </div>
         </div>
         <!-- User -->
-        <div  class="flex flex-col items-center w-full p-4">
+        <div class="flex flex-col items-center w-full p-4">
             <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_ADMIN'" class="relative w-30 h-30 ">
-                <img
-                class="auto"
-                src="assets/images/avatars/avatar_prueba.png">
+                <img class="auto" src="assets/images/avatars/avatar_prueba.png">
                 <!--    <img
                     class="w-full h-full rounded-full"
                     *ngIf="user.fotografia"
                     [src]="user.fotografia"  
                     alt="User avatar"> -->
-               <!--   <mat-icon
+                <!--   <mat-icon
                     class="icon-size-24"
                     *ngIf="!user.fotografia"
                     [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
             </div>
             <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_USER'" class="relative w-30 h-30 ">
-                <img
-                class="auto"
-                src="assets/images/avatars/user_clean.png">
+                <img class="auto" src="assets/images/avatars/user_clean.png">
                 <!--    <img
                     class="w-full h-full rounded-full"
                     *ngIf="user.fotografia"
                     [src]="user.fotografia"  
                     alt="User avatar"> -->
-               <!--   <mat-icon
+                <!--   <mat-icon
                     class="icon-size-24"
                     *ngIf="!user.fotografia"
                     [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
@@ -59,26 +49,30 @@
 
 
             <div class="flex flex-col items-center justify-center w-full mt-6">
-                <div class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-medium">
-                    {{user.nombre}}
+                <div
+                    class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-medium">
+                    {{user.nombre}} {{user.apellidos}}
                 </div>
-                <div class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
+                <div
+                    class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
                     {{user.email}}
                 </div>
-                <div class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
-                 
-                   <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_ADMIN' ">ADMINISTRATIVO</div> 
-                   <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_USER' ">POSTULANTE</div>
-                   
+                <div
+                    class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
+
+                    <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_ADMIN' ">ADMINISTRATIVO</div>
+                    <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_USER' ">POSTULANTE</div>
+
                 </div>
             </div>
         </div>
     </ng-container>
     <!-- Navigation footer hook -->
-   
+
     <ng-container fuseVerticalNavigationContentFooter>
-        
+
         <div class="flex flex-0 items-center justify-center h-16 pr-6 pl-2 mt-2 mb-4 opacity-12">
+            <!-- TEXTO EN LA PARTE INFERIOR DEL MENU -->
         </div>
     </ng-container>
 
@@ -88,23 +82,26 @@
 <div class="flex flex-col flex-auto w-full min-w-0">
 
     <!-- Header -->
-    <div class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
-        
+    <div
+        class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
+
         <!-- Navigation toggle button -->
-        <button
-            mat-icon-button
-            (click)="toggleNavigation('mainNavigation')">
+        <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
             <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
         </button>
-   
+
+        <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">{{now|date:'fullDate'}}
+            <!-- {{now|date:'hh:mm:ss'}} -->
+        </div>
+
         <!-- Components -->
-<!--        <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">-->
-<!--            <languages></languages>-->
-<!--            <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>-->
-<!--            <search [appearance]="'bar'"></search>-->
-<!--            <shortcuts></shortcuts>-->
-<!--            <messages></messages>-->
-<!--        </div>-->
+        <!--        <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">-->
+        <!--            <languages></languages>-->
+        <!--            <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>-->
+        <!--            <search [appearance]="'bar'"></search>-->
+        <!--            <shortcuts></shortcuts>-->
+        <!--            <messages></messages>-->
+        <!--        </div>-->
     </div>
 
     <!-- Content -->

@@ -3,6 +3,7 @@ export interface User
     id?: number;
     name?: string;
     nombre?: string;
+    apellidos?: string;
     email?: string;
     nombreUsuario?: string;
     role?: any;

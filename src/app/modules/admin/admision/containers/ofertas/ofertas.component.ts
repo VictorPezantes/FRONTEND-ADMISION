@@ -61,11 +61,9 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                     const rawValue = this._offerService.eventFilters.value;
                     const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
                     const queryParamsByPaginator = { ...filters } as any;
-                    //console.log(filters);
                     queryParamsByPaginator.limit = this.paginator.pageSize;
                     queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
                     return this._offerService.get(queryParamsByPaginator);
-                    //return this._offerService.filtroGet(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
                 this._ngxSpinner.hide();

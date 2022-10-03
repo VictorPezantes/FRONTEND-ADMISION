@@ -28,21 +28,20 @@ export class OfertasLaboralesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const b  = this._authService.accessToken
-        
+
         if (this._authService.accessToken) {
             this.isAuthenticated = true;
-            console.log("Loggued")
+            //console.log("Loggued")
         } else {
             this.isAuthenticated = false;
-            console.log("No loggued")
+            //console.log("No loggued")
         }
 
         // this._authService.check()
 
         this._offerService.getAvailableOffers({ paginated: true })
             .subscribe(results => {
-                console.log(results.content);
+                //console.log(results.content);
                 this.availableOffers = results.content;
             });
 
@@ -51,11 +50,11 @@ export class OfertasLaboralesComponent implements OnInit {
     f(): Observable<boolean> {
         return this._authService.check().pipe(
             switchMap((authenticated) => {
-                console.log("kk")
+                //console.log("kk")
                 if (authenticated) {
-                    console.log("Loggueado")
+                    //console.log("Loggueado")
                 } else {
-                    console.log("No loggueado")
+                    //console.log("No loggueado")
                 }
                 return of(true);
             })
@@ -72,15 +71,8 @@ export class OfertasLaboralesComponent implements OnInit {
         return item.id || index;
     }
 
-    goLogin(id, titulo): void {
-        //console.log(id + ' ' + titulo);
-        this.idofertas = id;
-        //console.log(this.idofertas);
-        this._router.navigateByUrl('registro');
-    }
-
     cancel(): void {
-        this._router.navigateByUrl('solicitud/registrar-solicitud');
+        this._router.navigateByUrl('iniciar-sesion');
     }
 
     // _check(): boolean {

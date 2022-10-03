@@ -7,7 +7,6 @@ import { CommonService } from '../../../../../shared/services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { OfertasLaboralesComponent } from 'app/modules/landing/admision/containers/ofertas-laborales/ofertas-laborales.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -20,26 +19,13 @@ export class RegistrarPostulacionComponent implements OnInit {
     formActions: FormGroup;
     civilStatus$: Observable<AbstractChoice[]>;
     departamento: Departamento[] = [];
-    //provincia: Provincia[];
-
-    //idOfertas: string = '';
-    //tituloOferta: string = '';
-
-    provincia: Provincia[] = [
-        { id: 1, name: "Lima Provincia" },
-        { id: 2, name: "Callao Provincia" }
-    ];
-
-    distrito: Distrito[] = [
-        { id: 1, name: "Lima Distrito" },
-        { id: 2, name: "Callao Distrito" }
-    ];
+    provincia: Provincia[] = [];
+    distrito: Distrito[] = [];
 
     id: number;
     titulo: string;
 
     unsubscribe = new Subject<void>();
-    
     formData = new FormData();
 
     constructor(
@@ -49,7 +35,6 @@ export class RegistrarPostulacionComponent implements OnInit {
         private _commonService: CommonService,
         private _snackService: MatSnackBar,
         private router: Router, private activatedRoute: ActivatedRoute
-        //private _ofertaLaboral: OfertasLaboralesComponent
     ) {
         this.createFormActions();
     }
@@ -63,9 +48,6 @@ export class RegistrarPostulacionComponent implements OnInit {
 
         this.civilStatus$ = this._commonService.getCivilStatus({ paginated: false });
         this._commonService.getDepartamento().subscribe(departament => { this.departamento = departament; });
-        //this._commonService.getProvincia().subscribe(provincia => { this.provincia = provincia; });
-
-        //console.log(this._ofertaLaboral.idofertas)
 
         this._requestService.eventCreate
             .pipe(takeUntil(this.unsubscribe))
@@ -119,7 +101,6 @@ export class RegistrarPostulacionComponent implements OnInit {
     uploadCV(event): any {
         const cv = event.target.files[0];
         this.formData.append('curriculum', cv);
-        console.log(cv);
     }
 
     uploadDNI1(event): any {
@@ -140,7 +121,6 @@ export class RegistrarPostulacionComponent implements OnInit {
     createRequest(): void {
         if (this.formActions.valid) {
             this._ngxSpinnerService.show();
-            //const payload = this.formActions.getRawValue();
             const payload = this.formActions.value;
 
             this.formData.append('primerNombre', payload.primerNombre);
@@ -168,16 +148,11 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('fechaSalidaTrabajoReciente', payload.fechaSalidaTrabajoReciente ? moment(payload.fechaSalidaTrabajoReciente).format('DD/MM/YYYY') : null);
             this.formData.append('empresaTrabajoReciente', payload.empresaTrabajoReciente);
             this.formData.append('motivoSalidaTrabajoReciente', payload.motivoSalidaTrabajoReciente);
-            //this.formData.append('fechaPostulacion', payload.fechaNacimiento); //** */
-
             this.formData.append('disponibilidadViajar', payload.disponibilidadViajar);
             this.formData.append('experienciaRubro', payload.experienciaRubro);
-
             this.formData.append('estado', '1'); /** */
             this.formData.append('estadoPostulacion', '1'); /** */
-            //this.formData.append('idOferta', '1');
             this.formData.append('idOferta', this.id.toString());
-            // this.formData.append('ofertaPostulada', '1');
             this.formData.append('ofertaPostulada', this.titulo);
             this.formData.append('procedencia', 'procencia');
             this.formData.append('urlCurriculumVitae', 'ruta de archivos');
@@ -206,11 +181,14 @@ export class RegistrarPostulacionComponent implements OnInit {
 
     obtenerProvincia(option) {
         this._commonService.getProvincia(option).subscribe(provincias => {
-            //this.provincia = provincias;
-            //var dato = JSON.stringify(this.provincia);
-            console.log(provincias);
+            this.provincia = provincias;
         });
-        //console.log("aqui " + option.nombre + " su estado es " + option.estado);
+    }
+
+    obtenerDistrito(option) {
+        this._commonService.getDistrito(option).subscribe(distritos => {
+            this.distrito = distritos;
+        });
     }
 
 }

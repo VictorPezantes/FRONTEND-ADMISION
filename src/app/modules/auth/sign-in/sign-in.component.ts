@@ -47,13 +47,13 @@ export class AuthSignInComponent implements OnInit {
         if (params.id && params.titulo) {
             this.id = params.id 
             this.titulo = params.titulo 
-            console.log("Recibiendo parámetros del landing ofertas: " + params.id + " - " + params.titulo)
+            //console.log("Recibiendo parámetros del landing ofertas: " + params.id + " - " + params.titulo)
         }
 
 
         // Create the form
         this.signInForm = this._formBuilder.group({
-            email: ['jtorresr1403@gmail.com', [Validators.required, Validators.email]],
+            email: ['correo@correo.com', [Validators.required, Validators.email]],
             password: ['123456', Validators.required],
             rememberMe: ['']
         });

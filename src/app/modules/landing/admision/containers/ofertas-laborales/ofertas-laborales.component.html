@@ -69,37 +69,25 @@
                                 <!-- Course launch button -->
                                 <div class="px-6 py-4 text-right bg-gray-50 dark:bg-transparent">
 
-                                    <div *ngIf="isAuthenticated">
-                                        <span class="inline-flex items-center">
-                                            <a [routerLink]="['/solicitud/registrar-solicitud/off', offer.id, offer.titulo]"
-                                                class="mat-stroked-button">
-                                                Postular
-                                                <mat-icon class="ml-1.5 icon-size-5"
-                                                    [svgIcon]="'heroicons_solid:arrow-sm-right'"></mat-icon>
-                                            </a>
-                                        </span>
-                                    </div>
-                                         
-                                    <div *ngIf="!isAuthenticated">
-                                        <span class="inline-flex items-center">
-                                            <a [routerLink]="['/registro/off', offer.id, offer.titulo]"
-                                                class="mat-stroked-button">
-                                                Postular
-                                                <mat-icon class="ml-1.5 icon-size-5"
-                                                    [svgIcon]="'heroicons_solid:arrow-sm-right'"></mat-icon>
-                                            </a>
-                                        </span>
-                                    </div>
-
-                                    <!-- <button (click)="goLogin(offer?.id, offer?.titulo)" mat-stroked-button>
-                                        <span class="inline-flex items-center">
-                                            <span>Postular</span>
+                                    <span class="inline-flex items-center" *ngIf="isAuthenticated">
+                                        <a [routerLink]="['/solicitud/registrar-solicitud/off', offer.id, offer.titulo]"
+                                            class="mat-stroked-button">
+                                            Postular
                                             <mat-icon class="ml-1.5 icon-size-5"
                                                 [svgIcon]="'heroicons_solid:arrow-sm-right'"></mat-icon>
-                                        </span>
-                                    </button> -->
-                                     
-                                    <button (click)="cancel()" mat-stroked-button>
+                                        </a>
+                                    </span>
+
+                                    <span class="inline-flex items-center" *ngIf="!isAuthenticated">
+                                        <a [routerLink]="['/registro/off', offer.id, offer.titulo]"
+                                            class="mat-stroked-button">
+                                            Postular
+                                            <mat-icon class="ml-1.5 icon-size-5"
+                                                [svgIcon]="'heroicons_solid:arrow-sm-right'"></mat-icon>
+                                        </a>
+                                    </span>
+
+                                    <button (click)="cancel()" mat-stroked-button class="ml-2">
                                         <span class="inline-flex items-center">
                                             <span>Salir</span>
                                             <mat-icon class="ml-1.5 icon-size-5" [svgIcon]="'heroicons_solid:ban'">

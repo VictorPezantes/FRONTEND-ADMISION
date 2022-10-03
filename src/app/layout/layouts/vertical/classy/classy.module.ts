@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,10 @@ import { ShortcutsModule } from 'app/layout/common/shortcuts/shortcuts.module';
 import { UserModule } from 'app/layout/common/user/user.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { ClassyLayoutComponent } from 'app/layout/layouts/vertical/classy/classy.component';
+import { registerLocaleData } from '@angular/common';
+import localePy from '@angular/common/locales/es-PY';
+
+registerLocaleData(localePy, 'es');
 
 @NgModule({
     declarations: [
@@ -43,7 +47,8 @@ import { ClassyLayoutComponent } from 'app/layout/layouts/vertical/classy/classy
     ],
     exports     : [
         ClassyLayoutComponent
-    ]
+    ],
+    providers: [ { provide: LOCALE_ID, useValue: 'es' } ]
 })
 export class ClassyLayoutModule
 {
