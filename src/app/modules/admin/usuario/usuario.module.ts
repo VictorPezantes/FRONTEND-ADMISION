@@ -16,19 +16,27 @@ import { MatTableModule } from "@angular/material/table";
 import { MatMenuModule } from "@angular/material/menu";
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from "@angular/material/dialog";
+import { CreateAdminComponent } from "./components/create-admin/create-admin.component";
+import { FuseAlertModule } from "@fuse/components/alert";
 
 const Routes: Route[] = [
     {
-        path     : '',
+        path: '',
         component: usuarioComponent
+    },
+    {
+        path: '',
+        component: CreateAdminComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        usuarioComponent
+        usuarioComponent,
+        CreateAdminComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(Routes),
         MatSidenavModule,
         MatCardModule,
@@ -44,9 +52,10 @@ const Routes: Route[] = [
         MatTableModule,
         MatMenuModule,
         CommonModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatDialogModule,
+        FuseAlertModule
     ]
 })
-export class usuariomodule
-{
+export class usuariomodule {
 }

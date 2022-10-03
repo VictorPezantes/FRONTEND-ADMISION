@@ -146,6 +146,10 @@ export class AuthService {
         return this._httpClient.post(environment.apiUrl + 'auth/registrar-usuario', formData);
     }
 
+    signUpAdmin(formData): Observable<any> {
+        return this._httpClient.post(environment.apiUrl + 'auth/registrar-admin', formData);
+    }
+
     /**
      * Unlock session
      *

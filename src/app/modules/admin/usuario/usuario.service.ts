@@ -4,19 +4,19 @@ import { environment } from 'environments/environment';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UsuarioService {
 
-  private apiUrl = environment.apiUrl;
-  public eventCreateU: Subject<void> = new Subject<void>();
+    private apiUrl = environment.apiUrl;
+    public eventCreateU: Subject<void> = new Subject<void>();
 
-  constructor(
-    private _httpClient: HttpClient,
-  ) { }
+    constructor(
+        private _httpClient: HttpClient,
+    ) { }
 
-  getAdmins(queryParams = null): Observable<any> {
-    return this._httpClient.get<any>(`${this.apiUrl}auth/listar-usuarios-activos`, { params: queryParams });
-}
+    getAdmins(queryParams = null): Observable<any> {
+        return this._httpClient.get<any>(`${this.apiUrl}auth/listar-usuarios-activos`, { params: queryParams });
+    }
 
 }

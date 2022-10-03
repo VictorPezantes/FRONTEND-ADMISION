@@ -46,9 +46,9 @@ export class AuthSignUpComponent implements OnInit {
     ngOnInit(): void {
         const params = this._activatedRoute.snapshot.params;
         if (params.id && params.titulo) {
-            this.id = params.id 
-            this.titulo = params.titulo 
-            console.log("Recibiendo parámetros del landing ofertas: " + params.id + " - " + params.titulo)
+            this.id = params.id
+            this.titulo = params.titulo
+            //console.log("Recibiendo parámetros del landing ofertas: " + params.id + " - " + params.titulo)
         }
 
         // Create the form
