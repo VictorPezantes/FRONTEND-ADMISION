@@ -2,7 +2,6 @@ table {
   td {
     padding-bottom: 1rem;
     padding-top: 1rem;
-    
   }
 }
 
@@ -19,7 +18,6 @@ table {
 .mat-column-estado {
   width: 120px;
   text-align: left;
-  
 }
 
 .status-INGRESADO {
@@ -49,30 +47,35 @@ table {
   padding: 10px;
   background-color: rgb(255, 0, 0);
 }
+
 .status-EXAMEN-MÉDICO {
   width: 3px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(255, 153, 0);
 }
+
 .status-REFERENCIAS-PERSONALES {
   width: 3px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(158, 158, 158);
 }
+
 .status-POLIGRAFIA {
   width: 3px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(17, 0, 255);
 }
+
 .status-EVALUACIÓN-PSICOLABORAL {
   width: 3px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(132, 0, 255);
 }
+
 .status-ALTA-EMPRESA {
   width: 3px;
   margin: 5px 5px;
