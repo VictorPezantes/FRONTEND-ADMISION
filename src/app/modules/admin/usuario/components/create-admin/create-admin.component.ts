@@ -3,6 +3,7 @@ import { FormGroup, NgForm, UntypedFormBuilder, Validators } from '@angular/form
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { CommonService } from 'app/shared/services/common.service';
 
 @Component({
     selector: 'app-create-admin',
@@ -24,7 +25,8 @@ export class CreateAdminComponent implements OnInit {
 
     constructor(
         private _fb: UntypedFormBuilder,
-        private _authService: AuthService
+        private _authService: AuthService,
+        private _commonService: CommonService
     ) {
         this.createFormActions();
     }
@@ -71,10 +73,11 @@ export class CreateAdminComponent implements OnInit {
         formData.append('password', form?.password);
         formData.append('roles', form?.roles);
 
+        console.log(form);
+
         this._authService.signUpAdmin(formData)
             .subscribe(
                 (response) => {
-
                     // Re-enable the form
                     this.formActions.enable();
 
@@ -102,6 +105,10 @@ export class CreateAdminComponent implements OnInit {
                     }
 
                 });
+
+        this._commonService.addEncargado(form).subscribe((response) => {
+            console.log(response);
+        });
 
     }
 

@@ -5,39 +5,56 @@ import { Observable } from 'rxjs';
 import { AbstractChoice, Cargo, Departamento, Distrito, Encargado, Estado, Provincia } from '../interfaces/common.interface';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CommonService {
 
-  private apiUrl = environment.apiUrl;
-  id: number;
+    private apiUrl = environment.apiUrl;
+    id: number;
 
-  constructor(
-    private _httpClient: HttpClient,
-  ) { }
 
-  getStatus(queryParams = null): Observable<Estado[]> {
-    return this._httpClient.get<Estado[]>(`${this.apiUrl}estado/listar`, { params: queryParams });
-  }
 
-  getPositions(queryParams = null): Observable<AbstractChoice[]> {
-    return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}cargo/listar/`, { params: queryParams });
-  }
+    constructor(
+        private _httpClient: HttpClient,
+    ) { }
 
-  getCivilStatus(queryParams = null): Observable<AbstractChoice[]> {
-    return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}estado-civil/listar/`, { params: queryParams });
-  }
+    getStatus(queryParams = null): Observable<Estado[]> {
+        return this._httpClient.get<Estado[]>(`${this.apiUrl}estado/listar`, { params: queryParams });
+    }
 
-  getDepartamento(queryParams = null): Observable<Departamento[]> {
-    return this._httpClient.get<Departamento[]>(`${this.apiUrl}direccion/listar-departamentos/`, { params: queryParams });
-  }
+    getPositions(queryParams = null): Observable<AbstractChoice[]> {
+        return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}cargo/listar/`, { params: queryParams });
+    }
 
-  getProvincia(queryParams = null): Observable<Provincia[]> {
-    return this._httpClient.get<Provincia[]>(`${this.apiUrl}direccion/listar-provincias/${queryParams.id}`, { params: queryParams });
-  }
+    getCivilStatus(queryParams = null): Observable<AbstractChoice[]> {
+        return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}estado-civil/listar/`, { params: queryParams });
+    }
 
-  getDistrito(queryParams = null): Observable<Distrito[]> {
-    return this._httpClient.get<Distrito[]>(`${this.apiUrl}direccion/listar-distritos/${queryParams.id}`, { params: queryParams });
-  }
+    getDepartamento(queryParams = null): Observable<Departamento[]> {
+        return this._httpClient.get<Departamento[]>(`${this.apiUrl}direccion/listar-departamentos/`, { params: queryParams });
+    }
+
+    getProvincia(queryParams = null): Observable<Provincia[]> {
+        return this._httpClient.get<Provincia[]>(`${this.apiUrl}direccion/listar-provincias/${queryParams.id}`, { params: queryParams });
+    }
+
+    getDistrito(queryParams = null): Observable<Distrito[]> {
+        return this._httpClient.get<Distrito[]>(`${this.apiUrl}direccion/listar-distritos/${queryParams.id}`, { params: queryParams });
+    }
+
+    addEncargado(queryParams = null): Observable<any> {
+
+        const data =
+        {
+            nombre: queryParams?.nombre,
+            apellido: queryParams?.apellidos,
+            email: queryParams?.email,
+            telefono: '999999999'
+        };
+
+        console.log(data);
+
+        return this._httpClient.put(`${this.apiUrl}encargado/registrar/`, data);
+    }
 
 }
