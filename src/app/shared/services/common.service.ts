@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { AbstractChoice, Cargo, Departamento, Distrito, Encargado, Estado, Provincia } from '../interfaces/common.interface';
+import { AbstractChoice, Departamento, Distrito, Estado, Provincia } from '../interfaces/common.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +11,6 @@ export class CommonService {
 
     private apiUrl = environment.apiUrl;
     id: number;
-
-
 
     constructor(
         private _httpClient: HttpClient,
@@ -44,15 +42,12 @@ export class CommonService {
 
     addEncargado(queryParams = null): Observable<any> {
 
-        const data =
-        {
+        const data = {
             nombre: queryParams?.nombre,
             apellido: queryParams?.apellidos,
             email: queryParams?.email,
             telefono: '999999999'
         };
-
-        console.log(data);
 
         return this._httpClient.put(`${this.apiUrl}encargado/registrar/`, data);
     }
