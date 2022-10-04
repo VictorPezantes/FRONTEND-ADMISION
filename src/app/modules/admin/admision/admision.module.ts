@@ -30,6 +30,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { PostulantFiltersComponent } from './components/postulant-filters/postulant-filters.component';
 import { EditOfferComponent } from './components/edit-offer/edit-offer.component';
 import { CreatePostulantComponent } from './components/create-postulant/create-postulant.component';
+import { ViewInformationComponent } from './components/view-information/view-information.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,13 @@ const routes: Routes = [
                 redirectTo: 'postulaciones',
                 
             },
+
+            {
+                path: 'ver-informacion',
+                component: ViewInformationComponent,
+                
+            },
+            
             {
                 path: 'postulaciones',
                 component: PostulacionesComponent,
@@ -89,6 +97,7 @@ const routes: Routes = [
         ChangeStatusComponent,
         PostulantFiltersComponent,
         EditOfferComponent,
+        ViewInformationComponent,
 
         
     ],
