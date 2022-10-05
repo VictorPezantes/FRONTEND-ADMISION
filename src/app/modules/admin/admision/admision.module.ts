@@ -124,7 +124,8 @@ const routes: Routes = [
         CreateOfferComponent,
         ChangeStatusComponent,
         EditOfferComponent,
-        CreatePostulantComponent
+        CreatePostulantComponent,
+        ViewInformationComponent
     ]
 })
 export class AdmisionModule {
