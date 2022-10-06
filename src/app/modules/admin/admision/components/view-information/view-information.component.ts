@@ -95,7 +95,9 @@ export class ViewInformationComponent implements OnInit {
     urlFotografia: null}];
     
     displayedColumns: string[] = ['imagen', 'informacion', 'cargo' ];
-    displayedColumns1: string[] = ['celular', 'celularfamiliar', 'domicilio', 'estadocivil', 'fechanacimiento', 'emailsecundario', 'experiencia', 'responsable' ];
+    displayedColumns1: string[] = ['celular', 'celularfamiliar','emailsecundario' ];
+    displayedColumns2: string[] = ['domicilio', 'estadocivil', 'fechanacimiento', 'experiencia', 'disponibilidad' ];
+    displayedColumns3: string[] = ['responsable' ];
     count = 0;
   
     
@@ -117,7 +119,7 @@ export class ViewInformationComponent implements OnInit {
     }
   
     ngAfterViewInit(): void {
-  
+      console.log(this.dataSource)
       /*this.paginator._intl.itemsPerPageLabel = 'Items por página.';*/
   
       /*this.initPagination();*/
