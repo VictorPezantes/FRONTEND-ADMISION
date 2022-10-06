@@ -1,0 +1,289 @@
+<mat-drawer-container class="flex-auto h-full bg-card dark:bg-transparent">
+    <!-- Drawer -->
+    <mat-drawer class="w-full sm:w-100 dark:bg-gray-900" [opened]="false" [position]="'end'" [disableClose]="true"
+        #matDrawer>
+        <router-outlet></router-outlet>
+    </mat-drawer>
+    <mat-drawer-content class="flex flex-col bg-gray-100 dark:bg-transparent">
+        <!-- Main -->
+        <div class="flex flex-col flex-auto">
+            <article class="flex flex-row gap-2 w-full">
+                <section class="flex flex-row w-full flex-col h-full">
+                    <mat-card>
+                        <mat-card-content>
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full"
+                                style="background-color: rgb(184, 214, 228);">
+                                <ng-container matColumnDef="imagen">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Foto</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="relative w-30 h-30">
+                                            <img class="auto" src="assets/images/avatars/user_clean.png">
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="informacion">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Información
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-')
+                                                + ' ' +
+                                                (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno ||
+                                                '-')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.idDepartamento || '#Departamento') + ' ' +
+                                                (element?.idProvincia || '#Provincia') + ' ' + (element?.idDistrito ||
+                                                '#Distrito')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{element?.email || '-'}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.profesion || '#PROFESION')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
+                                                (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
+                                                (element?.fechaSalidaTrabajoReciente || '#Salida')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.motivoSalidaTrabajoReciente || '#MOTIVO DE SALIDA')}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="cargo">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.procedencia || '-') }}
+                                            </div>
+                                            <br>
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                            <br>
+                                            <button class="uppercase"
+                                                style="width: 120px;; left: -25px; background-color: rgb(45, 214, 45);"
+                                                mat-raised-button>
+                                                Verificación
+                                            </button>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="responsable">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Responsable
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="relative w-15 h-15 ">
+                                            <img class="auto" src="assets/images/avatars/user_clean.png">
+                                        </div>
+                                        <div class="font-extrabold text-primary-700">
+                                            {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + '
+                                            ' +
+                                            (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno ||
+                                            '-')}}
+                                        </div>
+                                        <div class="font-light">
+                                            {{(element?.motivoSalidaTrabajoReciente?.id || '#CORREO ELECTRONICO')}}
+                                        </div>
+                                        <div class="font-light">
+                                            {{(element?.motivoSalidaTrabajoReciente?.id || '#TELEFONO')}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </mat-card-content>
+                        <mat-card-content>
+                            <mat-card-title>Examen Medico</mat-card-title>
+
+                            <table mat-table [dataSource]="dataHmedico" class="mat-elevation-z2 w-full">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="weight">
+                                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="symbol">
+                                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="ColumnsHmedico"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ColumnsHmedico;"></tr>
+                            </table>
+
+                        </mat-card-content>
+                        <br>
+                        <mat-card-content>
+                            <mat-card-title>Entrevistas</mat-card-title>
+
+                            <table mat-table [dataSource]="dataEntrevista" class="mat-elevation-z2 w-full">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="weight">
+                                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="symbol">
+                                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="ColumnsEntrevista"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ColumnsEntrevista;"></tr>
+                            </table>
+
+                        </mat-card-content>
+                        <mat-card-content>
+                            <mat-card-title>Evaluaciones</mat-card-title>
+
+                            <table mat-table [dataSource]="dataEvaluaciones" class="mat-elevation-z2 w-full">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="weight">
+                                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="symbol">
+                                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="ColumnsEvaluaciones"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ColumnsEvaluaciones;"></tr>
+                            </table>
+
+                        </mat-card-content>
+                        <mat-card-content>
+                            <mat-card-title>Postulación</mat-card-title>
+
+                            <table mat-table [dataSource]="dataPostulalcion" class="mat-elevation-z2 w-full">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="weight">
+                                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="symbol">
+                                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="ColumnsPostulalcion"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ColumnsPostulalcion;"></tr>
+                            </table>
+
+                        </mat-card-content>
+                        <mat-card-content>
+                            <mat-card-title>Estados</mat-card-title>
+
+                            <table mat-table [dataSource]="dataEstados" class="mat-elevation-z2 w-full">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="weight">
+                                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                </ng-container>
+
+                                <!-- Symbol Column -->
+                                <ng-container matColumnDef="symbol">
+                                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="ColumnsEstados"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ColumnsEstados;"></tr>
+                            </table>
+
+                        </mat-card-content>
+
+                        <mat-card-footer class="p-6 py-4 bg-gray-80 dark:bg-transparent mat-elevation-z0">
+                            <button class="uppercase" mat-raised-button color="primary">
+                                Imprimir
+                            </button>
+                             
+                            <a mat-raised-button color="primary" class="uppercase"
+                                routerLink="/recursos-humanos/admision/ver-informacion">Cancelar
+                            </a>
+                        </mat-card-footer>
+                    </mat-card>
+                    <br>
+                </section>
+            </article>
+        </div>
+
+    </mat-drawer-content>
+</mat-drawer-container>

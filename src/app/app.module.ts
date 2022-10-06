@@ -23,8 +23,6 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UsuarioActionsComponent } from './modules/admin/usuario/components/usuario-actions/usuario-actions.component';
 
-
-
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
     scrollPositionRestoration: 'enabled'
@@ -38,7 +36,7 @@ export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
     declarations: [
         AppComponent,
         EmpresaComponent,
-        UsuarioActionsComponent,
+        UsuarioActionsComponent
     ],
     imports: [
         BrowserModule,

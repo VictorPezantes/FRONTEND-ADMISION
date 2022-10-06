@@ -1,295 +1,273 @@
 <mat-drawer-container class="flex-auto h-full bg-card dark:bg-transparent">
-
     <!-- Drawer -->
     <mat-drawer class="w-full sm:w-100 dark:bg-gray-900" [opened]="false" [position]="'end'" [disableClose]="true"
         #matDrawer>
         <router-outlet></router-outlet>
     </mat-drawer>
-
     <mat-drawer-content class="flex flex-col bg-gray-100 dark:bg-transparent">
-
         <!-- Main -->
         <div class="flex flex-col flex-auto">
+            <article class="flex flex-row gap-2 w-full">
+                <!-- Comienza Parte Superior-->
+                <section class="flex flex-row w-full flex-col h-full">
+                    <mat-card>
+                        <mat-card-content>
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full"
+                                style="background-color: rgb(184, 214, 228);">
+                                <ng-container matColumnDef="imagen">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Imagen</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="relative w-20 h-20">
+                                            <img class="auto" src="assets/images/avatars/user_clean.png">
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="informacion">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Información
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-')
+                                                + ' ' +
+                                                (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno ||
+                                                '-')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.idDepartamento || '#Departamento') + ' ' +
+                                                (element?.idProvincia || '#Provincia') + ' ' + (element?.idDistrito ||
+                                                '#Distrito')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{element?.email || '-'}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.profesion || '#PROFESION')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
+                                                (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
+                                                (element?.fechaSalidaTrabajoReciente || '#Salida')}}
+                                            </div>
+                                            <div class="font-light">
+                                                {{(element?.motivoSalidaTrabajoReciente || '#MOTIVO DE SALIDA')}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="cargo">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                            <br>
+                                            <button class="uppercase"
+                                                style="width: 120px;; left: -25px; background-color: rgb(45, 214, 45);"
+                                                mat-raised-button>
+                                                Verificación
+                                            </button>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
 
-            <!-- Header -->
-            <div
-                class="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between p-6 sm:py-5 md:px-8 border-b bg-card dark:bg-transparent">
-                <!-- Title -->
-                <div>
-                    <div class="title-main text-2xl font-extrabold tracking-tight leading-none">VISTA POSTULANTE
-                    </div>
-                    
-                </div>
-            </div>
-<br>
+                        </mat-card-content>
 
-
-                <article class="flex flex-row gap-2 w-full">
-
-<!-- Comienza Parte Superior-->
-
-                    <section class="flex flex-row w-full flex-col h-full" >
-
-   <mat-card>                        
-    <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full" style="background-color: rgb(184, 214, 228);">
-            <ng-container matColumnDef="imagen">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Imagen</th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="relative w-20 h-20">
-                        <img class="auto" src="assets/images/avatars/user_clean.png">
-                    </div>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="informacion">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Información</th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="flex flex-col">
-                        <div class="font-extrabold text-primary-700">
-                            {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + ' ' +
-                            (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.idDepartamento || '#Departamento') + ' ' +
-                            (element?.idProvincia || '#Provincia') + ' ' + (element?.idDistrito ||
-                            '#Distrito')}}
-                        </div>
-                        <div class="font-light">
-                            {{element?.email || '-'}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.profesion || '#PROFESION')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
-                            (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
-                            (element?.fechaSalidaTrabajoReciente || '#Salida')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.motivoSalidaTrabajoReciente || '#MOTIVO DE SALIDA')}}
-                        </div>
-                    </div>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="cargo">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
+                    </mat-card>
                     <br>
-                <button class="uppercase" style="width: 120px;; left: -25px; background-color: rgb(45, 214, 45);" mat-raised-button >
-                    Verificación
-                   </button>
-                </div>
-                
-                </td>
-            </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-    </mat-card-content>
-
-</mat-card>
-<br>
+                    <!-- Finaliza Parte superior-->
 
 
+                    <!-- Comienza Parte Inferior-->
+                    <mat-card>
+                        <mat-card-content>
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">
+                                <ng-container matColumnDef="celular">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Celular
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-<!-- Finaliza Parte superior-->
+                                <ng-container matColumnDef="celularfamiliar">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Celular
+                                        Familiar
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
- 
-<!-- Comienza Parte Inferior-->
-<mat-card>                        
-    <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">
-            <ng-container matColumnDef="celular">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Celular
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <ng-container matColumnDef="domicilio">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Domicilio
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-            <ng-container matColumnDef="celularfamiliar">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Celular Familiar
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <ng-container matColumnDef="estadocivil">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Estado
+                                        Civil
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-            <ng-container matColumnDef="domicilio">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Domicilio
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <ng-container matColumnDef="fechanacimiento">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Fecha
+                                        Nacimiento
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-            <ng-container matColumnDef="estadocivil">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Estado Civil
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <ng-container matColumnDef="emailsecundario">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Email
+                                        Secundario
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-            <ng-container matColumnDef="fechanacimiento">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Fecha Nacimiento
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <ng-container matColumnDef="experiencia">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Experiencia
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-            <ng-container matColumnDef="emailsecundario">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Email Secundario
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <ng-container matColumnDef="responsable">
+                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Responsable
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="flex flex-col">
+                                            <div class="font-extrabold text-primary-700">
+                                                {{(element?.profesion || '-') }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
 
-            <ng-container matColumnDef="experiencia">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Experiencia
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                            </table>
+                        </mat-card-content>
 
-            <ng-container matColumnDef="responsable">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">Responsable
-                </th>
-                <td mat-cell *matCellDef="let element">
-                <div class="flex flex-col">
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.profesion || '-') }}
-                    </div>
-                </div>
-                </td>
-            </ng-container>
+                    </mat-card>
 
-           
+                </section>
+                <!-- Finaliza Parte Inferior-->
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
-    </table>
-    </mat-card-content>
-
-</mat-card>
-                     
-                    </section>
-<!-- Finaliza Parte Inferior-->
-
-                    <!-- Parte derecha-->
-                    <section class="flex flex-col gap-2 w-100">
-                      
-                        <mat-card style="border-radius:2px">
-                            
-                            <mat-card-content >
-                                <h1 style="font-size: 18px;">Historial del postulante</h1>
-                                <br>
-                                <button class="uppercase" style="left: 135px; " mat-raised-button color="primary">
-                                    Ver Historial
-                                </button>
-                            </mat-card-content>
-                        
-                        </mat-card>
-
-                        <mat-card style="border-radius:2px">
-                            
-                            <mat-card-content>
-                               <h1 style="font-size: 18px;">Ficha del postulante</h1>
-                               <br>
-                               
-                               <button class="uppercase" style="left: 70px;" mat-raised-button color="primary">
+                <!-- Parte derecha-->
+                <section class="flex flex-col gap-2 w-100">
+                    <mat-card style="border-radius:2px">
+                        <mat-card-content>
+                            <h1 style="font-size: 18px;">Historial del postulante</h1>
+                            <br>
+                            <a mat-raised-button color="primary" class="uppercase" style="left: 135px;"
+                                routerLink="/recursos-humanos/admision/historial">Ver historial
+                            </a>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card style="border-radius:2px">
+                        <mat-card-content>
+                            <h1 style="font-size: 18px;">Ficha del postulante</h1>
+                            <br>
+                            <button class="uppercase" style="left: 70px;" mat-raised-button color="primary">
                                 Ficha del postulante
-                               </button>
-                            </mat-card-content>
-                        
-                        </mat-card>
+                            </button>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card style="border-radius:2px">
+                        <mat-card-content>
+                            <h1 style="font-size: 20px;">Documentos Postulante</h1>
+                            <br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox1" value="checkbox1">
+                                DNI</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox2" value="checkbox2">
+                                Pasaporte</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox3" value="checkbox3">
+                                Visa</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox4" value="checkbox4"> Tarjeta
+                                Vacuna Fiebre Amarilla</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox5" value="checkbox5"> Esquema
+                                Vacuna Covid</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox6" value="checkbox6">
+                                Antecedentes Penales</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox7" value="checkbox7">
+                                Fotografía</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox8" value="checkbox8">
+                                Curriculum Vitae</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox9" value="checkbox9"> Examen
+                                Médico</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox10" value="checkbox10">
+                                Evaluación Referencia Personales</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox11" value="checkbox11">
+                                Evaluación Psicolaboral</label><br>
+                            <label style="font-size: 16px;"><input type="checkbox" id="cbox12" value="checkbox12">
+                                Evaluación Poligrafía</label><br>
+                            <br>
+                            <br>
+                            <div>
 
-                        <mat-card style="border-radius:2px">
-                            
-                            <mat-card-content>
-                                <h1 style="font-size: 20px;">Documentos Postulante</h1>
-                                <br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox1" value="checkbox1" > DNI</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox2" value="checkbox2"> Pasaporte</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox3" value="checkbox3"> Visa</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox4" value="checkbox4"> Tarjeta Vacuna Fiebre Amarilla</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox5" value="checkbox5"> Esquema Vacuna Covid</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox6" value="checkbox6"> Antecedentes Penales</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox7" value="checkbox7"> Fotografía</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox8" value="checkbox8"> Curriculum Vitae</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox9" value="checkbox9"> Examen Médico</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox10" value="checkbox10"> Evaluación Referencia Personales</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox11" value="checkbox11"> Evaluación Psicolaboral</label><br>
-                                <label style="font-size: 16px;"><input type="checkbox" id="cbox12" value="checkbox12"> Evaluación Poligrafía</label><br>
-                                <br>
-                                <br>
-                                <div>
-                                    
-                                    <button class="uppercase" style="width: 90px; font-size: 11px; left: 30px;" mat-raised-button color="primary">
+                                <button class="uppercase" style="width: 90px; font-size: 11px; left: 30px;"
+                                    mat-raised-button color="primary">
                                     Descargar
-                                    </button>
-                                
-                                    <button   button class="uppercase" style="width: 110px; font-size: 11px; left: 60px;" mat-raised-button color="primary">
+                                </button>
+
+                                <button button class="uppercase" style="width: 110px; font-size: 11px; left: 60px;"
+                                    mat-raised-button color="primary">
                                     Cargar Archivo
-                                    </button>
-                                </div>
-                            </mat-card-content>
-                        
-                        </mat-card>
-                   
-                    </section> 
-              </article>
-
-                </div>          
-
-
-            
-            
-
-       
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </section>
+            </article>
+        </div>
 
     </mat-drawer-content>
-
 </mat-drawer-container>

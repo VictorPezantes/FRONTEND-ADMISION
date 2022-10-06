@@ -31,7 +31,7 @@ import { PostulantFiltersComponent } from './components/postulant-filters/postul
 import { EditOfferComponent } from './components/edit-offer/edit-offer.component';
 import { CreatePostulantComponent } from './components/create-postulant/create-postulant.component';
 import { ViewInformationComponent } from './components/view-information/view-information.component';
-
+import { HistoryPostulantComponent } from './components/history-postulant/history-postulant.component';
 
 const routes: Routes = [
     {
@@ -42,22 +42,19 @@ const routes: Routes = [
                 path: '',
                 pathMatch: 'full',
                 redirectTo: 'postulaciones',
-                
             },
-
             {
                 path: 'ver-informacion',
                 component: ViewInformationComponent,
-                
             },
-            
+            {
+                path: 'historial',
+                component: HistoryPostulantComponent,
+            },
             {
                 path: 'postulaciones',
                 component: PostulacionesComponent,
-                
             },
- 
-
             {
                 path: 'ofertas',
                 component: OfertasComponent,
@@ -98,8 +95,7 @@ const routes: Routes = [
         PostulantFiltersComponent,
         EditOfferComponent,
         ViewInformationComponent,
-
-        
+        HistoryPostulantComponent
     ],
     imports: [
         CommonModule,
@@ -125,7 +121,8 @@ const routes: Routes = [
         ChangeStatusComponent,
         EditOfferComponent,
         CreatePostulantComponent,
-        ViewInformationComponent
+        ViewInformationComponent,
+        HistoryPostulantComponent
     ]
 })
 export class AdmisionModule {

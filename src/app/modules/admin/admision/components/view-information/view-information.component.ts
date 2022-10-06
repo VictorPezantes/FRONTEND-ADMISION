@@ -105,7 +105,7 @@ export class ViewInformationComponent implements OnInit {
       private _postulacionService: PostulacionesService,
       private _admisionService: AdmisionService,
     ) {
-      
+      this._admisionService.title.next('Información del Postulante');
     }
   
 
