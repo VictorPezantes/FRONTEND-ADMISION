@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdmisionService } from '../../admision.service';
+import { AdmisionService } from '../../../admision.service';
 
 @Component({
   selector: 'app-history-postulant',
