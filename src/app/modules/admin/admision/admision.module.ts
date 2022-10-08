@@ -33,6 +33,11 @@ import { CreatePostulantComponent } from './components/create-postulant/create-p
 import { ViewInformationComponent } from './components/view-information/view-information.component';
 import { HistoryPostulantComponent } from './containers/postulaciones/history-postulant/history-postulant.component';
 import { FichaPostulantComponent } from './containers/postulaciones/ficha-postulant/ficha-postulant.component';
+import { CreateInterviewComponent } from './components/create-interview/create-interview.component';
+import { InterviewActionsComponent } from './components/interview-actions/interview-actions.component';
+import { ScheduleInterviewComponent } from './components/schedule-interview/schedule-interview.component';
+import { Modal2InterviewComponent } from './components/schedule-interview/modal2-interview.component';
+
 
 const routes: Routes = [
     {
@@ -101,7 +106,11 @@ const routes: Routes = [
         EditOfferComponent,
         ViewInformationComponent,
         HistoryPostulantComponent,
-        FichaPostulantComponent
+        FichaPostulantComponent,
+        CreateInterviewComponent,
+        InterviewActionsComponent,
+        ScheduleInterviewComponent,
+        Modal2InterviewComponent
     ],
     imports: [
         CommonModule,
@@ -128,7 +137,10 @@ const routes: Routes = [
         EditOfferComponent,
         CreatePostulantComponent,
         ViewInformationComponent,
-        HistoryPostulantComponent
+        HistoryPostulantComponent,
+        CreateInterviewComponent,
+        ScheduleInterviewComponent,
+        Modal2InterviewComponent
     ]
 })
 export class AdmisionModule {
