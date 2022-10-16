@@ -1,0 +1,24 @@
+<div class="flex flex-col w-full gap-4">
+    <div mat-dialog-content>
+        <div class="flex flex-row">
+            Gestionar Evaluación
+        </div>
+        <div class="flex flex-row m-6">
+            Seleccione la Evaluación a gestionar
+        </div>
+        <div class="flex flex-row justify-center">
+            <div class="flex flex-col mx-2">
+                <button mat-stroked-button (click)="openModal1()">Referencias Personales</button>
+            </div>
+            <div class="flex flex-col mx-2">
+                <button mat-stroked-button (click)="openModal1()">Poligrafía</button>
+            </div>
+            <div class="flex flex-col mx-2">
+                <button mat-stroked-button (click)="openModal1()">Psicolaboral</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button (click)="close()">Cancelar</button>
+    </div>
+</div>

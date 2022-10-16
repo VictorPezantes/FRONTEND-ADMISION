@@ -7,107 +7,80 @@
             <div class="flex flex-col w-2/6 m-2">
                 <h1 class="text-lg p-2">Programar Entrevista</h1>
                 <h1 class="text-sm p-2">Entrevista Personal</h1>
-                <p class="p-2 text-gray-400">La entrevista personal es gestionada siempre y cuando el postulante haya presentado todos sus documentos y estos han sido validados en conjunto con las referencias.</p>
+                <p class="p-2 text-gray-400">La entrevista personal es gestionada siempre y cuando el postulante haya
+                    presentado todos sus documentos y estos han sido validados en conjunto con las referencias.</p>
                 <h1 class="text-sm p-2">Listado de Entrevistas</h1>
                 <a href="recursos-humanos/admision/entrevistas" class="text-blue-600 p-2">Ir al
                     listado de Entrevistas</a>
             </div>
             <!-- <div class="bg-blue-500 m-2 flex-col"> -->
-            <div class="flex flex-col w-4/6 m-2 justify-between items-center">
+            <div class="flex flex-col w-4/6 m-2 justify-between">
                 <h1 class="text-lg p-2">Entrevista personal</h1>
-                <div class="flex p-1">
-                    <div class="flex-col">
-                        <img class="w-20 h-20 rounded-full"
+                <div class="flex flex-row p-1 justify-center">
+                    <div class="flex flex-col">
+                        <img class="w-16 h-16 rounded-full"
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
                             alt="">
                     </div>
-                    <div class="flex-col">
+                    <div class="flex flex-col justify-center mx-1">
                         Víctor Rodríguez P.
                     </div>
                 </div>
-                <div class="flex p-1">
-                    <div class="flex-col">
-                        Fecha
+                <div class="flex flex-row p-1 justify-center">
+                    <div class="flex flex-col">
+                        <div class="flex flex-row p-1">
+                            <h1 class="text-gray-400">Fecha</h1>
+                        </div>
+                        <div class="flex flex-row mx-2">
+                            <input type="date">
+                        </div>
                     </div>
-                    <div class="flex-col">
-                        Hora de inicio
+                    <div class="flex flex-col">
+                        <div class="flex flex-row p-1">
+                            <h1 class="text-gray-400">Inicio</h1>
+                        </div>
+                        <div class="flex flex-row mx-2">
+                            <input type="time">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex flex-row p-1">
+                            <h1 class="text-gray-400">Fin</h1>
+                        </div>
+                        <div class="flex flex-row mx-2">
+                            <input type="time">
+                        </div>
                     </div>
                 </div>
-                <h1 class="text-sm p-2">Asignar entrevistador</h1>
-                <div class="flex-col m-2">
-                    <div class="flex p-1">
-                        <input type="checkbox" (click)="openModal2()">
-                        <label for="">Víctor Rodríguez</label>
-                    </div>
-                    <div class="flex p-1">
-                        <input type="checkbox" (click)="openModal2()">
-                        <label for="">Víctor Rodríguez</label>
-                    </div>
-                    <div class="flex p-1">
-                        <input type="checkbox" (click)="openModal2()">
-                        <label for="">Víctor Rodríguez</label>
-                    </div>
-                    <div class="flex p-1">
-                        <input type="checkbox" (click)="openModal2()">
-                        <label for="">Víctor Rodríguez</label>
+                <div class="flex flex-row my-4" >
+                    <h1 class="text-gray-400">Asignar Entrevistador</h1>
+                </div>
+                <div class="flex flex-row justify-center">
+                    <div class="flex flex-col">
+                        <div class="flex flex-row mb-1">
+                            Seleccione entrevistador
+                        </div>
+                        <div class="flex flex-row m-1">
+                            <label>
+                                <input name="#" type="checkbox" class="mx-2" />
+                                Víctor Rodríguez Pezantes
+                            </label>
+                        </div>
+                        <div class="flex flex-row m-1">
+                            <label>
+                                <input name="#" type="checkbox" class="mx-2" />
+                                Víctor Rodríguez Pezantes
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="flex flex-col w-3/12 gap-5 text-justify" *ngIf="!id.value">
-                <h1 class="font-bold">Nueva oferta laboral</h1>
-                <p>Desde aqui puedes crear una nueva oferta de forma manual.</p>
-                <p>Una oferta es una posición ofrecida por una empresa
-                    para que una persona desempeñe un trabajo.</p>
-                <p>Los campos con (*) son obligatorios.</p>
-            </div> -->
-            <!-- <div class="flex flex-col w-9/12" [formGroup]="formActions">
-                <mat-form-field class="w-full" appearance="fill">
-                    <mat-label>Título</mat-label>
-                    <input
-                            matInput
-                            autocomplete="off"
-                            placeholder="Ingrese un título para la oferta"
-                            [formControlName]="'titulo'">
-                    <mat-error *ngIf="formActions.get('titulo').hasError('required')">
-                        Este campo es requerido
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-full" appearance="fill">
-                    <mat-label>Descripción</mat-label>
-                    <textarea matInput
-                              autocomplete="off"
-                              placeholder="Ingrese una descripción de la oferta mínimo 50 caracteres máximo 1000 caracteres"
-                              formControlName="descripcion"></textarea>
-                    <mat-error *ngIf="formActions.get('descripcion').hasError('required')">
-                        Este campo es requerido
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-full" appearance="fill">
-                    <mat-label>Requisito</mat-label>
-                    <textarea matInput
-                              autocomplete="off"
-                              placeholder="Ingrese una descripción de la oferta mínimo 50 caracteres máximo 1000 caracteres"
-                              formControlName="requisito"></textarea>
-                    <mat-error *ngIf="formActions.get('requisito').hasError('required')">
-                        Este campo es requerido
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense" appearance="fill">
-                    <mat-label>Cargo</mat-label>
-                    <mat-select formControlName="cargoOferta" placeholder="Asociar cargo a la oferta">
-                        <mat-option [value]="null">----</mat-option>
-                        <ng-container *ngFor="let option of cargoOferta$ | async">
-                            <mat-option [value]="option" >{{ option.nombreCargo }}</mat-option>
-                            
-                        </ng-container>
-                    </mat-select>
-                </mat-form-field>
-            </div> -->
         </div>
     </div>
     <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
         <!-- <button mat-stroked-button color="primary" (click)="createOrEditOffer()">{{ id.value ? 'Actualizar oferta' : 'Crear oferta'}}</button> -->
-        <button mat-stroked-button color="primary">Atrás</button>
+        <button mat-stroked-button color="primary" (click)="openModal2()">Continuar</button>
+        <button mat-stroked-button >Atrás</button>
         <button mat-stroked-button (click)="close()">Cancelar</button>
     </div>
 </div>

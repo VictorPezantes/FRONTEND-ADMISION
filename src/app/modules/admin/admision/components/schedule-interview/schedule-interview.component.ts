@@ -11,7 +11,7 @@ import {Modal1InterviewComponent} from './modal1-interview.component';
 export class ScheduleInterviewComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {

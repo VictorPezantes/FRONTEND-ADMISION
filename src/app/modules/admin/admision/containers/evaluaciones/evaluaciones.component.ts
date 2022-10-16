@@ -1,13 +1,15 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AdmisionService } from '../../admision.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { BehaviorSubject, merge, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, merge, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageProviderService } from '../../../../../shared/services/message-provider.service';
 import { PostulacionesService } from '../postulaciones/postulaciones.service';
 import { FormUtils } from '../../../../../shared/utils/form.utils';
 import { Postulante } from '../../admision.interface';
-
+import { EvaluacionesService } from './evaluaciones.service';
+import { ManageEvaluationComponent } from '../../components/manage-evaluation/manage-evaluation.component';
+import { LoadResultsEvaluationComponent } from '../../components/load-results-evaluation/load-results-evaluation.component'
 
 @Component({
   selector: 'app-evaluaciones',
@@ -31,11 +33,15 @@ export class EvaluacionesComponent implements OnInit, AfterViewInit, OnDestroy {
     private _messageProviderService: MessageProviderService,
     private _postulacionService: PostulacionesService,
     private _admisionService: AdmisionService,
+    private _evaluacionesService: EvaluacionesService
   ) {
     this._admisionService.title.next('Evaluaciones');
   }
 
   ngOnInit(): void {
+    this._evaluacionesService.eventCreate
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(_ => this.manageEvaluation());
   }
 
   ngAfterViewInit(): void {
@@ -61,6 +67,36 @@ export class EvaluacionesComponent implements OnInit, AfterViewInit, OnDestroy {
         this._ngxSpinner.hide();
         this.count = response.count;
         this.dataSource = response.content;
+      });
+  }
+
+  manageEvaluation(element?): void {
+    const dialogData = {
+      data: {
+        meta: element
+      },
+      width: '50vw',
+      disableClose: true
+    };
+
+    this._messageProviderService.showModal(ManageEvaluationComponent, dialogData)
+      .afterClosed().subscribe(_ => {
+        this.changesSubject.next(true);
+      });
+  }
+
+  loadResults(element?): void {
+    const dialogData = {
+      data: {
+        meta: element
+      },
+      width: '50vw',
+      disableClose: true
+    };
+
+    this._messageProviderService.showModal(LoadResultsEvaluationComponent, dialogData)
+      .afterClosed().subscribe(_ => {
+        this.changesSubject.next(true);
       });
   }
 

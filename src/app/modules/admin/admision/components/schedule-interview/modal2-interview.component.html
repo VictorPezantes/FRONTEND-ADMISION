@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full gap-4">
     <!-- <h2 mat-dialog-title>{{ id.value ? 'Editar' : 'Crear' }}&nbsp; oferta laboral</h2> -->
     <div mat-dialog-content>
-        <!-- <div class="bg-orange-500 flex flex-row gap-10"> -->
+
         <div class="flex flex-row">
             <!-- <div class="bg-blue-300 m-2 flex-col"> -->
             <div class="flex flex-col w-2/6 m-2">
@@ -14,57 +14,87 @@
                     listado de Entrevistas</a>
             </div>
             <!-- <div class="bg-blue-500 m-2 flex-col"> -->
-            <div class="flex flex-col w-4/6 m-2 justify-between items-center">
+            <div class="flex flex-col w-4/6 m-2 justify-between">
                 <h1 class="text-lg p-2">Entrevista personal</h1>
-                <div class="flex p-1">
-                    <div class="flex-col">
+                <div class="flex flex-row p-1 justify-center">
+                    <div class="flex flex-col">
                         <img class="w-16 h-16 rounded-full"
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
                             alt="">
                     </div>
-                    <div class="flex-col">
+                    <div class="flex flex-col justify-center mx-1">
                         Víctor Rodríguez P.
                     </div>
                 </div>
-                <div class="flex p-1">
-                    <div class="flex-col">
-                        Fecha
+                <div class="flex flex-row p-1 justify-center">
+                    <div class="flex flex-col">
+                        <div class="flex flex-row p-1">
+                            <h1 class="text-gray-400">Fecha</h1>
+                        </div>
+                        <div class="flex flex-row mx-2">
+                            <input type="date">
+                        </div>
                     </div>
-                    <div class="flex-col">
-                        Hora de inicio
+                    <div class="flex flex-col">
+                        <div class="flex flex-row p-1">
+                            <h1 class="text-gray-400">Inicio</h1>
+                        </div>
+                        <div class="flex flex-row mx-2">
+                            <input type="time">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex flex-row p-1">
+                            <h1 class="text-gray-400">Fin</h1>
+                        </div>
+                        <div class="flex flex-row mx-2">
+                            <input type="time">
+                        </div>
                     </div>
                 </div>
-                <h1 class="text-sm p-2">Asignar entrevistador</h1>
-                <div class="flex p-1">
+                <div class="flex flex-row my-4">
+                    <h1 class="text-gray-400">Asignar Entrevistador</h1>
+                </div>
+                <div class="flex flex-row p-1 justify-center">
                     <div class="flex flex-col">
                         <img class="w-16 h-16 rounded-full"
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
                             alt="">
                     </div>
-                    <div class="flex flex-col">
-                        <h1>Víctor Rodríguez P.</h1>
-                        <h1>Correo</h1>
-                        <h1>+51965558896</h1>
+                    <div class="flex flex-col mx-1">
+                        <div class="flex flex-row">
+                            <h1>Víctor Rodríguez P.</h1>
+                        </div>
+                        <div class="flex flex-row">
+                            <h1>victor@technotankers.com.pe</h1>
+                        </div>
+                        <div class="flex flex-row">
+                            <h1>+51965558896</h1>
+                        </div>
                     </div>
                 </div>
-                <h1>Asignar lugar para la entrevista</h1>
+                <div class="flex flex-row my-4">
+                    <h1 class="text-gray-400">Asignar lugar para la entrevista</h1>
+                </div>
 
-                <div class="flex p-1">
+                <div class="flex flex-row justify-center p-1">
                     <div class="flex flex-col px-1">
                         <label>
-                            <input [value]="1" [(ngModel)]="isVisible" name="isVisible" type="radio" [checked]="isSelected" />
+                            <input [value]="1" [(ngModel)]="isVisible" name="isVisible" type="radio"
+                                [checked]="isSelected" />
                             vía Zoom
                         </label>
                     </div>
                     <div class="flex flex-col px-1">
                         <label>
-                            <input [value]="0" [(ngModel)]="isVisible" name="isVisible" type="radio" [checked]="!isSelected" />
+                            <input [value]="0" [(ngModel)]="isVisible" name="isVisible" type="radio"
+                                [checked]="!isSelected" />
                             Presencial Oficina
                         </label>
                     </div>
                 </div>
 
-                <div class="showDiv" *ngIf="isVisible == 1">
+                <div class="showDiv mt-2" *ngIf="isVisible == 1">
                     <h2>Ingrese Link de la reunión</h2>
                     <input type="text" placeholder="Ingrese link de la reunión">
                     <h2>Ingrese ID reunión</h2>
@@ -72,7 +102,7 @@
                     <h2>Ingrese Código de acceso</h2>
                     <input type="text" placeholder="Ingrese Código">
                 </div>
-                <div class="hideDiv" *ngIf="isVisible == 0">
+                <div class="hideDiv mt-2" *ngIf="isVisible == 0">
                     <h2>Lugar de la entrevista</h2>
                     <p>Oficina Empresa TechnoTankers</p><br>
                     <p>JR. LOS MIRTOS NRO. 491 URB. SAN EUGENIO-LINCE</p>
@@ -135,6 +165,6 @@
         <!-- <button mat-stroked-button color="primary" (click)="createOrEditOffer()">{{ id.value ? 'Actualizar oferta' : 'Crear oferta'}}</button> -->
         <button mat-stroked-button color="primary" (click)="openModal3()">Continuar</button>
         <button mat-stroked-button (click)="close()">Cancelar</button>
-        <button mat-stroked-button color="primary">Atrás</button>
+        <button mat-stroked-button>Atrás</button>
     </div>
 </div>

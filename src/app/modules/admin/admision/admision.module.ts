@@ -37,6 +37,17 @@ import { CreateInterviewComponent } from './components/create-interview/create-i
 import { InterviewActionsComponent } from './components/interview-actions/interview-actions.component';
 import { ScheduleInterviewComponent } from './components/schedule-interview/schedule-interview.component';
 import { Modal2InterviewComponent } from './components/schedule-interview/modal2-interview.component';
+import { EditInterviewComponent } from './components/edit-interview/edit-interview.component';
+import { CancelInterviewComponent } from './components/cancel-interview/cancel-interview.component';
+import { Modal1CreateInterviewComponent } from './components/create-interview/modal1-create-interview.component';
+import { EvaluationActionsComponent } from './components/evaluation-actions/evaluation-actions.component';
+import { ManageEvaluationComponent } from './components/manage-evaluation/manage-evaluation.component';
+import { Modal1ManageEvaluationComponent } from './components/manage-evaluation/modal1-manage-evaluation.component';
+import { Modal2ManageEvaluationComponent } from './components/manage-evaluation/modal2-manage-evaluation.component';
+import { Modal3ManageEvaluationComponent } from './components/manage-evaluation/modal3-manage-evaluation.component';
+import { Modal1InterviewComponent } from './components/schedule-interview/modal1-interview.component';
+import { Modal3InterviewComponent } from './components/schedule-interview/modal3-interview.component';
+import { LoadResultsEvaluationComponent } from './components/load-results-evaluation/load-results-evaluation.component';
 
 
 const routes: Routes = [
@@ -110,7 +121,18 @@ const routes: Routes = [
         CreateInterviewComponent,
         InterviewActionsComponent,
         ScheduleInterviewComponent,
-        Modal2InterviewComponent
+        Modal1InterviewComponent,
+        Modal2InterviewComponent,
+        Modal3InterviewComponent,
+        EditInterviewComponent,
+        CancelInterviewComponent,
+        Modal1CreateInterviewComponent,
+        EvaluationActionsComponent,
+        ManageEvaluationComponent,
+        Modal1ManageEvaluationComponent,
+        Modal2ManageEvaluationComponent,
+        Modal3ManageEvaluationComponent,
+        LoadResultsEvaluationComponent
     ],
     imports: [
         CommonModule,
@@ -140,7 +162,15 @@ const routes: Routes = [
         HistoryPostulantComponent,
         CreateInterviewComponent,
         ScheduleInterviewComponent,
-        Modal2InterviewComponent
+        Modal1InterviewComponent,
+        Modal2InterviewComponent,
+        Modal3InterviewComponent,
+        EditInterviewComponent,
+        Modal1CreateInterviewComponent,
+        Modal1ManageEvaluationComponent,
+        Modal2ManageEvaluationComponent,
+        Modal3ManageEvaluationComponent,
+        LoadResultsEvaluationComponent
     ]
 })
 export class AdmisionModule {
