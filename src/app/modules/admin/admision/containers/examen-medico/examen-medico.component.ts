@@ -8,66 +8,71 @@ import { MessageProviderService } from '../../../../../shared/services/message-p
 import { PostulacionesService } from '../postulaciones/postulaciones.service';
 import { FormUtils } from '../../../../../shared/utils/form.utils';
 import { Postulante } from '../../admision.interface';
+import { GestionarExamenComponent } from './gestionar-examen/gestionar-examen.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-examen-medico',
-  templateUrl: './examen-medico.component.html',
-  styleUrls: ['./examen-medico.component.scss']
+    selector: 'app-examen-medico',
+    templateUrl: './examen-medico.component.html',
+    styleUrls: ['./examen-medico.component.scss']
 })
 export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  dataSource: Postulante[] = [];
-  displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
+    dataSource: Postulante[] = [];
+    displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
 
-  count = 0;
+    count = 0;
 
-  changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  unsubscribe: Subject<void> = new Subject<void>();
+    changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(
-    private _ngxSpinner: NgxSpinnerService,
-    private _messageProviderService: MessageProviderService,
-    private _postulacionService: PostulacionesService,
-    private _admisionService: AdmisionService,
-  ) {
-    this._admisionService.title.next('Examen Médico');
-  }
+    constructor(
+        public dialog: MatDialog,
+        private _ngxSpinner: NgxSpinnerService,
+        private _messageProviderService: MessageProviderService,
+        private _postulacionService: PostulacionesService,
+        private _admisionService: AdmisionService,
+    ) {
+        this._admisionService.title.next('Examen Médico');
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  ngAfterViewInit(): void {
+    ngAfterViewInit(): void {
+        this.paginator._intl.itemsPerPageLabel = 'Items por página.';
+        this.initPagination();
+    }
 
-    this.paginator._intl.itemsPerPageLabel = 'Items por página.';
+    initPagination(): void {
+        merge(this.paginator.page, this.changesSubject, this._postulacionService.eventFilters)
+            .pipe(
+                switchMap(() => {
+                    this._ngxSpinner.show();
+                    const rawValue = this._postulacionService.eventFilters.value;
+                    const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
+                    const queryParamsByPaginator = { ...filters } as any;
+                    queryParamsByPaginator.limit = this.paginator.pageSize;
+                    queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
+                    return this._postulacionService.get(queryParamsByPaginator);
+                })
+            ).subscribe((response) => {
+                this._ngxSpinner.hide();
+                this.count = response.count;
+                this.dataSource = response.content;
+            });
+    }
 
-    this.initPagination();
-  }
+    ngOnDestroy(): void {
+        this.unsubscribe.next();
+        this.unsubscribe.complete();
+    }
 
-  initPagination(): void {
-    merge(this.paginator.page, this.changesSubject, this._postulacionService.eventFilters)
-      .pipe(
-        switchMap(() => {
-          this._ngxSpinner.show();
-          const rawValue = this._postulacionService.eventFilters.value;
-          const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
-          const queryParamsByPaginator = { ...filters } as any;
-          queryParamsByPaginator.limit = this.paginator.pageSize;
-          queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
-          return this._postulacionService.get(queryParamsByPaginator);
-        })
-      ).subscribe((response) => {
-        this._ngxSpinner.hide();
-        this.count = response.count;
-        this.dataSource = response.content;
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
+    gestionarExamen() {
+        this.dialog.open(GestionarExamenComponent);
+    }
 
 }

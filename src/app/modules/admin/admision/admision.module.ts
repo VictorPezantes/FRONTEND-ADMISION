@@ -33,6 +33,7 @@ import { CreatePostulantComponent } from './components/create-postulant/create-p
 import { ViewInformationComponent } from './components/view-information/view-information.component';
 import { HistoryPostulantComponent } from './containers/postulaciones/history-postulant/history-postulant.component';
 import { FichaPostulantComponent } from './containers/postulaciones/ficha-postulant/ficha-postulant.component';
+import { GestionarExamenComponent } from './containers/examen-medico/gestionar-examen/gestionar-examen.component';
 
 const routes: Routes = [
     {
@@ -101,7 +102,8 @@ const routes: Routes = [
         EditOfferComponent,
         ViewInformationComponent,
         HistoryPostulantComponent,
-        FichaPostulantComponent
+        FichaPostulantComponent,
+        GestionarExamenComponent
     ],
     imports: [
         CommonModule,

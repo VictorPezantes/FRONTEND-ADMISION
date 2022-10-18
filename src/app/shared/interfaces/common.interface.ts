@@ -61,3 +61,13 @@ export interface Usuarios {
     nombreUsuario: string;
     email: string;
 }
+
+export interface TipoExamen{
+    id: number;
+    nombre: string;
+}
+
+export interface centroMedico{
+    id: number;
+    nombre: string;
+}
