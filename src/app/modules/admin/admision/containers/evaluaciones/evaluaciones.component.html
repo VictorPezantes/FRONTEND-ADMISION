@@ -3,6 +3,7 @@
         <mat-card class="mat-elevation-z0">
             <mat-card-content>
                 <h1 class="text-center text-primary-500">Filtrar informacion del postulante</h1>
+                <app-evaluation-actions></app-evaluation-actions>
                 <hr>
                 <app-postulant-filters></app-postulant-filters>
             </mat-card-content>
@@ -109,28 +110,13 @@
                     </button>
                     <mat-menu [xPosition]="'before'" #offerActions="matMenu">
                         <button mat-menu-item>
-                            Imprimir cv
+                            Reprogramar
+                        </button>
+                        <button mat-menu-item (click)="loadResults()">
+                            Cargar resultados
                         </button>
                         <button mat-menu-item>
-                            Exportar cv como pdf
-                        </button>
-                        <button mat-menu-item>
-                            Asignar responsable
-                        </button>
-                        <button mat-menu-item>
-                            Cambiar sub estado
-                        </button>
-                        <button mat-menu-item>
-                            Ver informacion
-                        </button>
-                        <button mat-menu-item>
-                            Generar ficha postulante
-                        </button>
-                        <button mat-menu-item>
-                            Ver ficha postulante
-                        </button>
-                        <button mat-menu-item>
-                            Cancelar proceso de admision
+                            Cancelar
                         </button>
                     </mat-menu>
                 </td>

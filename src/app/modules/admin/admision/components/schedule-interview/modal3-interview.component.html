@@ -1,0 +1,93 @@
+<div class="flex flex-col w-full gap-4">
+    <!-- <h2 mat-dialog-title>{{ id.value ? 'Editar' : 'Crear' }}&nbsp; oferta laboral</h2> -->
+    <div mat-dialog-content>
+        <div class="flex flex-row">
+            <div class="flex flex-col w-2/6 m-2">
+                <h1 class="text-lg p-2">Programar Entrevista</h1>
+                <h1 class="text-sm p-2">Entrevista Personal</h1>
+                <p class="p-2 text-gray-400">La entrevista personal es gestionada siempre y cuando el postulante haya
+                    presentado todos sus documentos y estos han sido validados en conjunto con las referencias.</p>
+                <h1 class="text-sm p-2">Listado de Entrevistas</h1>
+                <a href="recursos-humanos/admision/entrevistas" class="text-blue-600 p-2">Ir al
+                    listado de Entrevistas</a>
+            </div>
+            <div class="flex flex-col w-4/6 m-2">
+                <h1 class="text-lg p-2">Entrevista personal</h1>
+                <div class="flex flex-row p-1 justify-center">
+                    <div class="flex flex-col">
+                        <img class="w-16 h-16 rounded-full"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
+                            alt="">
+                    </div>
+                    <div class="flex flex-col justify-center mx-1">
+                        Víctor Rodríguez P.
+                    </div>
+                </div>
+                <div class="flex flex-row my-2 justify-center">
+                    <div class="flex flex-col mx-2">
+                        <h1 class="text-gray-400">Fecha</h1>
+                        <p class="text-sm">25-JULIO-2022</p>
+                    </div>
+                    <div class="flex flex-col mx-2">
+                        <h1 class="text-gray-400">Hora</h1>
+                        <p class="text-sm">12:00 PM</p>
+                        
+                    </div>
+                    <div class="flex flex-col mx-2">
+                        <h1 class="text-gray-400">Tiempo</h1>
+                        <p class="text-sm">45 minutos</p>
+                    </div>
+                </div>
+                <div class="flex flex-row my-4" >
+                    <h1 class="text-gray-400">Personal asignado a realizar la entrevista</h1>
+                </div>
+                <div class="flex flex-row p-1 justify-center">
+                    <div class="flex flex-col">
+                        <img class="w-16 h-16 rounded-full"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
+                            alt="">
+                    </div>
+                    <div class="flex flex-col mx-1">
+                        <div class="flex flex-row">
+                            <h1>Víctor Rodríguez P.</h1>
+                        </div>
+                        <div class="flex flex-row">
+                            <h1>victor@technotankers.com.pe</h1>
+                        </div>
+                        <div class="flex flex-row">
+                            <h1>+51965558896</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row my-4" >
+                    <h1 class="text-gray-400">Lugar de la entrevista</h1>
+                </div>
+                <div class="flex flex-row p-1">
+                    <div class="flex flex-col">
+                        <div class="flex flex-row">
+                            <h2 class="text-blue-600">vía Zoom</h2>
+                        </div>
+                        <div class="flex flex-row p-1">
+                            <h2 class="text-gray-400 mx-1">Link:</h2>
+                            <h2>https://us05web.zoom.us/j/815.........</h2>
+                        </div>
+                        <div class="flex flex-row p-1">
+                            <h2 class="text-gray-400 mx-1">ID:</h2>
+                            <h2>81541567584</h2>
+                        </div>
+                        <div class="flex flex-row p-1">
+                            <h2 class="text-gray-400 mx-1">CÓDIGO:</h2>
+                            <h2>skKhWER</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button color="primary" (click)="interviews()">Enviar</button>
+        <button mat-stroked-button (click)="close()">Cancelar</button>
+        <button mat-stroked-button>Atrás</button>
+    </div>
+
+</div>

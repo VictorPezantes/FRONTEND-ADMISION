@@ -1,0 +1,43 @@
+<div class="flex flex-col w-full gap-4">
+    <div mat-dialog-content>
+        <div class="flex flex-row my-4">
+            Gestionando Referencias Personales
+        </div>
+        <div class="flex flex-row justify-center my-3">
+            Seleccione el postulante asignado para realizar la evaluación
+        </div>
+        <div class="flex flex-row justify-center">
+            <div class="flex flex-col">
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        Seleccionar todos
+                    </label>
+                </div>
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        VICTOR RODRÍGUEZ
+                    </label>
+                </div>
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        CARLOS CERDA
+                    </label>
+                </div>
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        DAVID TORO
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button (click)="openModal2()" color="primary">Continuar</button>
+        <button mat-stroked-button (click)="close()">Cancelar</button>
+    </div>
+</div>

@@ -2,13 +2,17 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { AdmisionService } from '../../admision.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Oferta } from '../../admision.interface';
-import { BehaviorSubject, merge, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, merge, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageProviderService } from '../../../../../shared/services/message-provider.service';
 import { PostulacionesService } from '../postulaciones/postulaciones.service';
 import { FormUtils } from '../../../../../shared/utils/form.utils';
 import { Postulante } from '../../admision.interface';
-
+import { EntrevistasService } from './entrevistas.service';
+import { CreateInterviewComponent } from '../../components/create-interview/create-interview.component';
+import { ScheduleInterviewComponent } from '../../components/schedule-interview/schedule-interview.component'
+import { EditInterviewComponent } from '../../components/edit-interview/edit-interview.component';
+import { CancelInterviewComponent } from '../../components/cancel-interview/cancel-interview.component'
 
 @Component({
   selector: 'app-entrevistas',
@@ -32,11 +36,27 @@ export class EntrevistasComponent implements OnInit, AfterViewInit, OnDestroy {
     private _messageProviderService: MessageProviderService,
     private _postulacionService: PostulacionesService,
     private _admisionService: AdmisionService,
+    private _entrevistaService: EntrevistasService
   ) {
     this._admisionService.title.next('Entrevistas');
   }
 
   ngOnInit(): void {
+    this._entrevistaService.eventCreate
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(_ => this.createInterview());
+
+    this._entrevistaService.interviewSchedule
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(_ => this.scheduleInterview());
+
+    this._entrevistaService.editInterview
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(_ => this.editInterview());
+
+    this._entrevistaService.cancelInterview
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(_ => this.cancelInterview());
   }
 
   ngAfterViewInit(): void {
@@ -62,6 +82,66 @@ export class EntrevistasComponent implements OnInit, AfterViewInit, OnDestroy {
         this._ngxSpinner.hide();
         this.count = response.count;
         this.dataSource = response.content;
+      });
+  }
+
+  createInterview(element?): void {
+    const dialogData = {
+      data: {
+        meta: element
+      },
+      width: '50vw',
+      disableClose: true
+    };
+
+    this._messageProviderService.showModal(CreateInterviewComponent, dialogData)
+      .afterClosed().subscribe(_ => {
+        this.changesSubject.next(true);
+      });
+  }
+
+  scheduleInterview(element?): void {
+    const dialogData = {
+      data: {
+        meta: element
+      },
+      width: '55vw',
+      disableClose: true
+    };
+
+    this._messageProviderService.showModal(ScheduleInterviewComponent, dialogData)
+      .afterClosed().subscribe(_ => {
+        this.changesSubject.next(true);
+      });
+  }
+
+  editInterview(element?): void {
+    const dialogData = {
+      data: {
+        meta: element
+      },
+      width: '55vw',
+      disableClose: true
+    };
+
+    this._messageProviderService.showModal(EditInterviewComponent, dialogData)
+      .afterClosed().subscribe(_ => {
+        this.changesSubject.next(true);
+      });
+  }
+
+  cancelInterview(element?): void {
+    const dialogData = {
+      data: {
+        meta: element
+      },
+      width: '55vw',
+      disableClose: true
+    };
+
+    this._messageProviderService.showModal(CancelInterviewComponent, dialogData)
+      .afterClosed().subscribe(_ => {
+        this.changesSubject.next(true);
       });
   }
 

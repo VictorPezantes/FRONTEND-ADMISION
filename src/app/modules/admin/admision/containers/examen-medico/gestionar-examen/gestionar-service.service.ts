@@ -4,18 +4,39 @@ import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class GestionarServiceService {
 
-  private apiUrl = environment.apiUrl;
+    private apiUrl = environment.apiUrl;
 
-  constructor(
-    private _httpClient: HttpClient
-  ) { }
+    constructor(
+        private _httpClient: HttpClient
+    ) { }
 
-  addExamen(queryParams = null): Observable<any> {
-    return this._httpClient.post(this.apiUrl + 'examen/registrar', { params: queryParams });
-}
+    addRequestExamen(queryParams): Observable<any> {
+
+        let respuesta;
+
+        for (let index = 0; index < queryParams?.total; index++) {
+
+            let datos = {
+                "centroMedicoId": queryParams?.centroMedicoId,
+                "fechaInformeMedico": queryParams?.fechaInformeMedico,
+                "fechaProgramada": queryParams?.fechaProgramada,
+                "fechaResultado": queryParams?.fechaResultado,
+                "observacion": queryParams?.observacion,
+                "postulanteId": queryParams?.postulantes[index],
+                "subEstadoId": queryParams?.subEstadoId,
+                "tipoExamenId": queryParams?.tipoExamenId,
+                "urlResultadoExamen": queryParams?.urlResultadoExamen
+            }
+
+            respuesta = this._httpClient.post(this.apiUrl + 'examen/registrar', datos);
+
+        }
+
+        return respuesta;
+    }
 
 }

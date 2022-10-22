@@ -1,0 +1,123 @@
+<div class="flex flex-col w-full gap-4">
+    <div mat-dialog-content>
+        <div class="flex flex-row p-2 m-2">
+            Editar Entrevista
+        </div>
+        <div class="flex flex-row justify-center p-2">
+            <div class="flex flex-col mx-1">
+                <img class="h-16 w-16 rounded-full"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
+                    alt="">
+            </div>
+            <div class="flex flex-col justify-center mx-1">
+                <h1>Jorge Perez Gutierrez</h1>
+            </div>
+        </div>
+        <div class="flex flex-row justify-center p-1">
+            <p>Entrevista programada para:</p>
+        </div>
+        <div class="flex flex-row justify-center">
+            <p>20-junio-2022 - 09:00 am</p>
+        </div>
+        <div class="flex flex-row justify-center p-2">
+            <div class="flex flex-col p-1 m-2">
+                <label>
+                    <input [value]="2" [(ngModel)]="isVisible" name="isVisible" type="radio" />
+                    Cambiar Fecha Programación
+                </label>
+            </div>
+            <div class="flex flex-col p-1 m-2">
+                <label>
+                    <input [value]="1" [(ngModel)]="isVisible" name="isVisible" type="radio" />
+                    Cambiar Entrevistador
+                </label>
+            </div>
+            <div class="flex flex-col p-1 m-2">
+                <label>
+                    <input [value]="0" [(ngModel)]="isVisible" name="isVisible" type="radio" />
+                    Cambiar Lugar
+                </label>
+            </div>
+        </div>
+
+        <div class="showDiv" *ngIf="isVisible == 2">
+            <div class="flex flex-row justify-between items-center p-2">
+                <div class="flex flex-col p-1">
+                    <h1>Fecha</h1>
+                    <input type="date">
+                </div>
+                <div class="flex flex-col p-1">
+                    <h1>Inicio</h1>
+                    <input type="time">
+                </div>
+                <div class="flex flex-col p-1">
+                    <h1>Fin</h1>
+                    <input type="time">
+                </div>
+            </div>
+        </div>
+        <div class="hideDiv" *ngIf="isVisible == 1">
+            <div class="flex flex-row justify-center p-2">
+                <div class="flex-col">
+                    <h1 class="text-sm p-2">Seleccione entrevistador</h1>
+                    <div class="flex justify-center p-1">
+                        <input type="checkbox" class="mx-2">
+                        <label for="">Víctor Rodríguez</label>
+                    </div>
+                    <div class="flex justify-center p-1">
+                        <input type="checkbox" class="mx-2">
+                        <label for="">Víctor Rodríguez</label>
+                    </div>
+                    <div class="flex justify-center p-1">
+                        <input type="checkbox" class="mx-2">
+                        <label for="">Víctor Rodríguez</label>
+                    </div>
+                    <div class="flex justify-center p-1">
+                        <input type="checkbox" class="mx-2">
+                        <label for="">Víctor Rodríguez</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hideDiv1" *ngIf="isVisible == 0">
+            <div class="flex flex-row justify-center items-center p-2">
+                <div class="flex flex-col px-1">
+                    <label>
+                        <input [value]="1" [(ngModel)]="isVisible2" name="isVisible2" type="radio"
+                            [checked]="isSelected2" />
+                        vía Zoom
+                    </label>
+                </div>
+                <div class="flex flex-col px-1">
+                    <label>
+                        <input [value]="0" [(ngModel)]="isVisible2" name="isVisible2" type="radio"
+                            [checked]="!isSelected2" />
+                        Presencial Oficina
+                    </label>
+                </div>
+            </div>
+            <div class="flex flex-row justify-center items-center p-2">
+                <div class="showDiv1" *ngIf="isVisible2 == 1">
+                    <h2>Ingrese Link de la reunión</h2>
+                    <input type="text" placeholder="Ingrese link de la reunión">
+                    <h2>Ingrese ID reunión</h2>
+                    <input type="text" placeholder="Ingrese ID reunión">
+                    <h2>Ingrese Código de acceso</h2>
+                    <input type="text" placeholder="Ingrese Código">
+                </div>
+                <div class="hideDiv1" *ngIf="isVisible2 == 0">
+                    <h2>Lugar de la entrevista</h2>
+                    <p>Oficina Empresa TechnoTankers</p><br>
+                    <p>JR. LOS MIRTOS NRO. 491 URB. SAN EUGENIO-LINCE</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+            <button mat-stroked-button color="primary">Continuar</button>
+            <button mat-stroked-button (click)="close()">Cancelar</button>
+            <button mat-stroked-button>Atrás</button>
+        </div>
+    </div>
+</div>

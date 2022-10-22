@@ -1,0 +1,80 @@
+<div class="flex flex-col w-full gap-4">
+    <div mat-dialog-content>
+        <div class="flex flex-row p-2 m-1">
+            Gestionar Evaluaciones
+        </div>
+        <div class="flex flex-row p-2 mx-4">
+            Postulante
+        </div>
+        <div class="flex flex-row p-2">
+            <div class="flex flex-col mx-1">
+                <img class="h-16 w-16 rounded-full"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/A_profile.jpg/1200px-A_profile.jpg"
+                    alt="">
+            </div>
+            <div class="flex flex-col justify-center mx-1">
+                <h1>Jorge Perez Gutierrez</h1>
+            </div>
+        </div>
+        <div class="flex flex-row py-1">
+            <div class="flex flex-col w-3/6">
+                <div class="flex flex-row p-2 m-2">
+                    Evaluación a Realizar
+                </div>
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        Referencias Personales
+                    </label>
+                </div>
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        Poligrafía
+                    </label>
+                </div>
+                <div class="flex m-1">
+                    <label>
+                        <input name="#" type="checkbox" class="mx-2" />
+                        Psicolaboral
+                    </label>
+                </div>
+            </div>
+            <div class="flex flex-col w-3/6">
+                <div class="flex flex-row p-2 m-2">
+                    Seleccionar Empresa Evaluadora
+                </div>
+                <div class="flex flex-row p-2 m-2">
+                    <div class="flex flex-col">
+                        <div class="flex m-1">
+                            Seleccione empresa evaluadora
+                        </div>
+                        <div class="flex m-1">
+                            <label>
+                                <input name="#" type="radio" class="mx-2" />
+                                SECURITY CHECK
+                            </label>
+                        </div>
+                        <div class="flex m-1">
+                            <label>
+                                <input name="#" type="radio" class="mx-2" />
+                                ANDRICK
+                            </label>
+                        </div>
+                        <div class="flex m-1">
+                            <label>
+                                <input name="#" type="radio" class="mx-2" />
+                                PROSEGUR
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+            <button mat-stroked-button color="primary" (click)="openModal3()">Continuar</button>
+            <button mat-stroked-button (click)="close()">Cancelar</button>
+            <button mat-stroked-button>Atrás</button>
+        </div>
+    </div>
+</div>

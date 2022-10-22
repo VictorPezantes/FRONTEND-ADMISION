@@ -5,7 +5,7 @@
     <mat-dialog-content class="mat-typography input-group">
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Postulante(s)</mat-label>
-            <mat-select [formControlName]="'postulantes'" multiple placeholder="Postulantes">
+            <mat-select [formControlName]="'postulantes'" multiple>
                 <mat-select-trigger>
                     <!-- <span *ngIf="(postulantes.length || 0) > 0" class="example-additional-selection">
                         (+{{(postulantes.length || 0)}} {{postulantes.length === 2 ? 'postulante' :
@@ -15,31 +15,45 @@
                 <mat-option *ngFor="let item of postulant" [value]="item.id">
                     {{(item.primerNombre)+' '+(item.apellidoPaterno)}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="formActions.get('postulantes').hasError('required')">
+                Este campo es requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="width: 400px;">
             <mat-label>Examen a realizar</mat-label>
-            <mat-select [formControlName]="'tipoExamen'">
+            <mat-select [formControlName]="'tipoExamenId'">
                 <mat-option *ngFor="let tipo of tipoExamenList" [value]="tipo.id">{{tipo.nombre}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="formActions.get('tipoExamenId').hasError('required')">
+                Este campo es requerido
+            </mat-error>
         </mat-form-field>
           
         <mat-form-field appearance="fill" style="width: 400px;">
             <mat-label>Fecha y Hora programada</mat-label>
-            <input matInput [matDatepicker]="picker" [formControlName]="'fecha'" (click)="picker.open()">
+            <input matInput [matDatepicker]="picker" [formControlName]="'fechaProgramada'" (click)="picker.open()">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaProgramada').hasError('required')">
+                Este campo es requerido
+            </mat-error>
         </mat-form-field>
-        
+
 
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Centro Médico Asignado</mat-label>
-            <mat-select [formControlName]="'centroMedico'">
+            <mat-select [formControlName]="'centroMedicoId'">
                 <mat-option *ngFor="let centro of centroMedicoList" [value]="centro.id">{{centro.nombre}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="formActions.get('centroMedico').hasError('required')">
+            <mat-error *ngIf="formActions.get('centroMedicoId').hasError('required')">
                 Este campo es requerido
             </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="flex flex-col w-12/12">
+            <mat-label>Observaciones</mat-label>
+            <textarea matInput placeholder="escriba..." [formControlName]="'observacion'"></textarea>
         </mat-form-field>
 
     </mat-dialog-content>

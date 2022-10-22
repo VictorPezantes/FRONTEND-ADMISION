@@ -1,0 +1,64 @@
+<div class="flex flex-col w-full gap-4">
+    <div mat-dialog-content>
+        <div class="flex flex-row m-2">
+            Cargar Resultados
+        </div>
+        <div class="flex flex-row m-4">
+            Elige el archivo a subir: pdf
+        </div>
+        <div class="flex flex-row m-4">
+            <input type="file" class="mx-2">
+        </div>
+        <!-- Resultado de Evaluación - Observación -->
+        <div class="flex flex-row mx-2">
+            <div class="flex flex-col w-3/6">
+                <div class="flex flex-row m-2">
+                    Resultado de Evaluación
+                </div>
+                <div class="flex flex-row mx-6">
+                    <div class="flex flex-col">
+                        <div class="flex m-1">
+                            Seleccionar
+                        </div>
+                        <div class="flex m-1">
+                            <label>
+                                <input name="#" type="radio" class="mx-2" />
+                                APROBADO
+                            </label>
+                        </div>
+                        <div class="flex m-1">
+                            <label>
+                                <input name="#" type="radio" class="mx-2" />
+                                DESAPROBADO
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-3/6">
+                <div class="flex flex-row p-2 m-2">
+                    Observación
+                </div>
+                <div class="flex flex-row p-2 m-2">
+                    <form class="example-form">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <textarea matInput #message maxlength="100" rows="4"
+                                placeholder="Ingrese una observación asociada al resultado de la evaluación"></textarea>
+                            <mat-hint>{{message.value.length}} / 100</mat-hint>
+                        </mat-form-field>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row mx-4">
+            <h1 class="my-2">Fecha Informe Evaluación</h1>
+        </div>
+        <div class="flex flex-row mx-4">
+            <input type="date" class="m-2">
+        </div>
+        <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+            <button mat-stroked-button color="primary" (click)="save()">Guardar</button>
+            <button mat-stroked-button (click)="close()">Cancelar</button>
+        </div>
+    </div>
+</div>
