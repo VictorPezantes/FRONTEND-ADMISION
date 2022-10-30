@@ -1,0 +1,22 @@
+<div class="flex flex-col w-full gap-4">
+    <h2 mat-dialog-title>Asignar Responsable</h2>
+    <div mat-dialog-content>
+        <div class="flex flex-col w-12/12" [formGroup]="formActions">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Seleccione Responsable</mat-label>
+                <mat-select formControlName="idResponsable" placeholder="Seleccione Responsable">
+                    <mat-option [value]="null">----</mat-option>
+                    <mat-option *ngFor="let option of encargado" [value]="option.id">{{ option.nombre+'
+                        '+option.apellido }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formActions.get('idResponsable').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button color="primary">Guardar</button>
+        <button mat-stroked-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
+    </div>
+</div>

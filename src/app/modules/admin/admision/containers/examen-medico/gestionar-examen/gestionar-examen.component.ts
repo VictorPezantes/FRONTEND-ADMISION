@@ -14,25 +14,8 @@ import { GestionarServiceService } from './gestionar-service.service';
 export class GestionarExamenComponent implements OnInit {
 
     formActions: FormGroup;
-
-    /*postulantes = new FormControl('');
-    tipoExamen = new FormControl('');
-    centroMedico = new FormControl('');
-    fecha = new FormControl('');*/
-
-    tipoExamenList: TipoExamen[] = [
-        { id: 0, nombre: '---- SELECCIONE ----' },
-        { id: 1, nombre: 'Fisico' },
-        { id: 2, nombre: 'Sangre' }
-    ];
-
-    centroMedicoList: centroMedico[] = [
-        { id: 0, nombre: '---- SELECCIONE ----' },
-        { id: 1, nombre: 'DOS DE MAYO' },
-        { id: 2, nombre: 'GOD HOPE' },
-        { id: 2, nombre: 'RICARDO PALMA' }
-    ];
-
+    tipoExamenList: TipoExamen;
+    centroMedicoList: centroMedico;
     postulant: Postulante[] = [];
 
     constructor(
@@ -45,29 +28,20 @@ export class GestionarExamenComponent implements OnInit {
 
     ngOnInit(): void {
         this._postulacionService.get().subscribe(response => (this.postulant = response.content));
+        this.listaTipoExamen();
+        this.listaCentroMedico();
     }
 
     addExamen(): void {
-
         if (this.formActions.invalid) {
             return;
         }
-
         this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
-        this.formActions.value.subEstadoId = 1;
-        this.formActions.value.fechaInformeMedico = '20/10/2022 00:00:00';
-        this.formActions.value.fechaResultado = '20/10/2022 00:00:00';
-        this.formActions.value.urlResultadoExamen = 'URL EN TEXTO';
         this.formActions.value.total = this.formActions?.value?.postulantes.length;
-        //console.log(this.formActions?.value?.postulantes.length);
-        //console.log(this.formActions?.value);
-
         this._gestionarServiceService.addRequestExamen(this.formActions?.value).subscribe((response) => {
             console.log(response);
         });
-
     }
-
 
     createFormActions(): void {
         this.formActions = this._fb.group({
@@ -77,6 +51,18 @@ export class GestionarExamenComponent implements OnInit {
             fechaProgramada: ['', Validators.required],
             observacion: [''],
         });
+    }
+
+    listaTipoExamen() {
+        this._gestionarServiceService.getTipoExamen().subscribe(response => (
+            this.tipoExamenList = response
+        ));
+    }
+
+    listaCentroMedico() {
+        this._gestionarServiceService.getCentroMedico().subscribe(response => (
+            this.centroMedicoList = response
+        ));
     }
 
 }

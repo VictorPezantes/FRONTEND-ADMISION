@@ -49,6 +49,8 @@ import { Modal1InterviewComponent } from './components/schedule-interview/modal1
 import { Modal3InterviewComponent } from './components/schedule-interview/modal3-interview.component';
 import { LoadResultsEvaluationComponent } from './components/load-results-evaluation/load-results-evaluation.component';
 import { GestionarExamenComponent } from './containers/examen-medico/gestionar-examen/gestionar-examen.component';
+import { SendEmailComponent } from './containers/postulaciones/modal/send-email/send-email.component';
+import { AssignResponsibleComponent } from './containers/postulaciones/modal/assign-responsible/assign-responsible.component';
 
 
 const routes: Routes = [
@@ -134,7 +136,9 @@ const routes: Routes = [
         Modal2ManageEvaluationComponent,
         Modal3ManageEvaluationComponent,
         LoadResultsEvaluationComponent,
-        GestionarExamenComponent
+        GestionarExamenComponent,
+        SendEmailComponent,
+        AssignResponsibleComponent
     ],
     imports: [
         CommonModule,

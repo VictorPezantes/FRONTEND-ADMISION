@@ -59,9 +59,6 @@ export class AuthSignUpComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
             foto: ['foto.jpg'],
-            roles: [
-                ['admin'],
-            ],
             agreements: ['', Validators.requiredTrue]
         }
         );
@@ -98,7 +95,6 @@ export class AuthSignUpComponent implements OnInit {
         formData.append('nombre', form?.nombre);
         formData.append('nombreUsuario', form?.nombreUsuario);
         formData.append('password', form?.password);
-        formData.append('roles', form?.roles);
 
         // Sign up
         //this._authService.signUp(this.signUpForm.value)

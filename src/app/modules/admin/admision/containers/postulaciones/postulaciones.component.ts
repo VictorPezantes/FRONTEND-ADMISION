@@ -9,91 +9,108 @@ import { FormUtils } from '../../../../../shared/utils/form.utils';
 import { PostulacionesService } from './postulaciones.service';
 import { CreatePostulantComponent } from '../../components/create-postulant/create-postulant.component';
 import moment from 'moment';
+import { SendEmailComponent } from './modal/send-email/send-email.component';
+import { AssignResponsibleComponent } from './modal/assign-responsible/assign-responsible.component';
 
 @Component({
-  selector: 'app-postulaciones',
-  templateUrl: './postulaciones.component.html',
-  styleUrls: ['./postulaciones.component.scss']
+    selector: 'app-postulaciones',
+    templateUrl: './postulaciones.component.html',
+    styleUrls: ['./postulaciones.component.scss']
 })
 
 export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  dataSource: Postulante[] = [];
-  displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
+    dataSource: Postulante[] = [];
+    displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
 
-  count = 0;
+    count;
 
-  changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  unsubscribe: Subject<void> = new Subject<void>();
+    changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(
-    private _ngxSpinner: NgxSpinnerService,
-    private _messageProviderService: MessageProviderService,
-    private _postulacionService: PostulacionesService,
-    private _admisionService: AdmisionService,
-  ) {
-    this._admisionService.title.next('Postulaciones');
-  }
+    constructor(
+        private _ngxSpinner: NgxSpinnerService,
+        private _messageProviderService: MessageProviderService,
+        private _postulacionService: PostulacionesService,
+        private _admisionService: AdmisionService,
+    ) {
+        this._admisionService.title.next('Postulaciones');
+    }
 
-  ngOnInit(): void {
-    this._postulacionService.eventCreate
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(_ => this.createOrEditPostulant());
-  }
+    ngOnInit(): void {
+        this._postulacionService.eventCreate.pipe(takeUntil(this.unsubscribe))
+            .subscribe(_ => this.createOrEditPostulant());
+    }
 
-  ngAfterViewInit(): void {
+    ngAfterViewInit(): void {
+        this.paginator._intl.itemsPerPageLabel = 'Items por página.';
+        this.initPagination();
+    }
 
-    this.paginator._intl.itemsPerPageLabel = 'Items por página.';
+    initPagination(): void {
+        merge(this.paginator.page, this.changesSubject, this._postulacionService.eventFilters)
+            .pipe(
+                switchMap(() => {
+                    this._ngxSpinner.show();
+                    const rawValue = this._postulacionService.eventFilters.value;
+                    const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
+                    const queryParamsByPaginator = { ...filters } as any;
+                    queryParamsByPaginator.limit = this.paginator.pageSize;
+                    queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
+                    return this._postulacionService.get(queryParamsByPaginator);
+                })
+            ).subscribe((response) => {
+                this._ngxSpinner.hide();
+                this.count = response?.numberOfElements;
+                this.dataSource = response?.content;
+                console.log(response?.content);
+            });
+    }
 
-    this.initPagination();
-  }
+    ngOnDestroy(): void {
+        this.unsubscribe.next();
+        this.unsubscribe.complete();
+    }
 
-  initPagination(): void {
-    merge(this.paginator.page, this.changesSubject, this._postulacionService.eventFilters)
-      .pipe(
-        switchMap(() => {
-          this._ngxSpinner.show();
-          const rawValue = this._postulacionService.eventFilters.value;
-          const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
-          const queryParamsByPaginator = { ...filters } as any;
-          queryParamsByPaginator.limit = this.paginator.pageSize;
-          queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
-          return this._postulacionService.get(queryParamsByPaginator);
-        })
-      ).subscribe((response) => {
-        this._ngxSpinner.hide();
-        this.count = response.count;
-        this.dataSource = response.content;
+    createOrEditPostulant(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
 
-        /*moment.locale('es');
-        const date = moment().add(this.dataSource?.[0]?.fechaIngresoTrabajoReciente);
-        let dateInFormat = date.format('MMM YYYY');
-        console.log(dateInFormat);*/
+        this._messageProviderService.showModal(CreatePostulantComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
 
-        console.log(this.dataSource);
+    sendEmail(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
 
-      });
-  }
+        this._messageProviderService.showModal(SendEmailComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
 
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
+    assignResponsible(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
 
-  createOrEditPostulant(element?): void {
-    const dialogData = {
-      data: {
-        meta: element
-      },
-      width: '50vw',
-      disableClose: true
-    };
+        this._messageProviderService.showModal(AssignResponsibleComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
 
-    this._messageProviderService.showModal(CreatePostulantComponent, dialogData)
-      .afterClosed().subscribe(_ => {
-        this.changesSubject.next(true);
-      });
-  }
 }

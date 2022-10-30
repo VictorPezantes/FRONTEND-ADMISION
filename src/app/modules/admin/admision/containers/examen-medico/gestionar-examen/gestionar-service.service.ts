@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { centroMedico, TipoExamen } from 'app/shared/interfaces/common.interface';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
@@ -22,14 +23,10 @@ export class GestionarServiceService {
 
             let datos = {
                 "centroMedicoId": queryParams?.centroMedicoId,
-                "fechaInformeMedico": queryParams?.fechaInformeMedico,
                 "fechaProgramada": queryParams?.fechaProgramada,
-                "fechaResultado": queryParams?.fechaResultado,
                 "observacion": queryParams?.observacion,
                 "postulanteId": queryParams?.postulantes[index],
-                "subEstadoId": queryParams?.subEstadoId,
                 "tipoExamenId": queryParams?.tipoExamenId,
-                "urlResultadoExamen": queryParams?.urlResultadoExamen
             }
 
             respuesta = this._httpClient.post(this.apiUrl + 'examen/registrar', datos);
@@ -38,5 +35,13 @@ export class GestionarServiceService {
 
         return respuesta;
     }
+
+    getTipoExamen(): Observable<TipoExamen> {
+        return this._httpClient.get<TipoExamen>(`${this.apiUrl}tipoexamen/listar/`);
+    };
+
+    getCentroMedico(): Observable<centroMedico> {
+        return this._httpClient.get<centroMedico>(`${this.apiUrl}centromedico/listar/`);
+    };
 
 }

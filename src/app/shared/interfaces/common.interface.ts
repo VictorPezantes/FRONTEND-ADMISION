@@ -64,10 +64,10 @@ export interface Usuarios {
 
 export interface TipoExamen{
     id: number;
-    nombre: string;
+    tipoExamenNombre: string;
 }
 
 export interface centroMedico{
     id: number;
-    nombre: string;
+    centroMedicoNombre: string;
 }
