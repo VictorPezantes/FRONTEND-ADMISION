@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { centroMedico, TipoExamen } from 'app/shared/interfaces/common.interface';
 import moment from 'moment';
 import { Postulante } from '../../../admision.interface';

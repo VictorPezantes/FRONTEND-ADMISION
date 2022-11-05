@@ -10,6 +10,8 @@ import { FormUtils } from '../../../../../shared/utils/form.utils';
 import { Postulante } from '../../admision.interface';
 import { GestionarExamenComponent } from './gestionar-examen/gestionar-examen.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ReprogramComponent } from './modal/reprogram/reprogram.component';
+import { CancelExamComponent } from './modal/cancel-exam/cancel-exam.component';
 
 
 @Component({
@@ -57,12 +59,13 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
                     const queryParamsByPaginator = { ...filters } as any;
                     queryParamsByPaginator.limit = this.paginator.pageSize;
                     queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
-                    return this._postulacionService.get(queryParamsByPaginator);
+                    return this._postulacionService.getExamen(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
                 this._ngxSpinner.hide();
                 this.count = response.count;
                 this.dataSource = response.content;
+                //console.log(response.content);
             });
     }
 
@@ -73,6 +76,32 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     gestionarExamen() {
         this.dialog.open(GestionarExamenComponent);
+    }
+
+    reprogram(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(ReprogramComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
+
+    cancelExam(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(CancelExamComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
     }
 
 }

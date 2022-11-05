@@ -51,6 +51,8 @@ import { LoadResultsEvaluationComponent } from './components/load-results-evalua
 import { GestionarExamenComponent } from './containers/examen-medico/gestionar-examen/gestionar-examen.component';
 import { SendEmailComponent } from './containers/postulaciones/modal/send-email/send-email.component';
 import { AssignResponsibleComponent } from './containers/postulaciones/modal/assign-responsible/assign-responsible.component';
+import { ReprogramComponent } from './containers/examen-medico/modal/reprogram/reprogram.component';
+import { CancelExamComponent } from './containers/examen-medico/modal/cancel-exam/cancel-exam.component';
 
 
 const routes: Routes = [
@@ -138,7 +140,9 @@ const routes: Routes = [
         LoadResultsEvaluationComponent,
         GestionarExamenComponent,
         SendEmailComponent,
-        AssignResponsibleComponent
+        AssignResponsibleComponent,
+        ReprogramComponent,
+        CancelExamComponent
     ],
     imports: [
         CommonModule,

@@ -1,10 +1,10 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatDrawer} from '@angular/material/sidenav';
-import {ActivatedRoute, Router} from '@angular/router';
-import {NavigationService} from '../../../core/navigation/navigation.service';
-import {FuseNavigationService} from '../../../../@fuse/components/navigation';
-import {AdmisionService} from './admision.service';
-import {Subject, takeUntil} from 'rxjs';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationService } from '../../../core/navigation/navigation.service';
+import { FuseNavigationService } from '../../../../@fuse/components/navigation';
+import { AdmisionService } from './admision.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-admision',
@@ -14,7 +14,7 @@ import {Subject, takeUntil} from 'rxjs';
 export class AdmisionComponent implements OnInit, AfterViewInit {
 
 
-    @ViewChild('matDrawer', {static: false}) matDrawer: MatDrawer;
+    @ViewChild('matDrawer', { static: false }) matDrawer: MatDrawer;
     drawerMode: 'side' | 'over';
 
     title: string;
@@ -49,7 +49,7 @@ export class AdmisionComponent implements OnInit, AfterViewInit {
 
     onBackdropClicked(): void {
         // Go back to the list
-        this._router.navigate(['./'], {relativeTo: this._activatedRoute});
+        this._router.navigate(['./'], { relativeTo: this._activatedRoute });
 
         // Mark for check
         this._changeDetectorRef.markForCheck();

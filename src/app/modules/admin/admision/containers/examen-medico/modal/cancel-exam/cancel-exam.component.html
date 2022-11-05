@@ -1,0 +1,22 @@
+<div class="flex flex-col w-full gap-4">
+    <h2 mat-dialog-title>Cancelar Examen Medico</h2>
+    <div mat-dialog-content>
+        <div>Desea cancelar el examen medico del postulante <b>{{(data?.meta?.primerNombre || '-') + ' ' +
+                (data?.meta?.segundoNombre || '-') + ' ' + (data?.meta?.apellidoPaterno || '-') + ' ' +
+                (data?.meta?.apellidoMaterno || '-')}}</b>
+        </div>
+        <br>
+        <div [formGroup]="formActions">
+
+            <mat-form-field class="flex flex-col w-12/12" appearance="fill">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput placeholder="Escriba..." [formControlName]="'observacion'"></textarea>
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button color="primary">Guardar</button>
+        <button mat-stroked-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
+    </div>
+</div>

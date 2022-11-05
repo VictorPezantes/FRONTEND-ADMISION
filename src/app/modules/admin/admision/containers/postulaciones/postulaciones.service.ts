@@ -24,6 +24,10 @@ export class PostulacionesService {
     return this._httpClient.get<IPagination<Postulante>>(`${this.apiUrl}postulante/listar/`, { params: queryParams });
   }
 
+  getExamen(queryParams = null): Observable<IPagination<Postulante>> {
+    return this._httpClient.get<IPagination<Postulante>>(`${this.apiUrl}postulante/listarFiltro/`, { params: queryParams });
+  }
+
   create(payload, user: User): Observable<any> {
     return this._httpClient.post<any>(`${this.apiUrl}postulante/registrar`, payload);
   }
