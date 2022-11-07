@@ -4,18 +4,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IDialogData } from 'app/shared/interfaces/common.interface';
 
 @Component({
-    selector: 'app-send-email',
-    templateUrl: './send-email.component.html',
-    styleUrls: ['./send-email.component.scss']
+    selector: 'app-change-status-postulant',
+    templateUrl: './change-status-postulant.component.html',
+    styleUrls: ['./change-status-postulant.component.scss']
 })
-export class SendEmailComponent implements OnInit {
+export class ChangeStatusPostulantComponent implements OnInit {
 
     formActions: FormGroup;
-    datosID = 0;
     
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: IDialogData<any>,
-        public dialogRef: MatDialogRef<SendEmailComponent>,
+        public dialogRef: MatDialogRef<ChangeStatusPostulantComponent>,
         private _fb: UntypedFormBuilder,
     ) {
         this.setValues();
@@ -27,20 +26,13 @@ export class SendEmailComponent implements OnInit {
 
     setValues(): void {
         console.log('==>', this.data.meta);
-        //this.formActions.patchValue(this.data?.meta);
-        //this.datosID = this.data.meta.id;
-        //console.log(this.datosID); // FALTA SETEAR EL DATO DEL ID
-        }
+    }
 
     createFormActions(): void {
         this.formActions = this._fb.group({
             id: [null],
-            email: [null, [Validators.required]],
+            estado: [null, [Validators.required]],
         });
-    }
-
-    enviarEmail(){
-        console.log(this.formActions.value)
     }
 
 }

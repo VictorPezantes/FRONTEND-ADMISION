@@ -106,7 +106,7 @@
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="relative w-15 h-15 imagenResponsable">
-                            <img class="relative w-15 h-15 " src="assets/images/avatars/user_clean.png">
+                            <img class="relative w-15 h-15 " src="assets/images/avatars/avatar_prueba.png">
                         </div>
                         <div class="font-extrabold text-primary-700">
                             {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + ' ' +
@@ -155,13 +155,15 @@
                                 *ngIf="(element?.estadoPostulacion != 4)">
                                 Asignar responsable
                             </button>
-                            <button mat-menu-item *ngIf="element?.estadoPostulacion === 2">
+                            <button mat-menu-item (click)="changeSubStatus(element)"
+                                *ngIf="element?.estadoPostulacion === 2">
                                 Cambiar sub estado
                             </button>
                             <a class="mat-menu-item" routerLink="/recursos-humanos/admision/ficha"
                                 *ngIf="element?.estadoPostulacion === 9">Generar ficha postulante
                             </a>
-                            <button mat-menu-item *ngIf="(element?.estadoPostulacion != 4)">
+                            <button mat-menu-item (click)="cancelProcess(element)"
+                                *ngIf="(element?.estadoPostulacion != 4)">
                                 Cancelar proceso de admision
                             </button>
                         </mat-menu>

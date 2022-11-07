@@ -37,7 +37,6 @@ export class GestionarExamenComponent implements OnInit {
             return;
         }
         this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
-        this.formActions.value.total = this.formActions?.value?.postulantes.length;
         this._gestionarServiceService.addRequestExamen(this.formActions?.value).subscribe((response) => {
             console.log(response);
         });
@@ -45,7 +44,7 @@ export class GestionarExamenComponent implements OnInit {
 
     createFormActions(): void {
         this.formActions = this._fb.group({
-            postulantes: ['', Validators.required],
+            listaPostulante: ['', Validators.required],
             tipoExamenId: ['', Validators.required],
             centroMedicoId: ['', Validators.required],
             fechaProgramada: ['', Validators.required],

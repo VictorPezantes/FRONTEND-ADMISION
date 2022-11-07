@@ -32,22 +32,22 @@
                             }"></mat-icon>
                     </button> -->
 
-                    <button *ngIf="element?.estadoPostulacion === 2" class="status-PROGRAMADO">
+                    <button *ngIf="element?.subEstadoExamen === 2" class="status-PROGRAMADO">
                         PROGRAMADO
                     </button>
-                    <button *ngIf="element?.estadoPostulacion === 3" class="status-APROBADO">
+                    <button *ngIf="element?.subEstadoExamen === 3" class="status-APROBADO">
                         APROBADO
                     </button>
-                    <button *ngIf="element?.estadoPostulacion === 4" class="status-CANCELADO">
+                    <button *ngIf="element?.subEstadoExamen === 4" class="status-CANCELADO">
                         CANCELADO
                     </button>
-                    <button *ngIf="element?.estadoPostulacion === 5" class="status-DESAPROBADO">
+                    <button *ngIf="element?.subEstadoExamen === 5" class="status-DESAPROBADO">
                         DESAPROBADO
                     </button>
-                    <button *ngIf="element?.estadoPostulacion === 6" class="status-OBSERVADO">
+                    <button *ngIf="element?.subEstadoExamen === 6" class="status-OBSERVADO">
                         OBSERVADO
                     </button>
-                    <button *ngIf="element?.estadoPostulacion === 7" class="status-REPROGRAMADO">
+                    <button *ngIf="element?.subEstadoExamen === 7" class="status-REPROGRAMADO">
                         REPROGRAMADO
                     </button>
 
@@ -95,8 +95,8 @@
                 <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
                 <td mat-cell *matCellDef="let element">
                     <div>
-                        <div class="relative w-15 h-15 ">
-                            <img class="auto" src="assets/images/avatars/user_clean.png">
+                        <div class="relative w-15 h-15 imagenResponsable">
+                            <img class="auto" src="assets/images/avatars/avatar_prueba.png">
                         </div>
                     </div>
                     <div class="font-extrabold text-primary-700">
@@ -131,7 +131,7 @@
                     </button>
                     <mat-menu [xPosition]="'before'" #offerActions="matMenu">
                         <button mat-menu-item (click)="reprogram(element)"> Reprogramar </button>
-                        <button mat-menu-item> Cargar Resultados </button>
+                        <button mat-menu-item (click)="uploadResults(element)"> Cargar Resultados </button>
                         <button mat-menu-item (click)="cancelExam(element)"> Cancelar Examen </button>
                     </mat-menu>
                 </td>

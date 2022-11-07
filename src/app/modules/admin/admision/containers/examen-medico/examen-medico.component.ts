@@ -12,6 +12,7 @@ import { GestionarExamenComponent } from './gestionar-examen/gestionar-examen.co
 import { MatDialog } from '@angular/material/dialog';
 import { ReprogramComponent } from './modal/reprogram/reprogram.component';
 import { CancelExamComponent } from './modal/cancel-exam/cancel-exam.component';
+import { UploadResultsExamenComponent } from './modal/upload-results-examen/upload-results-examen.component';
 
 
 @Component({
@@ -65,7 +66,7 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
                 this._ngxSpinner.hide();
                 this.count = response.count;
                 this.dataSource = response.content;
-                //console.log(response.content);
+                console.log(response.content);
             });
     }
 
@@ -99,6 +100,19 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
         };
 
         this._messageProviderService.showModal(CancelExamComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
+
+    uploadResults(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(UploadResultsExamenComponent, dialogData)
             .afterClosed().subscribe(_ => {
                 this.changesSubject.next(true);
             });

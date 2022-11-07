@@ -17,7 +17,11 @@ export class ExamenMedicoService {
     private _httpClient: HttpClient,
   ) { }
 
-  delete(queryParams = null): Observable<void> {
+  getStatusResult(queryParams = null): Observable<void> { // LISTA DE TABLA ESTADO_RESULTADO_EXAMEN
+    return this._httpClient.delete<void>(`${this.apiUrl}examen/cancelar/`, { params: queryParams });
+  }
+
+  delete(queryParams = null): Observable<void> { // CANCELA EXAMEN FALTA LISTAR IDEXAMEN
     return this._httpClient.delete<void>(`${this.apiUrl}examen/cancelar/`, { params: queryParams });
   }
 

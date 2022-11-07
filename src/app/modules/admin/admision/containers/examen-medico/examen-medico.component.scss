@@ -9,6 +9,19 @@ table {
     }
 }
 
+.mat-paginator {
+    display: flex;
+    justify-content: right;
+}
+
+.mat-column-responsable,
+.mat-column-estado,
+.mat-column-informacion,
+.mat-column-imagen,
+td {
+    text-align: center;
+}
+
 .status-PROGRAMADO {
     width: 150px;
     font-weight: bold;
@@ -67,4 +80,11 @@ table {
     margin: 5px 5px;
     padding: 10px;
     background-color: blue;
+}
+
+.imagenResponsable {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 40%;
 }

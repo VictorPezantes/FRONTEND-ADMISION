@@ -11,6 +11,8 @@ import { CreatePostulantComponent } from '../../components/create-postulant/crea
 import moment from 'moment';
 import { SendEmailComponent } from './modal/send-email/send-email.component';
 import { AssignResponsibleComponent } from './modal/assign-responsible/assign-responsible.component';
+import { ChangeStatusPostulantComponent } from './modal/change-status-postulant/change-status-postulant.component';
+import { CancelProcessPostulantComponent } from './modal/cancel-process-postulant/cancel-process-postulant.component';
 
 @Component({
     selector: 'app-postulaciones',
@@ -108,6 +110,32 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
         };
 
         this._messageProviderService.showModal(AssignResponsibleComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
+
+    changeSubStatus(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(ChangeStatusPostulantComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
+    }
+
+    cancelProcess(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(CancelProcessPostulantComponent, dialogData)
             .afterClosed().subscribe(_ => {
                 this.changesSubject.next(true);
             });

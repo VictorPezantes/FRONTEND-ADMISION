@@ -1,35 +1,24 @@
-<h2 mat-dialog-title>Gestionar Examen Médico</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur omnis harum earum. Dignissimos, minima totam!</p>
-<br>
-<form [formGroup]="formActions" #signUpNgForm="ngForm">
-    <mat-dialog-content class="mat-typography input-group">
-
-        <mat-form-field appearance="fill" style="width: 400px;">
-            <mat-label>Fecha y Hora programada</mat-label>
-            <input matInput [matDatepicker]="picker" [formControlName]="'fechaProgramada'" (click)="picker.open()">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="formActions.get('fechaProgramada').hasError('required')">
-                Este campo es requerido
-            </mat-error>
-        </mat-form-field>
-
-
+<div class="flex flex-col w-full gap-4">
+    <h2 mat-dialog-title>Reprogramar Examen Medico</h2>
+    <div mat-dialog-content>
+        <div>Desea reprogramar examen medico del postulante: <b>{{(data?.meta?.primerNombre || '-') + ' ' +
+                (data?.meta?.segundoNombre || '-') + ' ' + (data?.meta?.apellidoPaterno || '-') + ' ' +
+                (data?.meta?.apellidoMaterno || '-')}}</b>
+        </div>
+        <br>
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Centro Médico Asignado</mat-label>
             <mat-select [formControlName]="'centroMedicoId'">
-                <mat-option *ngFor="let centro of []" [value]="centro.id">{{centro.centroMedicoNombre}}</mat-option>
+                <mat-option [value]="data?.meta?.centroMedicoId">{{data?.meta?.centroMedicoId}}
+                </mat-option>
             </mat-select>
             <mat-error *ngIf="formActions.get('centroMedicoId').hasError('required')">
                 Este campo es requerido
             </mat-error>
         </mat-form-field>
-
-
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
-        <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial
-            >Registrar</button>
-    </mat-dialog-actions>
-</form>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button color="primary">Confirmar</button>
+        <button mat-stroked-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
+    </div>
+</div>

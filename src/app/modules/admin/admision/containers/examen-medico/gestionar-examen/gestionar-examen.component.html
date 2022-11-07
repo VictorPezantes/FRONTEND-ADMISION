@@ -5,17 +5,17 @@
     <mat-dialog-content class="mat-typography input-group">
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Postulante(s)</mat-label>
-            <mat-select [formControlName]="'postulantes'" multiple>
+            <mat-select [formControlName]="'listaPostulante'" multiple>
                 <mat-select-trigger>
-                    <!-- <span *ngIf="(postulantes.length || 0) > 0" class="example-additional-selection">
-                        (+{{(postulantes.length || 0)}} {{postulantes.length === 2 ? 'postulante' :
+                    <!-- <span *ngIf="(listaPostulante.length || 0) > 0" class="example-additional-selection">
+                        (+{{(listaPostulante.length || 0)}} {{listaPostulante.length === 2 ? 'postulante' :
                         'postulantes'}})
                     </span> -->
                 </mat-select-trigger>
                 <mat-option *ngFor="let item of postulant" [value]="item.id">
                     {{(item.primerNombre)+' '+(item.apellidoPaterno)}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="formActions.get('postulantes').hasError('required')">
+            <mat-error *ngIf="formActions.get('listaPostulante').hasError('required')">
                 Este campo es requerido
             </mat-error>
         </mat-form-field>
@@ -39,7 +39,6 @@
                 Este campo es requerido
             </mat-error>
         </mat-form-field>
-
 
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Centro Médico Asignado</mat-label>

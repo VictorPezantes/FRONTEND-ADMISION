@@ -16,24 +16,7 @@ export class GestionarServiceService {
     ) { }
 
     addRequestExamen(queryParams): Observable<any> {
-
-        let respuesta;
-
-        for (let index = 0; index < queryParams?.total; index++) {
-
-            let datos = {
-                "centroMedicoId": queryParams?.centroMedicoId,
-                "fechaProgramada": queryParams?.fechaProgramada,
-                "observacion": queryParams?.observacion,
-                "postulanteId": queryParams?.postulantes[index],
-                "tipoExamenId": queryParams?.tipoExamenId,
-            }
-
-            respuesta = this._httpClient.post(this.apiUrl + 'examen/registrar', datos);
-
-        }
-
-        return respuesta;
+        return this._httpClient.post(this.apiUrl + 'examen/registrar', queryParams);;
     }
 
     getTipoExamen(): Observable<TipoExamen> {

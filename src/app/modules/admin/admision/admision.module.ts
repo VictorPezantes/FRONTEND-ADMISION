@@ -53,6 +53,9 @@ import { SendEmailComponent } from './containers/postulaciones/modal/send-email/
 import { AssignResponsibleComponent } from './containers/postulaciones/modal/assign-responsible/assign-responsible.component';
 import { ReprogramComponent } from './containers/examen-medico/modal/reprogram/reprogram.component';
 import { CancelExamComponent } from './containers/examen-medico/modal/cancel-exam/cancel-exam.component';
+import { ChangeStatusPostulantComponent } from './containers/postulaciones/modal/change-status-postulant/change-status-postulant.component';
+import { CancelProcessPostulantComponent } from './containers/postulaciones/modal/cancel-process-postulant/cancel-process-postulant.component';
+import { UploadResultsExamenComponent } from './containers/examen-medico/modal/upload-results-examen/upload-results-examen.component';
 
 
 const routes: Routes = [
@@ -142,7 +145,10 @@ const routes: Routes = [
         SendEmailComponent,
         AssignResponsibleComponent,
         ReprogramComponent,
-        CancelExamComponent
+        CancelExamComponent,
+        ChangeStatusPostulantComponent,
+        CancelProcessPostulantComponent,
+        UploadResultsExamenComponent
     ],
     imports: [
         CommonModule,
