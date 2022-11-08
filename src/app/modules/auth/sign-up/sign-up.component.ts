@@ -111,7 +111,7 @@ export class AuthSignUpComponent implements OnInit {
                     // Set the alert
                     this.alert = {
                         type: 'error',
-                        message: response.mensaje
+                        message: 'Usted ya postuló a la empresa TECHNOTANKERS'
                     };
 
                     if (response.mensaje == 'Usuario registrado correctamente') {

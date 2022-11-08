@@ -71,7 +71,7 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                 //this.maxPages = response.totalPages;
                 //this.page = response.size;
                 this.dataSource = response?.content;
-                //console.log(response.numberOfElements);
+                //console.log(response?.content);
             });
     }
 

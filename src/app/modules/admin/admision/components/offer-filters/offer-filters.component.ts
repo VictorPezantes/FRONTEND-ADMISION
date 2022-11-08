@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Encargado, Estado } from '../../../../../shared/interfaces/common.interface';
 import { CommonService } from '../../../../../shared/services/common.service';
 import { UserService } from '../../../../../core/user/user.service';
-import { User } from '../../../../../core/user/user.types';
+import { PostulacionesService } from '../../containers/postulaciones/postulaciones.service';
 
 @Component({
     selector: 'app-offer-filters',
@@ -19,7 +19,7 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
 
     status: Estado[];
     //employees$: Observable<User[]>;
-    creador: User[];
+    creador: Encargado[];
 
     unsubscribe: Subject<void> = new Subject<void>();
 
@@ -28,6 +28,7 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
         private _userService: UserService,
         private _offerService: OfertasService,
         private _commonService: CommonService,
+        private _postulacionesService: PostulacionesService,
     ) {
         this.createFormFilters();
     }
@@ -35,7 +36,7 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         this._commonService.getStatus().subscribe(estado => (this.status = estado));
         //this.employees$ = this._userService.getAll({ paginated: false });
-        this._userService.getAll().subscribe(response => (this.creador = response));
+        this._postulacionesService.getEncargado().subscribe(response => (this.creador = response));
     }
 
     ngAfterViewInit(): void {
