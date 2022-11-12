@@ -61,7 +61,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
                     const queryParamsByPaginator = { ...filters } as any;
                     queryParamsByPaginator.limit = this.paginator.pageSize;
                     queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
-                    return this._postulacionService.get(queryParamsByPaginator);
+                    return this._postulacionService.getPostulantes(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
                 this._ngxSpinner.hide();

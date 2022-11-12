@@ -27,7 +27,7 @@ export class GestionarExamenComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this._postulacionService.get().subscribe(response => (this.postulant = response.content));
+        this.listaPostulantes();
         this.listaTipoExamen();
         this.listaCentroMedico();
     }
@@ -53,15 +53,18 @@ export class GestionarExamenComponent implements OnInit {
     }
 
     listaTipoExamen() {
-        this._gestionarServiceService.getTipoExamen().subscribe(response => (
-            this.tipoExamenList = response
-        ));
+        this._gestionarServiceService.getTipoExamen().subscribe(response => (this.tipoExamenList = response));
     }
 
     listaCentroMedico() {
-        this._gestionarServiceService.getCentroMedico().subscribe(response => (
-            this.centroMedicoList = response
-        ));
+        this._gestionarServiceService.getCentroMedico().subscribe(response => (this.centroMedicoList = response));
+    }
+
+    listaPostulantes() {
+        const datosFiltro = {
+            estadoPostulanteId: 5
+        };
+        this._postulacionService.getPostulantes(datosFiltro).subscribe(response => (this.postulant = response.content));
     }
 
 }

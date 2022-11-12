@@ -34,7 +34,10 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this._commonService.getStatus().subscribe(estado => (this.status = estado));
+        this._commonService.getStatus().subscribe(estado => (
+            this.status = estado,
+            console.log(this.status)
+            ));
         //this.employees$ = this._userService.getAll({ paginated: false });
         this._postulacionesService.getEncargado().subscribe(response => (this.creador = response));
     }

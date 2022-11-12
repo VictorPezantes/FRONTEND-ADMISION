@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UsuarioActionsComponent } from './modules/admin/usuario/components/usuario-actions/usuario-actions.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -61,7 +62,8 @@ export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
         NgxSpinnerModule,
         MatCardModule,
         MatChipsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDatepickerModule
     ],
     providers: [
         { provide: MAT_SELECT_SCROLL_STRATEGY, useFactory: scrollFactory, deps: [Overlay] }

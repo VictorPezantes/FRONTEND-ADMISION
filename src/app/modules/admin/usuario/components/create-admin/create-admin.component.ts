@@ -41,10 +41,7 @@ export class CreateAdminComponent implements OnInit {
             nombreUsuario: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
-            foto: ['foto.jpg'],
-            roles: [
-                ['admin'],
-            ],
+            foto: ['foto.jpg']
         });
     }
 
@@ -71,7 +68,6 @@ export class CreateAdminComponent implements OnInit {
         formData.append('nombre', form?.nombre);
         formData.append('nombreUsuario', form?.nombreUsuario);
         formData.append('password', form?.password);
-        formData.append('roles', form?.roles);
 
         console.log(form);
 

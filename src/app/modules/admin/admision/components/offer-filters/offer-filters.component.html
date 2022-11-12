@@ -9,7 +9,7 @@
         <mat-select formControlName="estado" placeholder="Estado de la oferta">
             <mat-option [value]="null">----</mat-option>
             <ng-container *ngFor="let option of status">
-                <mat-option [value]="option.id">{{ option.estado }}</mat-option>
+                <mat-option [value]="option.id">{{ option.estadoOfertaNombre }}</mat-option>
             </ng-container>
         </mat-select>
     </mat-form-field>

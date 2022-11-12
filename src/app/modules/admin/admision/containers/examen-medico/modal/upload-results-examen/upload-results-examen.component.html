@@ -6,11 +6,11 @@
                 (data?.meta?.apellidoMaterno || '-')}}</b>
         </div>
         <br>
-        <div [formGroup]="formActions">
+        <div [formGroup]="formActions" #signUpNgForm="ngForm">
 
             <div class="flex flex-col w-12/12" style="border-radius: 20px;">
                 <mat-label class="mb-2">Cargar Resultados</mat-label>
-                <input type="file" [formControlName]="'archivo'">
+                <input type="file" [formControlName]="'archivo'" (change)="uploadResultado($event)">
                 <mat-error *ngIf="formActions.get('archivo').hasError('required')">
                     Es requerido cargar archivo
                 </mat-error>
@@ -29,32 +29,24 @@
              
             <mat-form-field class="w-5/12" appearance="fill">
                 <mat-label>Fecha Informe Medico</mat-label>
-                <mat-select formControlName="fechaInformeMedico" placeholder="Seleccione Estado">
-                    <mat-option [value]="null">----</mat-option>
-                    <mat-option *ngFor="let option of estado" [value]="option.id">{{ option.name }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="formActions.get('fechaInformeMedico').hasError('required')">
+                <input matInput [matDatepicker]="end1Date" autocomplete="off" type="text" placeholder="Fecha de ingreso"
+                    formControlName="fechaResultado" (click)="end1Date.open()">
+                <mat-datepicker-toggle matSuffix [for]="end1Date"></mat-datepicker-toggle>
+                <mat-datepicker #end1Date></mat-datepicker>
+                <mat-error *ngIf="formActions.get('fechaResultado').hasError('required')">
                     Es requerido seleccionar un estado
                 </mat-error>
             </mat-form-field>
-            <br>
-            <!-- <mat-form-field class="w-full" appearance="fill">
-                <mat-label>Fecha de ingreso</mat-label>
-                <input matInput [matDatepicker]="end1Date" autocomplete="off" type="text" placeholder="Fecha de ingreso"
-                  formControlName="fechaInformeMedico" (click)="end1Date.open()">
-                <mat-datepicker-toggle matSuffix [for]="end1Date"></mat-datepicker-toggle>
-                <mat-datepicker #end1Date></mat-datepicker>
-              </mat-form-field> -->
-
+            <!-- <br>
             <mat-form-field class="flex flex-col w-12/12" appearance="fill">
                 <mat-label>Observaciones</mat-label>
                 <textarea matInput placeholder="Escriba..." [formControlName]="'observacion'"></textarea>
-            </mat-form-field>
+            </mat-form-field> -->
 
         </div>
     </div>
     <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
-        <button mat-stroked-button color="primary">Confirmar</button>
+        <button mat-stroked-button color="primary" (click)="UploadResults()">Confirmar</button>
         <button mat-stroked-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
     </div>
 </div>

@@ -21,6 +21,11 @@ export interface Estado {
     name: string;
 }
 
+export interface EstadoPostulante {
+    id: number;
+    name: string;
+}
+
 export interface Departamento {
     id: number;
     name: string;

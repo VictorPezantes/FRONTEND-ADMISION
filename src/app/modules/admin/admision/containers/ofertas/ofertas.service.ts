@@ -44,7 +44,6 @@ export class OfertasService {
     }
 
     cambiarEstado(payload): Observable<any> {
-        payload.id = payload?.id;
         payload.estadoOferta = { id: payload?.estadoOferta }
         return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar-estado`, payload);
     }

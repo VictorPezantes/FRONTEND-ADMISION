@@ -107,7 +107,7 @@ export class CreatePostulantComponent implements OnInit, OnDestroy {
 
     createOrUpdateOffer(payload): Observable<any> {
         if (payload?.id) {
-            return this._postulacionService.update(payload);
+            //return this._postulacionService.update(payload);
         }
         return this._postulacionService.create(payload, this.user);
     }

@@ -14,117 +14,124 @@
             [pageSizeOptions]="[5, 10, 25, 50, 100, 250, 500]">
         </mat-paginator>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
-            <!-- Position Column -->
-            <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Estado</th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button [matTooltip]="element?.status | statusOffers">
-                        <mat-icon svgIcon="heroicons_outline:information-circle" [ngClass]="{
+        <ng-container *ngIf="dataSource?.length; else notResults">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">
+                <!-- Position Column -->
+                <ng-container matColumnDef="estado">
+                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Estado</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button [matTooltip]="element?.status | statusOffers">
+                            <mat-icon svgIcon="heroicons_outline:information-circle" [ngClass]="{
                                 'status-success': element.status === 2,
                                 'status-created': element.status === 3,
                                 'status-warning': element.status === 3
                             }"></mat-icon>
-                    </button>
-                </td>
-            </ng-container>
+                        </button>
+                    </td>
+                </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="informacion">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Informacion del postulante
-                </th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="flex flex-col">
+                <!-- Name Column -->
+                <ng-container matColumnDef="informacion">
+                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Informacion del postulante
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="flex flex-col">
+                            <div class="font-extrabold text-primary-700">
+                                {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + ' ' +
+                                (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.idDepartamento?.name || '#Departamento') + ' ' +
+                                (element?.idProvincia?.name || '#Provincia') + ' ' + (element?.idDistrito?.name ||
+                                '#Distrito')}}
+                            </div>
+                            <div class="font-light">
+                                {{element?.email || '-'}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.profesion || '#PROFESION')}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
+                                (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
+                                (element?.fechaSalidaTrabajoReciente || '#Salida')}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.motivoSalidaTrabajoReciente || '#MOTIVO DE SALIDA')}}
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="responsable">
+                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div>
+                            <div class="relative w-15 h-15 ">
+                                <img class="auto" src="assets/images/avatars/user_clean.png">
+                            </div>
+                        </div>
                         <div class="font-extrabold text-primary-700">
                             {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + ' ' +
                             (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
                         </div>
                         <div class="font-light">
-                            {{(element?.idDepartamento?.name || '#Departamento') + ' ' +
-                            (element?.idProvincia?.name || '#Provincia') + ' ' + (element?.idDistrito?.name ||
-                            '#Distrito')}}
+                            {{(element?.motivoSalidaTrabajoReciente?.id || '#CORREO ELECTRONICO')}}
                         </div>
                         <div class="font-light">
-                            {{element?.email || '-'}}
+                            {{(element?.motivoSalidaTrabajoReciente?.id || '#TELEFONO')}}
                         </div>
-                        <div class="font-light">
-                            {{(element?.profesion || '#PROFESION')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
-                            (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
-                            (element?.fechaSalidaTrabajoReciente || '#Salida')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.motivoSalidaTrabajoReciente || '#MOTIVO DE SALIDA')}}
-                        </div>
-                    </div>
-                </td>
-            </ng-container>
+                    </td>
+                </ng-container>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="responsable">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
-                <td mat-cell *matCellDef="let element">
-                    <div>
-                        <div class="relative w-15 h-15 ">
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="imagen">
+                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Imagen</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="relative w-20 h-20 ">
                             <img class="auto" src="assets/images/avatars/user_clean.png">
                         </div>
-                    </div>
-                    <div class="font-extrabold text-primary-700">
-                        {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + ' ' +
-                        (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
-                    </div>
-                    <div class="font-light">
-                        {{(element?.motivoSalidaTrabajoReciente?.id || '#CORREO ELECTRONICO')}}
-                    </div>
-                    <div class="font-light">
-                        {{(element?.motivoSalidaTrabajoReciente?.id || '#TELEFONO')}}
-                    </div>
-                </td>
-            </ng-container>
+                    </td>
+                </ng-container>
 
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="imagen">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Imagen</th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="relative w-20 h-20 ">
-                        <img class="auto" src="assets/images/avatars/user_clean.png">
-                    </div>
-                </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button [matMenuTriggerFor]="offerActions" color="primary">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu [xPosition]="'before'" #offerActions="matMenu">
-                        <button mat-menu-item>
-                            Reprogramar
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button [matMenuTriggerFor]="offerActions" color="primary">
+                            <mat-icon>more_vert</mat-icon>
                         </button>
-                        <button mat-menu-item (click)="loadResults()">
-                            Cargar resultados
-                        </button>
-                        <button mat-menu-item>
-                            Cancelar
-                        </button>
-                    </mat-menu>
-                </td>
-            </ng-container>
+                        <mat-menu [xPosition]="'before'" #offerActions="matMenu">
+                            <button mat-menu-item>
+                                Reprogramar
+                            </button>
+                            <button mat-menu-item (click)="loadResults()">
+                                Cargar resultados
+                            </button>
+                            <button mat-menu-item>
+                                Cancelar
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </ng-container>
+
+        <!-- No results -->
+        <ng-template #notResults>
+            <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+                <mat-icon class="icon-size-24" [svgIcon]="'heroicons_outline:document-search'"></mat-icon>
+                <div class="mt-6 text-2xl font-semibold tracking-tight text-secondary">Sin resultados!</div>
+            </div>
+        </ng-template>
+
     </section>
 </article>

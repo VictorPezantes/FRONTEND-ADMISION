@@ -85,12 +85,12 @@ export class AuthSignUpComponent implements OnInit {
 
         // FORMDATA
         const form = this.signUpForm.value;
-        const foto = new Blob([form?.foto], { type: 'multipart/form-data' });
+        //const foto = new Blob([form?.foto], { type: 'multipart/form-data' });
 
         const formData = new FormData();
         formData.append('apellidos', form?.apellidos);
         formData.append('email', form?.email);
-        formData.append('foto', foto);
+        formData.append('foto', 'foto');
         formData.append('fotografia', 'ff');
         formData.append('nombre', form?.nombre);
         formData.append('nombreUsuario', form?.nombreUsuario);

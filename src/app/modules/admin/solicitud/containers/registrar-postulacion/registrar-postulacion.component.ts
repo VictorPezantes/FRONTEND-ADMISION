@@ -150,8 +150,8 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('motivoSalidaTrabajoReciente', payload.motivoSalidaTrabajoReciente);
             this.formData.append('disponibilidadViajar', payload.disponibilidadViajar);
             this.formData.append('experienciaRubro', payload.experienciaRubro);
-            this.formData.append('estado', '1'); /** */
-            this.formData.append('estadoPostulacion', '1'); /** */
+            //this.formData.append('estado', '1'); /** */
+            this.formData.append('estadoPostulanteId', ''); /** */
             this.formData.append('idOferta', this.id.toString());
             this.formData.append('ofertaPostulada', this.titulo);
             this.formData.append('procedencia', 'procencia');

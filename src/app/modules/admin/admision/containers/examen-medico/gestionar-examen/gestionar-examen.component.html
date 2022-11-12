@@ -6,14 +6,15 @@
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Postulante(s)</mat-label>
             <mat-select [formControlName]="'listaPostulante'" multiple>
-                <mat-select-trigger>
-                    <!-- <span *ngIf="(listaPostulante.length || 0) > 0" class="example-additional-selection">
+                <!-- <mat-select-trigger>
+                    <span *ngIf="(listaPostulante.length || 0) > 0" class="example-additional-selection">
                         (+{{(listaPostulante.length || 0)}} {{listaPostulante.length === 2 ? 'postulante' :
                         'postulantes'}})
-                    </span> -->
-                </mat-select-trigger>
+                    </span>
+                </mat-select-trigger> -->
                 <mat-option *ngFor="let item of postulant" [value]="item.id">
-                    {{(item.primerNombre)+' '+(item.apellidoPaterno)}}</mat-option>
+                    {{(item.primerNombre)+' '+(item.segundoNombre)+' '+(item.apellidoMaterno)+' '+(item.apellidoPaterno)}}
+                </mat-option>
             </mat-select>
             <mat-error *ngIf="formActions.get('listaPostulante').hasError('required')">
                 Este campo es requerido
@@ -43,7 +44,8 @@
         <mat-form-field appearance="fill" class="flex flex-col w-12/12">
             <mat-label>Centro Médico Asignado</mat-label>
             <mat-select [formControlName]="'centroMedicoId'">
-                <mat-option *ngFor="let centro of centroMedicoList" [value]="centro.id">{{centro.centroMedicoNombre}}</mat-option>
+                <mat-option *ngFor="let centro of centroMedicoList" [value]="centro.id">{{centro.centroMedicoNombre}}
+                </mat-option>
             </mat-select>
             <mat-error *ngIf="formActions.get('centroMedicoId').hasError('required')">
                 Este campo es requerido

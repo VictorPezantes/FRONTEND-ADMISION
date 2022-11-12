@@ -31,7 +31,7 @@ export class CancelProcessPostulantComponent implements OnInit {
     createFormActions(): void {
         this.formActions = this._fb.group({
             id: [null],
-            //estado: [null, [Validators.required]],
+            observacion: [null, [Validators.required]],
         });
     }
 

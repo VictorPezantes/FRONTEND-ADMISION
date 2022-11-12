@@ -27,7 +27,7 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
     dataSource: Postulante[] = [];
     displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
 
-    count = 0;
+    count;
 
     changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     unsubscribe: Subject<void> = new Subject<void>();
@@ -60,13 +60,14 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
                     const queryParamsByPaginator = { ...filters } as any;
                     queryParamsByPaginator.limit = this.paginator.pageSize;
                     queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
-                    return this._postulacionService.getExamen(queryParamsByPaginator);
+                    queryParamsByPaginator.estadoPostulanteId = 5;
+                    return this._postulacionService.getPostulantes(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
                 this._ngxSpinner.hide();
-                this.count = response.count;
-                this.dataSource = response.content;
-                console.log(response.content);
+                this.count = response?.count;
+                this.dataSource = response?.content;
+                console.log(this.dataSource);
             });
     }
 
