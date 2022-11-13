@@ -29,4 +29,8 @@ export class ExamenMedicoService {
     return this._httpClient.post<any>(`${this.apiUrl}examen/registrarResultado`, payload);
   }
 
+  reprogramExam(payload): Observable<any> {
+    return this._httpClient.put<any>(`${this.apiUrl}examen/actualizar`, payload);
+  }
+
 }
