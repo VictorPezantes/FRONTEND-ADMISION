@@ -20,7 +20,7 @@ export class CommonService {
         return this._httpClient.get<Estado[]>(`${this.apiUrl}estadoOferta/listar`, { params: queryParams });
     }
 
-    getPositions(queryParams = null): Observable<AbstractChoice[]> {
+    getCargo(queryParams = null): Observable<AbstractChoice[]> {
         return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}cargo/listar/`, { params: queryParams });
     }
 

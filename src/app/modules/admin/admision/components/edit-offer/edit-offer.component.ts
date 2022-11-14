@@ -46,7 +46,7 @@ export class EditOfferComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.cargoOferta$ = this._commonService.getPositions();
+        this.cargoOferta$ = this._commonService.getCargo();
         this.estadoOferta$ = this._commonService.getStatus();
         this.creadorOferta$ = this._userService.get();
         /*this.cantidadPostulantes$ = this._offerService.get();*/

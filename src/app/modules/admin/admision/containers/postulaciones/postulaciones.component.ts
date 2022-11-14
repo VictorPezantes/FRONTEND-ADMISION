@@ -13,6 +13,7 @@ import { SendEmailComponent } from './modal/send-email/send-email.component';
 import { AssignResponsibleComponent } from './modal/assign-responsible/assign-responsible.component';
 import { ChangeStatusPostulantComponent } from './modal/change-status-postulant/change-status-postulant.component';
 import { CancelProcessPostulantComponent } from './modal/cancel-process-postulant/cancel-process-postulant.component';
+import { ViewInformationComponent } from '../../components/view-information/view-information.component';
 
 @Component({
     selector: 'app-postulaciones',
@@ -67,7 +68,25 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
                 this._ngxSpinner.hide();
                 this.count = response?.numberOfElements;
                 this.dataSource = response?.content;
-                console.log(response?.content);
+
+                //const cv = 0;
+
+                /*this.dataSource.forEach(element => {
+                    //element.urlCurriculumVitae = "con DATOS";
+
+                    const params = {
+                        postulanteId: Number(element?.id)
+                    }
+
+                    //this.getCV(params)
+                    //this.getPhoto(params);
+
+                    //console.log(params)
+
+                });*/
+
+                //console.log(this.dataSource);
+
             });
     }
 
@@ -139,6 +158,45 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
             .afterClosed().subscribe(_ => {
                 this.changesSubject.next(true);
             });
+    }
+
+    obtenerCV(): void {
+        //console.log(this.dataSource?.[0]?.id);
+        this.dataSource.forEach(element => {
+            console.log(element.id)
+        });
+    }
+
+    async getCV(payload): Promise<void> {
+        try {
+            const mensaje = await this._postulacionService.getCV(payload).toPromise();
+            console.log(mensaje);
+            //this._snackService.open('Correo ENVIADO correctamente', 'Cerrar', { duration: 2000 });
+            //this.formActions.reset();
+            //this.dialogRef.close();
+        } catch (err) {
+            throw new Error(err);
+        } finally {
+            await 'error';
+        }
+    }
+
+    async getPhoto(payload): Promise<void> {
+        try {
+            const mensaje = await this._postulacionService.getPhoto(payload).toPromise();
+            console.log(mensaje);
+            //this._snackService.open('Correo ENVIADO correctamente', 'Cerrar', { duration: 2000 });
+            //this.formActions.reset();
+            //this.dialogRef.close();
+        } catch (err) {
+            throw new Error(err);
+        } finally {
+            await 'error';
+        }
+    }
+
+    viewInformation(): void {
+        console.log(ViewInformationComponent, '11');
     }
 
 }

@@ -2,12 +2,12 @@
     <h2 mat-dialog-title>Reprogramar Examen Medico</h2>
     <div mat-dialog-content>
         <div>Desea reprogramar examen medico del postulante: <br>
-            <b>Nombres y Apellidos: </b> {{(data?.meta?.primerNombre || '-') + ' ' +
+            <b>NOMBRES Y APELLIDOS: </b> {{(data?.meta?.primerNombre || '-') + ' ' +
             (data?.meta?.segundoNombre || '-') + ' ' + (data?.meta?.apellidoPaterno || '-') + ' ' +
             (data?.meta?.apellidoMaterno || '-')}} <br>
-            <b>Centro Medico: </b> {{(data?.meta?.centroMedicoNombre || '#SinDatos')}} <br>
-            <b>Tipo de Examen: </b> {{(data?.meta?.tipoExamenNombre || '#SinDatos')}} <br>
-            <b>Fecha Programada: </b> {{(data?.meta?.fechaProgramadaExamen || '#SinDatos')}}
+            <b>CENTRO MEDICO: </b> {{(data?.meta?.centroMedicoNombre || '#SinDatos')}} <br>
+            <b>TIPO DE EXAMEN: </b> {{(data?.meta?.tipoExamenNombre || '#SinDatos')}} <br>
+            <b>FECHA PROGRAMADA: </b> {{(data?.meta?.fechaProgramadaExamen || '#SinDatos')}}
         </div>
         <br>
         <div [formGroup]="formActions" #signUpNgForm="ngForm">
@@ -20,6 +20,11 @@
                 <mat-error *ngIf="formActions.get('fechaProgramada').hasError('required')">
                     Es requerido seleccionar una fecha
                 </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="flex flex-col w-12/12" appearance="fill">
+                <mat-label>Observación</mat-label>
+                <textarea matInput placeholder="Escriba..." [formControlName]="'observaciones'"></textarea>
             </mat-form-field>
         </div>
     </div>

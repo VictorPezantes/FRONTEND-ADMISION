@@ -44,7 +44,7 @@ export class CreatePostulantComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.cargoOferta$ = this._commonService.getPositions();
+        this.cargoOferta$ = this._commonService.getCargo();
 
         this._userService.user$
             .pipe(takeUntil(this._unsubscribeAll))

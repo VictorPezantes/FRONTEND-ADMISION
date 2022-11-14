@@ -47,7 +47,7 @@ export class ChangeStatusPostulantComponent implements OnInit {
     }
 
     listaEstadoPostulante() {
-        this._postulacionService.getStatusPostulante().subscribe(response => (
+        this._postulacionService.getStatusPostulant().subscribe(response => (
             this.estadoPostulante = response
         ));
     }

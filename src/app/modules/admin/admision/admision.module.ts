@@ -56,6 +56,7 @@ import { CancelExamComponent } from './containers/examen-medico/modal/cancel-exa
 import { ChangeStatusPostulantComponent } from './containers/postulaciones/modal/change-status-postulant/change-status-postulant.component';
 import { CancelProcessPostulantComponent } from './containers/postulaciones/modal/cancel-process-postulant/cancel-process-postulant.component';
 import { UploadResultsExamenComponent } from './containers/examen-medico/modal/upload-results-examen/upload-results-examen.component';
+import { ExamenFiltersComponent } from './components/examen-filters/examen-filters.component';
 
 
 const routes: Routes = [
@@ -148,7 +149,8 @@ const routes: Routes = [
         CancelExamComponent,
         ChangeStatusPostulantComponent,
         CancelProcessPostulantComponent,
-        UploadResultsExamenComponent
+        UploadResultsExamenComponent,
+        ExamenFiltersComponent
     ],
     imports: [
         CommonModule,

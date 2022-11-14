@@ -5,10 +5,13 @@
 
             <mat-form-field class="w-full" appearance="fill">
                 <mat-label>Estado civil</mat-label>
-                <mat-select formControlName="email" placeholder="Seleccione correo electrónico" multiple>
+                <mat-select formControlName="correos" placeholder="Seleccione correo electrónico" multiple>
                     <mat-option [value]="data?.meta?.email">{{ data?.meta?.email }}</mat-option>
                     <mat-option [value]="data?.meta?.emailSecundario">{{ data?.meta?.emailSecundario }}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formActions.get('correos').hasError('required')">
+                    Es requerido un corre electrónico
+                </mat-error>
             </mat-form-field>
 
         </div>

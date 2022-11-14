@@ -44,13 +44,20 @@ export class PostulacionesService {
     return this._httpClient.get<Encargado[]>(`${this.apiUrl}encargado/lista`, { params: queryParams });
   }
 
-  getStatusPostulante(queryParams = null): Observable<EstadoPostulante[]> {
+  getStatusPostulant(queryParams = null): Observable<EstadoPostulante[]> {
     return this._httpClient.get<EstadoPostulante[]>(`${this.apiUrl}estadoPostulante/listar`, { params: queryParams });
   }
 
-  /*updateEstadoPostulante(payload): Observable<any> {
-    return this._httpClient.patch<any>(`${this.apiUrl}postulante/actualizar/`, payload);
-  }*/
+  sendEmailCV(payload): Observable<any> {
+    return this._httpClient.post<any>(`${this.apiUrl}postulante/enviarCVPorCorreo`, payload);
+  }
 
+  getCV(payload): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerCVPostulante`, payload);
+  }
+
+  getPhoto(payload): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerFotoPostulante`, payload);
+  }
 
 }

@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormBuilder } from '@angular/forms';
+import { Estado } from 'app/shared/interfaces/common.interface';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { PostulacionesService } from '../../containers/postulaciones/postulaciones.service';
-import moment from 'moment';
-import { Cargo, Encargado, EstadoPostulante } from 'app/shared/interfaces/common.interface';
-import { CommonService } from 'app/shared/services/common.service';
 
 @Component({
-    selector: 'app-postulant-filters',
-    templateUrl: './postulant-filters.component.html',
-    styleUrls: ['./postulant-filters.component.scss']
+    selector: 'app-examen-filters',
+    templateUrl: './examen-filters.component.html',
+    styleUrls: ['./examen-filters.component.scss']
 })
-export class PostulantFiltersComponent implements OnInit {
+export class ExamenFiltersComponent implements OnInit {
 
     formFilters: FormGroup;
-
     unsubscribe: Subject<void> = new Subject<void>();
-    encargado: Encargado[] = [];
-    estados: EstadoPostulante[] = [];
-    cargo: Cargo[] = [];
+    estados: Estado[] = [
+        { id: 1, name: 'PROGRAMADO' },
+        { id: 2, name: 'APROBADO' },
+        { id: 3, name: 'CANCELADO' },
+        { id: 4, name: 'DESAPROBADO' },
+        { id: 5, name: 'OBSERVADO' },
+        { id: 6, name: 'REPROGRAMADO' },
+        { id: 7, name: 'PENDIENTE' },
+    ];
 
     constructor(
         private _fb: UntypedFormBuilder,
         private _postulantServices: PostulacionesService,
-        private _commonService: CommonService,
     ) {
         this.createFormFilters();
     }
 
     ngOnInit(): void {
-        this._postulantServices.getEncargado().subscribe(encargados => { this.encargado = encargados; });
-        this._postulantServices.getStatusPostulant().subscribe(response => (this.estados = response));
-        this._commonService.getCargo().subscribe(response => (this.cargo = response));
+        //this._commonService.getCargo().subscribe(response => (this.cargo = response));
     }
 
     ngAfterViewInit(): void {
@@ -50,15 +50,10 @@ export class PostulantFiltersComponent implements OnInit {
     createFormFilters(): void {
         this.formFilters = this._fb.group({
             filtro: [''],
-            encargadoId: [''],
-            estadoPostulanteId: [''],
-            cargoId: [''],
+            subEstadoExamen: [''],
+            fechaInformeMedico: [''],
+            fechaProgramada: [''],
         });
-    }
-
-    ngOnDestroy(): void {
-        this.unsubscribe.next();
-        this.unsubscribe.complete();
     }
 
 }

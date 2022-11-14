@@ -6,7 +6,7 @@
                 <button mat-raised-button color="primary" (click)="gestionarExamen()">Gestionar Examen Médico</button>
                 <br>
                 <br>
-                <app-postulant-filters></app-postulant-filters>
+                <app-examen-filters></app-examen-filters>
             </mat-card-content>
         </mat-card>
     </section>
@@ -57,24 +57,20 @@
                                 (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
                             </div>
                             <div class="font-light">
-                                Examen: {{(element?.tipoExamenNombre || '#tipoExamen')}}
+                                Tipo examen medico a realizar: <br>
+                                {{(element?.tipoExamenNombre || '#tipoExamen')}}
                             </div>
                             <div class="font-light">
-                                {{element?.email || '-'}}
+                                Programado para el: <br>
+                                {{element?.fechaProgramadaExamen || '#SinFecha'}}
                             </div>
                             <div class="font-light">
-                                {{(element?.profesion || '#PROFESION')}}
+                                Lugar: <br>
+                                {{(element?.centroMedicoNombre || '#SinCentroMedico')}}
                             </div>
                             <div class="font-light">
-                                {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
-                                (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
-                            </div>
-                            <div class="font-light">
-                                {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
-                                (element?.fechaSalidaTrabajoReciente || '#Salida')}}
-                            </div>
-                            <div class="font-light">
-                                {{(element?.motivoSalidaTrabajoReciente || '#MOTIVO DE SALIDA')}}
+                                Fecha de informe medico: <br>
+                                {{(element?.dd || '#SinFecha')}}
                             </div>
                         </div>
                     </td>
@@ -84,6 +80,11 @@
                 <ng-container matColumnDef="responsable">
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
                     <td mat-cell *matCellDef="let element">
+
+                        <div class="font-light">
+                            Observaciones: <br>
+                            {{(element?.dd || '#SinObservaciones')}}
+                        </div>
 
                         <div *ngIf="element.encargadoId > 0">
                             <div>

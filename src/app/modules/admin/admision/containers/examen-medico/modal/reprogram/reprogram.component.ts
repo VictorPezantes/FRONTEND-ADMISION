@@ -32,15 +32,15 @@ export class ReprogramComponent implements OnInit {
     }
 
     setValues(): void {
-        console.log('==>', this.data.meta);
+        //console.log('==>', this.data.meta);
         this.formActions.patchValue(this.data?.meta);
     }
 
     createFormActions(): void {
         this.formActions = this._fb.group({
-            id: [''],
-            //subEstadoId: [''],
-            fechaProgramada: ['', Validators.required]
+            fechaProgramada: ['', Validators.required],
+            //observaciones: [this.data?.meta?.encargadoId],
+            observaciones: [''],
         });
     }
 
@@ -49,15 +49,16 @@ export class ReprogramComponent implements OnInit {
             return;
         }
         this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
-        this.formActions.value.subEstadoId = '3';
+        this.formActions.value.id = this.data?.meta?.examenId;
+        this.formActions.value.subEstadoId = 7;
         //console.log(this.formActions.value);
         this.updateExam(this.formActions.value);
     }
 
     async updateExam(payload): Promise<void> {
         try {
-            await this._examenMedicoService.reprogramExam(payload).toPromise();
-            this._snackService.open('Examen reprogramado correctamente', 'Cerrar', { duration: 2000 });
+            await this._examenMedicoService.updateExamen(payload).toPromise();
+            this._snackService.open('Examen REPROGRAMADO correctamente', 'Cerrar', { duration: 2000 });
             this.formActions.reset();
             this.dialogRef.close();
         } catch (err) {
