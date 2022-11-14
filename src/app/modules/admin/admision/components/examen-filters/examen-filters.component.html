@@ -1,0 +1,30 @@
+<div class="flex flex-col gap-2" [formGroup]="formFilters">
+    <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Buscador</mat-label>
+        <input matInput autocomplete="off" placeholder="Buscador" [formControlName]="'filtro'">
+        <mat-icon matSuffix class="touched" svgIcon="heroicons_outline:search"></mat-icon>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense" appearance="fill">
+        <mat-label>Estado de Examen</mat-label>
+        <mat-select placeholder="Especialidad del postulante" formControlName="subEstadoExamen">
+            <mat-option [value]="null">----</mat-option>
+            <ng-container *ngFor="let option of estados">
+                <mat-option [value]="option.id">{{ option.name }}</mat-option>
+            </ng-container>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Fecha Informe Medico</mat-label>
+        <input matInput [matDatepicker]="endDate" autocomplete="off" type="text" placeholder="Fecha de publicación"
+            formControlName="fechaInformeMedico" (click)="endDate.open()">
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Fecha de programada</mat-label>
+        <input matInput [matDatepicker]="endDate2" autocomplete="off" type="text" placeholder="Fecha de publicación"
+            formControlName="fechaProgramada" (click)="endDate2.open()">
+        <mat-datepicker-toggle matSuffix [for]="endDate2"></mat-datepicker-toggle>
+        <mat-datepicker #endDate2></mat-datepicker>
+    </mat-form-field>
+</div>

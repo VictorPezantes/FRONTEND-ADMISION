@@ -255,6 +255,21 @@
                             </table>
                         </mat-card-content>
                     </mat-card>
+                    <mat-card style="border-radius: 2px" class="px-6 py-4 text-right bg-gray-200 dark:bg-transparent">
+                        <mat-card-content>
+                            <section class="flex flex-row gap-2 w-100 center-end">
+                                <div>
+                                    <a mat-raised-button color="primary" class="uppercase"
+                                        routerLink="/recursos-humanos/admision/postulaciones">Editar
+                                    </a>
+                                     
+                                    <a mat-raised-button color="warn" class="uppercase"
+                                        routerLink="/recursos-humanos/admision/postulaciones">Cancelar
+                                    </a>
+                                </div>
+                            </section>
+                        </mat-card-content>
+                    </mat-card>
                 </section>
                 <!-- Finaliza Parte Inferior-->
 
@@ -274,8 +289,8 @@
                         <mat-card-content>
                             <h1 style="font-size: 18px">Ficha del postulante</h1>
                             <br />
-                            <a class="uppercase" style="left: 70px" mat-raised-button color="primary"
-                                routerLink="/recursos-humanos/admision/ficha">Ficha del postulante
+                            <a class="uppercase" style="left: 165px" mat-raised-button color="primary"
+                                routerLink="/recursos-humanos/admision/ficha">Ver Ficha
                             </a>
                         </mat-card-content>
                     </mat-card>
@@ -330,18 +345,10 @@
         </div>
         <br />
 
-        <section class="flex flex-row gap-2 w-100 center-end">
-            <div>
-                <button class="uppercase" style="width: 110px; font-size: 11px; left: 500px" mat-raised-button
-                    color="primary">
-                    Editar
-                </button>
 
-                <button class="uppercase" style="width: 90px; font-size: 11px; left: 600px" mat-raised-button
-                    color="primary">
-                    Cancelar
-                </button>
-            </div>
-        </section>
+
+
+
+
     </mat-drawer-content>
 </mat-drawer-container>

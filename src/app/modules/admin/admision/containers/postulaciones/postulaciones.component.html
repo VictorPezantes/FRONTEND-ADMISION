@@ -9,15 +9,11 @@
         </mat-card>
     </section>
     <section class="flex flex-col w-10/12">
-        <mat-paginator [length]="dataSource.length" [pageIndex]="0" [pageSize]="20"
+        <mat-paginator [length]="count" [pageIndex]="0" [pageSize]="20"
             [pageSizeOptions]="[5, 10, 25, 50, 100, 250, 500]">
         </mat-paginator>
-        <ng-container *ngIf="dataSource.length">
+        <ng-container *ngIf="dataSource?.length; else notResults">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full">
-
-                <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
                 <!-- Position Column -->
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Estado</th>
@@ -35,10 +31,32 @@
                                 'status-ALTA-EMPRESA': element?.estadoPostulacion === 9}">
                             </mat-icon>
                         </button> -->
-                        <button class="uppercase"
-                            style="width: 120px; left: -25px; color: black; background-color: rgb(45, 214, 45);"
-                            mat-raised-button>
-                            Verificación
+                        <button *ngIf="element?.estadoPostulanteId === 1" class="status-INGRESADO">
+                            INGRESADO
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 2" class="status-VERIFICACION">
+                            VERIFICACION
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 3" class="status-ENTREVISTA-PERSONAL">
+                            ENTREVISTA PERSONAL
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 4" class="status-FUERA-DEL-PROCESO">
+                            FUERA DEL PROCESO
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 5" class="status-EXAMEN-MÉDICO">
+                            EXAMEN MÉDICO
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 6" class="status-REFERENCIAS-PERSONALES">
+                            REFERENCIAS PERSONALES
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 7" class="status-POLIGRAFIA">
+                            POLIGRAFIA
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 8" class="status-EVALUACIÓN-PSICOLABORAL">
+                            EVALUACIÓN PSICOLABORAL
+                        </button>
+                        <button *ngIf="element?.estadoPostulanteId === 9" class="status-ALTA-EMPRESA">
+                            ALTA EMPRESA
                         </button>
                     </td>
                 </ng-container>
@@ -54,8 +72,8 @@
                                 (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
                             </div>
                             <div class="font-light">
-                                {{(element?.idDepartamento?.name || '#Departamento') + ' ' +
-                                (element?.idProvincia?.name || '#Provincia') + ' ' + (element?.idDistrito?.name ||
+                                {{(element?.departamentoDescripcion || '#Departamento') + ' ' +
+                                (element?.provinciaDescripcion || '#Provincia') + ' ' + (element?.distritoDescripcion ||
                                 '#Distrito')}}
                             </div>
                             <div class="font-light">
@@ -65,8 +83,8 @@
                                 {{(element?.profesion || '#PROFESION')}}
                             </div>
                             <div class="font-light">
-                                {{(element?.idDepartamento?.name || '#CARGO') + ' ' +
-                                (element?.idDepartamento?.name || '#ULTIMO EMPRESA DE TRABAJO')}}
+                                {{(element?.trabajoReciente || '#CARGO') + ' ' +
+                                (element?.empresaTrabajoReciente || '#ULTIMO EMPRESA DE TRABAJO')}}
                             </div>
                             <div class="font-light">
                                 {{(element?.fechaIngresoTrabajoReciente || '#Ingreso') + ' - ' +
@@ -83,20 +101,19 @@
                 <ng-container matColumnDef="responsable">
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
                     <td mat-cell *matCellDef="let element">
-                        <div>
-                            <div class="relative w-15 h-15 ">
-                                <img class="auto" src="assets/images/avatars/user_clean.png">
+                        <div *ngIf="element.encargadoId > 0">
+                            <div class="relative w-15 h-15 imagenResponsable">
+                                <img class="relative w-15 h-15 " src="assets/images/avatars/avatar_prueba.png">
                             </div>
-                        </div>
-                        <div class="font-extrabold text-primary-700">
-                            {{(element?.primerNombre || '-') + ' ' + (element?.segundoNombre || '-') + ' ' +
-                            (element?.apellidoPaterno || '-') + ' ' + (element?.apellidoMaterno || '-')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.motivoSalidaTrabajoReciente?.id || '#CORREO ELECTRONICO')}}
-                        </div>
-                        <div class="font-light">
-                            {{(element?.motivoSalidaTrabajoReciente?.id || '#TELEFONO')}}
+                            <div class="font-extrabold text-primary-700">
+                                {{(element?.encargadoNombre || '#NOMBRES ENCARGADO')}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.encargadoEmail || '#CORREO ELECTRONICO')}}
+                            </div>
+                            <div class="font-light">
+                                {{(element?.encargadoTelefono || '#TELEFONO')}}
+                            </div>
                         </div>
                     </td>
                 </ng-container>
@@ -105,7 +122,7 @@
                 <ng-container matColumnDef="imagen">
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Imagen</th>
                     <td mat-cell *matCellDef="let element">
-                        <div class="relative w-20 h-20 ">
+                        <div class="relative w-20 h-20">
                             <img class="auto" src="assets/images/avatars/user_clean.png">
                         </div>
                     </td>
@@ -119,52 +136,49 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu [xPosition]="'before'" #offerActions="matMenu">
-                            <button mat-menu-item
-                                *ngIf="(element?.estadoPostulacion === 1) || (element?.estadoPostulacion === 2)">
+                            <button mat-menu-item (click)="obtenerCV()">
                                 Imprimir cv
                             </button>
-                            <button mat-menu-item
-                                *ngIf="(element?.estadoPostulacion === 1) || (element?.estadoPostulacion === 2)">
+                            <button mat-menu-item (click)="sendEmail(element)">
                                 Enviar cv via email
                             </button>
-                            <button mat-menu-item
-                                *ngIf="(element?.estadoPostulacion === 1) || (element?.estadoPostulacion === 2)">
+                            <button mat-menu-item>
                                 Exportar cv como pdf
                             </button>
-                            <button mat-menu-item
-                                *ngIf="(element?.estadoPostulacion === 1) || (element?.estadoPostulacion === 2)">
+                            <a mat-menu-item routerLink="/recursos-humanos/admision/ver-informacion">
+                                Ver informacion
+                            </a>
+                            <button mat-menu-item (click)="assignResponsible(element)"
+                                *ngIf="(element?.estadoPostulanteId != 4)">
                                 Asignar responsable
                             </button>
-                            <button mat-menu-item *ngIf="element?.estadoPostulacion === 2">
+                            <button mat-menu-item (click)="changeSubStatus(element)"
+                                *ngIf="element?.estadoPostulanteId === 2">
                                 Cambiar sub estado
                             </button>
-                            <!-- <button mat-menu-item
-                                *ngIf="(element?.estadoPostulacion === 1) || (element?.estadoPostulacion === 2)">
-                                Ver informacion
-                            </button> -->
-
-                            <a mat-menu-item
-                                *ngIf="(element?.estadoPostulacion === 1) || (element?.estadoPostulacion === 2)"
-                                routerLink="/recursos-humanos/admision/ver-informacion">Ver informacion
+                            <a class="mat-menu-item" routerLink="/recursos-humanos/admision/ficha"
+                                *ngIf="element?.estadoPostulanteId === 9">Generar ficha postulante
                             </a>
-
-                            <button mat-menu-item>
-                                Generar ficha postulante
-                            </button>
-                            <button mat-menu-item>
-                                Ver ficha postulante
-                            </button>
-                            <button mat-menu-item>
+                            <button mat-menu-item (click)="cancelProcess(element)"
+                                *ngIf="(element?.estadoPostulanteId != 4)">
                                 Cancelar proceso de admision
                             </button>
                         </mat-menu>
                     </td>
                 </ng-container>
 
-
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </ng-container>
+
+        <!-- No results -->
+        <ng-template #notResults>
+            <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+                <mat-icon class="icon-size-24" [svgIcon]="'heroicons_outline:document-search'"></mat-icon>
+                <div class="mt-6 text-2xl font-semibold tracking-tight text-secondary">Sin resultados!</div>
+            </div>
+        </ng-template>
+
     </section>
 </article>

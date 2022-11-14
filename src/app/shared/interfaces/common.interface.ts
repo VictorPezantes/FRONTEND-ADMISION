@@ -21,6 +21,11 @@ export interface Estado {
     name: string;
 }
 
+export interface EstadoPostulante {
+    id: number;
+    name: string;
+}
+
 export interface Departamento {
     id: number;
     name: string;
@@ -60,4 +65,14 @@ export interface Usuarios {
     apellidos: string;
     nombreUsuario: string;
     email: string;
+}
+
+export interface TipoExamen{
+    id: number;
+    tipoExamenNombre: string;
+}
+
+export interface centroMedico{
+    id: number;
+    centroMedicoNombre: string;
 }

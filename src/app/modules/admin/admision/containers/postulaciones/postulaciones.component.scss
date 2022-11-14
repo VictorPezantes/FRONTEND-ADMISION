@@ -15,69 +15,106 @@ table {
   text-align: center;
 }
 
-.mat-column-estado {
-  width: 120px;
-  text-align: left;
+.mat-column-responsable,
+.mat-column-estado,
+.mat-column-informacion,
+.mat-column-imagen,
+td {
+  text-align: center;
+}
+
+.imagenResponsable {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 40%;
 }
 
 .status-INGRESADO {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(11, 213, 248);
 }
 
 .status-VERIFICACION {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(0, 83, 32);
 }
 
 .status-ENTREVISTA-PERSONAL {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(251, 255, 0);
 }
 
 .status-FUERA-DEL-PROCESO {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(255, 0, 0);
 }
 
 .status-EXAMEN-MÉDICO {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(255, 153, 0);
 }
 
 .status-REFERENCIAS-PERSONALES {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(158, 158, 158);
 }
 
 .status-POLIGRAFIA {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(17, 0, 255);
 }
 
 .status-EVALUACIÓN-PSICOLABORAL {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(132, 0, 255);
 }
 
 .status-ALTA-EMPRESA {
-  width: 3px;
+  width: 150px;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
   margin: 5px 5px;
   padding: 10px;
   background-color: rgb(0, 255, 13);

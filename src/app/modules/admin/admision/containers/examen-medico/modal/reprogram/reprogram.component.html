@@ -1,0 +1,35 @@
+<div class="flex flex-col w-full gap-4">
+    <h2 mat-dialog-title>Reprogramar Examen Medico</h2>
+    <div mat-dialog-content>
+        <div>Desea reprogramar examen medico del postulante: <br>
+            <b>NOMBRES Y APELLIDOS: </b> {{(data?.meta?.primerNombre || '-') + ' ' +
+            (data?.meta?.segundoNombre || '-') + ' ' + (data?.meta?.apellidoPaterno || '-') + ' ' +
+            (data?.meta?.apellidoMaterno || '-')}} <br>
+            <b>CENTRO MEDICO: </b> {{(data?.meta?.centroMedicoNombre || '#SinDatos')}} <br>
+            <b>TIPO DE EXAMEN: </b> {{(data?.meta?.tipoExamenNombre || '#SinDatos')}} <br>
+            <b>FECHA PROGRAMADA: </b> {{(data?.meta?.fechaProgramadaExamen || '#SinDatos')}}
+        </div>
+        <br>
+        <div [formGroup]="formActions" #signUpNgForm="ngForm">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Fecha Reprogramación Examen Medico</mat-label>
+                <input matInput [matDatepicker]="end1Date" autocomplete="off" type="text" placeholder="Fecha de ingreso"
+                    formControlName="fechaProgramada" (click)="end1Date.open()">
+                <mat-datepicker-toggle matSuffix [for]="end1Date"></mat-datepicker-toggle>
+                <mat-datepicker #end1Date></mat-datepicker>
+                <mat-error *ngIf="formActions.get('fechaProgramada').hasError('required')">
+                    Es requerido seleccionar una fecha
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="flex flex-col w-12/12" appearance="fill">
+                <mat-label>Observación</mat-label>
+                <textarea matInput placeholder="Escriba..." [formControlName]="'observaciones'"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button color="primary" (click)="reprogram()">Programar</button>
+        <button mat-stroked-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
+    </div>
+</div>

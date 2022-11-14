@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { IPagination, Encargado } from '../../../../../shared/interfaces/common.interface';
+import { IPagination, Encargado, EstadoPostulante } from '../../../../../shared/interfaces/common.interface';
 import { Postulante } from '../../admision.interface';
 import { User } from '../../../../../core/user/user.types';
 import { environment } from '../../../../../../environments/environment';
@@ -24,21 +24,40 @@ export class PostulacionesService {
     return this._httpClient.get<IPagination<Postulante>>(`${this.apiUrl}postulante/listar/`, { params: queryParams });
   }
 
+  getPostulantes(queryParams = null): Observable<IPagination<Postulante>> {
+    return this._httpClient.get<IPagination<Postulante>>(`${this.apiUrl}postulante/listarFiltro/`, { params: queryParams });
+  }
+
   create(payload, user: User): Observable<any> {
     return this._httpClient.post<any>(`${this.apiUrl}postulante/registrar`, payload);
   }
 
   update(payload): Observable<any> {
-    return this._httpClient.patch<any>(`${this.apiUrl}admision/postulants/${payload.id}/`, payload);
+    return this._httpClient.put<any>(`${this.apiUrl}postulante/actualizar-data`, payload);
   }
 
   delete(id: number): Observable<void> {
     return this._httpClient.delete<void>(`${this.apiUrl}admision/postulants/${id}/`);
   }
 
-  // Enpoint para llenar filtro
   getEncargado(queryParams = null): Observable<Encargado[]> {
     return this._httpClient.get<Encargado[]>(`${this.apiUrl}encargado/lista`, { params: queryParams });
+  }
+
+  getStatusPostulant(queryParams = null): Observable<EstadoPostulante[]> {
+    return this._httpClient.get<EstadoPostulante[]>(`${this.apiUrl}estadoPostulante/listar`, { params: queryParams });
+  }
+
+  sendEmailCV(payload): Observable<any> {
+    return this._httpClient.post<any>(`${this.apiUrl}postulante/enviarCVPorCorreo`, payload);
+  }
+
+  getCV(payload): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerCVPostulante`, payload);
+  }
+
+  getPhoto(payload): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerFotoPostulante`, payload);
   }
 
 }

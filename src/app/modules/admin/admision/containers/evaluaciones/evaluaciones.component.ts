@@ -23,7 +23,7 @@ export class EvaluacionesComponent implements OnInit, AfterViewInit, OnDestroy {
   dataSource: Postulante[] = [];
   displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
 
-  count = 0;
+  count;
 
   changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   unsubscribe: Subject<void> = new Subject<void>();
@@ -65,8 +65,8 @@ export class EvaluacionesComponent implements OnInit, AfterViewInit, OnDestroy {
         })
       ).subscribe((response) => {
         this._ngxSpinner.hide();
-        this.count = response.count;
-        this.dataSource = response.content;
+        this.count = response?.numberOfElements;
+        this.dataSource = response?.content;
       });
   }
 

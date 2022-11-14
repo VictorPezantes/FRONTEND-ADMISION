@@ -48,6 +48,15 @@ import { Modal3ManageEvaluationComponent } from './components/manage-evaluation/
 import { Modal1InterviewComponent } from './components/schedule-interview/modal1-interview.component';
 import { Modal3InterviewComponent } from './components/schedule-interview/modal3-interview.component';
 import { LoadResultsEvaluationComponent } from './components/load-results-evaluation/load-results-evaluation.component';
+import { GestionarExamenComponent } from './containers/examen-medico/gestionar-examen/gestionar-examen.component';
+import { SendEmailComponent } from './containers/postulaciones/modal/send-email/send-email.component';
+import { AssignResponsibleComponent } from './containers/postulaciones/modal/assign-responsible/assign-responsible.component';
+import { ReprogramComponent } from './containers/examen-medico/modal/reprogram/reprogram.component';
+import { CancelExamComponent } from './containers/examen-medico/modal/cancel-exam/cancel-exam.component';
+import { ChangeStatusPostulantComponent } from './containers/postulaciones/modal/change-status-postulant/change-status-postulant.component';
+import { CancelProcessPostulantComponent } from './containers/postulaciones/modal/cancel-process-postulant/cancel-process-postulant.component';
+import { UploadResultsExamenComponent } from './containers/examen-medico/modal/upload-results-examen/upload-results-examen.component';
+import { ExamenFiltersComponent } from './components/examen-filters/examen-filters.component';
 
 
 const routes: Routes = [
@@ -132,7 +141,16 @@ const routes: Routes = [
         Modal1ManageEvaluationComponent,
         Modal2ManageEvaluationComponent,
         Modal3ManageEvaluationComponent,
-        LoadResultsEvaluationComponent
+        LoadResultsEvaluationComponent,
+        GestionarExamenComponent,
+        SendEmailComponent,
+        AssignResponsibleComponent,
+        ReprogramComponent,
+        CancelExamComponent,
+        ChangeStatusPostulantComponent,
+        CancelProcessPostulantComponent,
+        UploadResultsExamenComponent,
+        ExamenFiltersComponent
     ],
     imports: [
         CommonModule,

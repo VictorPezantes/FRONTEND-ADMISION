@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Gestionar Examen Médico</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur omnis harum earum. Dignissimos, minima totam!</p>
+<br>
+<form [formGroup]="formActions" #signUpNgForm="ngForm">
+    <mat-dialog-content class="mat-typography input-group">
+        <mat-form-field appearance="fill" class="flex flex-col w-12/12">
+            <mat-label>Postulante(s)</mat-label>
+            <mat-select [formControlName]="'listaPostulante'" multiple>
+                <!-- <mat-select-trigger>
+                    <span *ngIf="(listaPostulante.length || 0) > 0" class="example-additional-selection">
+                        (+{{(listaPostulante.length || 0)}} {{listaPostulante.length === 2 ? 'postulante' :
+                        'postulantes'}})
+                    </span>
+                </mat-select-trigger> -->
+                <mat-option *ngFor="let item of postulant" [value]="item.id">
+                    {{(item.primerNombre)+' '+(item.segundoNombre)+' '+(item.apellidoMaterno)+' '+(item.apellidoPaterno)}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('listaPostulante').hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 400px;">
+            <mat-label>Examen a realizar</mat-label>
+            <mat-select [formControlName]="'tipoExamenId'">
+                <mat-option *ngFor="let tipo of tipoExamenList" [value]="tipo.id">{{tipo.tipoExamenNombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('tipoExamenId').hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+          
+        <mat-form-field appearance="fill" style="width: 400px;">
+            <mat-label>Fecha y Hora programada</mat-label>
+            <input matInput [matDatepicker]="picker" [formControlName]="'fechaProgramada'" (click)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaProgramada').hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="flex flex-col w-12/12">
+            <mat-label>Centro Médico Asignado</mat-label>
+            <mat-select [formControlName]="'centroMedicoId'">
+                <mat-option *ngFor="let centro of centroMedicoList" [value]="centro.id">{{centro.centroMedicoNombre}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('centroMedicoId').hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="flex flex-col w-12/12">
+            <mat-label>Observaciones</mat-label>
+            <textarea matInput placeholder="escriba..." [formControlName]="'observacion'"></textarea>
+        </mat-form-field>
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial
+            (click)="addExamen()">Registrar</button>
+    </mat-dialog-actions>
+</form>

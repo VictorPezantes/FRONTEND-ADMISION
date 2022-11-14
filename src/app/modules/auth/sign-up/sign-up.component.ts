@@ -59,9 +59,6 @@ export class AuthSignUpComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
             foto: ['foto.jpg'],
-            roles: [
-                ['admin'],
-            ],
             agreements: ['', Validators.requiredTrue]
         }
         );
@@ -88,17 +85,16 @@ export class AuthSignUpComponent implements OnInit {
 
         // FORMDATA
         const form = this.signUpForm.value;
-        const foto = new Blob([form?.foto], { type: 'multipart/form-data' });
+        //const foto = new Blob([form?.foto], { type: 'multipart/form-data' });
 
         const formData = new FormData();
         formData.append('apellidos', form?.apellidos);
         formData.append('email', form?.email);
-        formData.append('foto', foto);
+        formData.append('foto', 'foto');
         formData.append('fotografia', 'ff');
         formData.append('nombre', form?.nombre);
         formData.append('nombreUsuario', form?.nombreUsuario);
         formData.append('password', form?.password);
-        formData.append('roles', form?.roles);
 
         // Sign up
         //this._authService.signUp(this.signUpForm.value)
@@ -115,7 +111,7 @@ export class AuthSignUpComponent implements OnInit {
                     // Set the alert
                     this.alert = {
                         type: 'error',
-                        message: response.mensaje
+                        message: 'Usted ya postuló a la empresa TECHNOTANKERS'
                     };
 
                     if (response.mensaje == 'Usuario registrado correctamente') {

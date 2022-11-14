@@ -1,10 +1,100 @@
 .container {
-  font-size: 1vw;
+    font-size: 1vw;
 }
 
 table {
-  td {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-  }
+    td {
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+}
+
+.mat-paginator {
+    display: flex;
+    justify-content: right;
+}
+
+.mat-column-responsable,
+.mat-column-estado,
+.mat-column-informacion,
+.mat-column-imagen,
+td {
+    text-align: center;
+}
+
+.status-PENDIENTE {
+    width: 150px;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: gray;
+}
+
+.status-PROGRAMADO {
+    width: 150px;
+    font-weight: bold;
+    color: black;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: yellow;
+}
+
+.status-APROBADO {
+    width: 150px;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: green;
+}
+
+.status-CANCELADO {
+    width: 150px;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: red;
+}
+
+.status-DESAPROBADO {
+    width: 150px;
+    font-weight: bold;
+    color: black;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: orange;
+}
+
+.status-OBSERVADO {
+    width: 150px;
+    font-weight: bold;
+    color: black;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: skyblue;
+}
+
+.status-REPROGRAMADO {
+    width: 150px;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+    margin: 5px 5px;
+    padding: 10px;
+    background-color: blue;
+}
+
+.imagenResponsable {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 40%;
 }
