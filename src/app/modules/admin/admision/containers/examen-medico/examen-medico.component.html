@@ -83,7 +83,7 @@
 
                         <div class="font-light">
                             Observaciones: <br>
-                            {{(element?.dd || '#SinObservaciones')}}
+                            {{(element?.examenObservacion || '#SinObservaciones')}}
                         </div>
 
                         <div *ngIf="element.encargadoId > 0">
@@ -110,8 +110,8 @@
                 <ng-container matColumnDef="imagen">
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Imagen</th>
                     <td mat-cell *matCellDef="let element">
-                        <div class="relative w-20 h-20 ">
-                            <img class="auto" src="assets/images/avatars/user_clean.png">
+                        <div class="relative w-30 h-30">
+                            <img class="imagenPostulante" src="data:image/png;base64,{{fotoPostulante}}">
                         </div>
                     </td>
                 </ng-container>

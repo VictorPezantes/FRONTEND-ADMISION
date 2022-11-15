@@ -14,6 +14,7 @@ import { AssignResponsibleComponent } from './modal/assign-responsible/assign-re
 import { ChangeStatusPostulantComponent } from './modal/change-status-postulant/change-status-postulant.component';
 import { CancelProcessPostulantComponent } from './modal/cancel-process-postulant/cancel-process-postulant.component';
 import { ViewInformationComponent } from '../../components/view-information/view-information.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-postulaciones',
@@ -28,6 +29,8 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
     dataSource: Postulante[] = [];
     displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
 
+    fotoPostulante: string = "";
+
     count;
 
     changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -35,6 +38,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
 
     constructor(
         private _ngxSpinner: NgxSpinnerService,
+        private _snackService: MatSnackBar,
         private _messageProviderService: MessageProviderService,
         private _postulacionService: PostulacionesService,
         private _admisionService: AdmisionService,
@@ -69,23 +73,10 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
                 this.count = response?.numberOfElements;
                 this.dataSource = response?.content;
 
-                //const cv = 0;
-
-                /*this.dataSource.forEach(element => {
-                    //element.urlCurriculumVitae = "con DATOS";
-
-                    const params = {
-                        postulanteId: Number(element?.id)
-                    }
-
-                    //this.getCV(params)
-                    //this.getPhoto(params);
-
-                    //console.log(params)
-
-                });*/
-
-                //console.log(this.dataSource);
+                this.dataSource.forEach(element => {
+                    const data = { 'id': element.id };
+                    this.getCvs(data);
+                });
 
             });
     }
@@ -160,43 +151,31 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
             });
     }
 
-    obtenerCV(): void {
-        //console.log(this.dataSource?.[0]?.id);
-        this.dataSource.forEach(element => {
-            console.log(element.id)
-        });
+    obtenerCV(element?): void {
+        const params = { 'id': Number(element.id) };
+        this.obtenerFoto(params)
     }
 
-    async getCV(payload): Promise<void> {
+    async getCvs(payload): Promise<void> {
         try {
             const mensaje = await this._postulacionService.getCV(payload).toPromise();
-            console.log(mensaje);
-            //this._snackService.open('Correo ENVIADO correctamente', 'Cerrar', { duration: 2000 });
-            //this.formActions.reset();
-            //this.dialogRef.close();
+            this.fotoPostulante = mensaje.data;
         } catch (err) {
             throw new Error(err);
-        } finally {
-            await 'error';
         }
     }
 
-    async getPhoto(payload): Promise<void> {
+    async obtenerFoto(data): Promise<void> {
         try {
-            const mensaje = await this._postulacionService.getPhoto(payload).toPromise();
-            console.log(mensaje);
-            //this._snackService.open('Correo ENVIADO correctamente', 'Cerrar', { duration: 2000 });
-            //this.formActions.reset();
-            //this.dialogRef.close();
+            const mensajeFoto = await this._postulacionService.getPhoto(data).toPromise();
+            console.log(mensajeFoto);
         } catch (err) {
-            throw new Error(err);
-        } finally {
-            await 'error';
+            await 'Error para obtuvo foto';
         }
     }
 
     viewInformation(): void {
-        console.log(ViewInformationComponent, '11');
+        //console.log(ViewInformationComponent, '11');
     }
 
 }

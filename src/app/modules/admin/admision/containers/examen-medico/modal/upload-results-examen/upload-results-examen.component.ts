@@ -41,6 +41,7 @@ export class UploadResultsExamenComponent implements OnInit {
     }
 
     setValues(): void {
+        console.log(this.data?.meta);
         this.formActions.patchValue(this.data?.meta);
     }
 
@@ -67,6 +68,7 @@ export class UploadResultsExamenComponent implements OnInit {
             this.formData.append('estadoResultadoExamenId', payload.idEstado);
             this.formData.append('examenId', this.data?.meta?.examenId);
             this.formData.append('fechaResultado', payload.fechaResultado ? moment(payload.fechaResultado).format('DD/MM/YYYY') : null);
+            this.formData.append('fechaInformeMedico', payload.fechaResultado ? moment(payload.fechaResultado).format('DD/MM/YYYY') : null);
 
             this.upload(this.formData);
 

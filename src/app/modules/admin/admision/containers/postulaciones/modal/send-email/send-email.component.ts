@@ -47,16 +47,17 @@ export class SendEmailComponent implements OnInit {
             return;
         }
 
-        this.formActions.value.postulanteId = ~~this.data.meta.id;
+        const payload = this.formActions.value;
+        const formData = new FormData();
 
-        console.log(this.formActions.value)
-        this.sendEmail(this.formActions.value);
+        formData.append('correos', payload.correos);
+        formData.append('postulanteId', this.data.meta.id);
+        this.sendEmail(formData);
     }
 
     async sendEmail(payload): Promise<void> {
         try {
-            const mensaje = await this._postulacionService.sendEmailCV(payload).toPromise();
-            console.log(mensaje);
+            await this._postulacionService.sendEmailCV(payload).toPromise();
             this._snackService.open('Correo ENVIADO correctamente', 'Cerrar', { duration: 2000 });
             this.formActions.reset();
             this.dialogRef.close();

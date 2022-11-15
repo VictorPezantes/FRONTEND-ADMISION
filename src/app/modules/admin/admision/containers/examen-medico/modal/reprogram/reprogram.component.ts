@@ -33,13 +33,12 @@ export class ReprogramComponent implements OnInit {
 
     setValues(): void {
         //console.log('==>', this.data.meta);
-        this.formActions.patchValue(this.data?.meta);
+        //this.formActions.patchValue(this.data?.meta);
     }
 
     createFormActions(): void {
         this.formActions = this._fb.group({
             fechaProgramada: ['', Validators.required],
-            //observaciones: [this.data?.meta?.encargadoId],
             observaciones: [''],
         });
     }
@@ -48,8 +47,8 @@ export class ReprogramComponent implements OnInit {
         if (this.formActions.invalid) {
             return;
         }
-        this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
         this.formActions.value.id = this.data?.meta?.examenId;
+        this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY') : null;
         this.formActions.value.subEstadoId = 7;
         //console.log(this.formActions.value);
         this.updateExam(this.formActions.value);

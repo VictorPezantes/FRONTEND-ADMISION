@@ -32,6 +32,8 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
     changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     unsubscribe: Subject<void> = new Subject<void>();
 
+    fotoPostulante: string = "";
+
     constructor(
         public dialog: MatDialog,
         private _ngxSpinner: NgxSpinnerService,
@@ -67,7 +69,13 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
                 this._ngxSpinner.hide();
                 this.count = response?.count;
                 this.dataSource = response?.content;
-                console.log(this.dataSource);
+                //console.log(this.dataSource);
+
+                this.dataSource.forEach(element => {
+                    const data = { 'id': element.id };
+                    this.obtenerFoto(data);
+                });
+
             });
     }
 
@@ -117,6 +125,15 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
             .afterClosed().subscribe(_ => {
                 this.changesSubject.next(true);
             });
+    }
+
+    async obtenerFoto(data): Promise<void> {
+        try {
+            const mensajeFoto = await this._postulacionService.getCV(data).toPromise();
+            this.fotoPostulante = mensajeFoto.data
+        } catch (err) {
+            await 'Error al obtener foto';
+        }
     }
 
 }

@@ -53,11 +53,11 @@ export class PostulacionesService {
   }
 
   getCV(payload): Observable<any> {
-    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerCVPostulante`, payload);
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerCVPostulante/${payload.id}`);
   }
 
-  getPhoto(payload): Observable<any> {
-    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerFotoPostulante`, payload);
+  getPhoto(queryParams = null): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerFotoPostulante/${queryParams.id}`);
   }
 
 }

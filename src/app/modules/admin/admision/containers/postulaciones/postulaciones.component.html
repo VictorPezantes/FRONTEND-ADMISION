@@ -122,8 +122,8 @@
                 <ng-container matColumnDef="imagen">
                     <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Imagen</th>
                     <td mat-cell *matCellDef="let element">
-                        <div class="relative w-20 h-20">
-                            <img class="auto" src="assets/images/avatars/user_clean.png">
+                        <div class="relative w-30 h-30">
+                            <img class="imagenPostulante" src="data:image/png;base64,{{fotoPostulante}}">
                         </div>
                     </td>
                 </ng-container>
@@ -136,7 +136,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu [xPosition]="'before'" #offerActions="matMenu">
-                            <button mat-menu-item (click)="obtenerCV()">
+                            <button mat-menu-item (click)="obtenerCV(element)">
                                 Imprimir cv
                             </button>
                             <button mat-menu-item (click)="sendEmail(element)">

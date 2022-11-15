@@ -39,7 +39,7 @@ export class CancelExamComponent implements OnInit {
 
     createFormActions(): void {
         this.formActions = this._fb.group({
-            id: [null],
+            //id: [null],
             observaciones: [null],
         });
     }
@@ -48,7 +48,7 @@ export class CancelExamComponent implements OnInit {
         if (this.formActions.invalid) {
             return;
         }
-        //this.formActions.value.id = this.data?.meta?.examenId;
+        this.formActions.value.id = this.data?.meta?.examenId;
         this.formActions.value.subEstadoId = 4;
         //console.log(this.formActions.value);
         this.updateExam(this.formActions.value);
@@ -56,7 +56,7 @@ export class CancelExamComponent implements OnInit {
 
     async updateExam(payload): Promise<void> {
         try {
-            await this._postulacionService.update(payload).toPromise();
+            await this._examenMedicoService.updateExamen(payload).toPromise();
             this._snackService.open('Examen CANCELADO correctamente', 'Cerrar', { duration: 2000 });
             this.formActions.reset();
             this.dialogRef.close();
