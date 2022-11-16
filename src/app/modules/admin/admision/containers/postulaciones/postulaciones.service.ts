@@ -52,12 +52,12 @@ export class PostulacionesService {
     return this._httpClient.post<any>(`${this.apiUrl}postulante/enviarCVPorCorreo`, payload);
   }
 
-  getCV(payload): Observable<any> {
-    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerCVPostulante/${payload.id}`);
+  getCV(id): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerCVPostulante/${id}`);
   }
 
-  getPhoto(queryParams = null): Observable<any> {
-    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerFotoPostulante/${queryParams.id}`);
+  getPhoto(id): Observable<any> {
+    return this._httpClient.get<any>(`${this.apiUrl}postulante/obtenerFotoPostulante/${id}`);
   }
 
 }

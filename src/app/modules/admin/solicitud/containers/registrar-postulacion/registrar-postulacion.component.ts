@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
     selector: 'app-registrar-postulacion',
@@ -34,7 +35,9 @@ export class RegistrarPostulacionComponent implements OnInit {
         private _requestService: SolicitudService,
         private _commonService: CommonService,
         private _snackService: MatSnackBar,
-        private router: Router, private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private _router: Router,
+        private _authService: AuthService,
     ) {
         this.createFormActions();
     }
@@ -160,18 +163,20 @@ export class RegistrarPostulacionComponent implements OnInit {
             this.formData.append('urlDniPosterior', 'ruta de archivos');
             this.formData.append('urlFotografia', 'ruta de archivos');
 
-            this.createTransaction(this.formData);
+            this.createPostulant(this.formData);
             console.log(payload);
         } else {
             this.formActions.markAllAsTouched();
         }
     }
 
-    async createTransaction(payload): Promise<void> {
+    async createPostulant(payload): Promise<void> {
         try {
             await this._requestService.registerRequest(payload).toPromise();
             this._snackService.open('Solicitud registrada correctamente', 'Cerrar', { duration: 2000 });
             this.formActions.reset();
+            this._authService.signOut();
+            this._router.navigateByUrl('admision/ofertas-laborales');
         } catch (err) {
             throw new Error(err);
         } finally {

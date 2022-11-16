@@ -67,12 +67,12 @@ export interface Usuarios {
     email: string;
 }
 
-export interface TipoExamen{
+export interface TipoExamen {
     id: number;
     tipoExamenNombre: string;
 }
 
-export interface centroMedico{
+export interface centroMedico {
     id: number;
     centroMedicoNombre: string;
 }

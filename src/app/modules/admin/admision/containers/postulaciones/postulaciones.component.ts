@@ -15,6 +15,7 @@ import { ChangeStatusPostulantComponent } from './modal/change-status-postulant/
 import { CancelProcessPostulantComponent } from './modal/cancel-process-postulant/cancel-process-postulant.component';
 import { ViewInformationComponent } from '../../components/view-information/view-information.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PrintComponent } from './modal/print/print.component';
 
 @Component({
     selector: 'app-postulaciones',
@@ -74,8 +75,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
                 this.dataSource = response?.content;
 
                 this.dataSource.forEach(element => {
-                    const data = { 'id': element.id };
-                    this.getCvs(data);
+                    this.getPhotos(element.id);
                 });
 
             });
@@ -151,24 +151,23 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
             });
     }
 
-    obtenerCV(element?): void {
-        const params = { 'id': Number(element.id) };
-        this.obtenerFoto(params)
+    imprimiCV(element?): void {
+        const dialogData = {
+            data: { meta: element },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(PrintComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+                this.changesSubject.next(true);
+            });
     }
 
-    async getCvs(payload): Promise<void> {
+    async getPhotos(payload): Promise<void> {
         try {
-            const mensaje = await this._postulacionService.getCV(payload).toPromise();
+            const mensaje = await this._postulacionService.getPhoto(payload).toPromise();
             this.fotoPostulante = mensaje.data;
-        } catch (err) {
-            throw new Error(err);
-        }
-    }
-
-    async obtenerFoto(data): Promise<void> {
-        try {
-            const mensajeFoto = await this._postulacionService.getPhoto(data).toPromise();
-            console.log(mensajeFoto);
         } catch (err) {
             await 'Error para obtuvo foto';
         }

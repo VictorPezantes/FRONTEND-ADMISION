@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { centroMedico, TipoExamen } from 'app/shared/interfaces/common.interface';
 import moment from 'moment';
 import { Postulante } from '../../../admision.interface';
@@ -22,6 +23,7 @@ export class GestionarExamenComponent implements OnInit {
         private _postulacionService: PostulacionesService,
         private _gestionarServiceService: GestionarServiceService,
         private _fb: UntypedFormBuilder,
+        private _snackService: MatSnackBar,
     ) {
         this.createFormActions();
     }
@@ -32,16 +34,6 @@ export class GestionarExamenComponent implements OnInit {
         this.listaCentroMedico();
     }
 
-    addExamen(): void {
-        if (this.formActions.invalid) {
-            return;
-        }
-        this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
-        this._gestionarServiceService.addRequestExamen(this.formActions?.value).subscribe((response) => {
-            console.log(response);
-        });
-    }
-
     createFormActions(): void {
         this.formActions = this._fb.group({
             listaPostulante: ['', Validators.required],
@@ -50,6 +42,30 @@ export class GestionarExamenComponent implements OnInit {
             fechaProgramada: ['', Validators.required],
             observacion: [''],
         });
+    }
+
+    addExamen(): void {
+        if (this.formActions.invalid) {
+            return;
+        }
+        this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
+        this.formActions.value.subEstadoId = 2;
+        /*this._gestionarServiceService.addRequestExamen(this.formActions?.value).subscribe((response) => {
+            console.log(response);
+        });*/
+
+        this.createExamen(this.formActions?.value);
+    }
+
+    async createExamen(payload): Promise<void> {
+        try {
+            await this._gestionarServiceService.addRequestExamen(payload).toPromise();
+            this._snackService.open('Examen PROGRAMADO correctamente', 'Cerrar', { duration: 2000 });
+            this.formActions.reset();
+        } catch (err) {
+            //throw new Error(err);
+            console.log('error');
+        }
     }
 
     listaTipoExamen() {

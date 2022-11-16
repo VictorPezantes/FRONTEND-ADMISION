@@ -72,8 +72,7 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
                 //console.log(this.dataSource);
 
                 this.dataSource.forEach(element => {
-                    const data = { 'id': element.id };
-                    this.obtenerFoto(data);
+                    this.obtenerFoto(element.id);
                 });
 
             });
@@ -129,7 +128,7 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     async obtenerFoto(data): Promise<void> {
         try {
-            const mensajeFoto = await this._postulacionService.getCV(data).toPromise();
+            const mensajeFoto = await this._postulacionService.getPhoto(data).toPromise();
             this.fotoPostulante = mensajeFoto.data
         } catch (err) {
             await 'Error al obtener foto';
