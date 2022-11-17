@@ -49,10 +49,7 @@ export class GestionarExamenComponent implements OnInit {
             return;
         }
         this.formActions.value.fechaProgramada = this.formActions?.value?.fechaProgramada ? moment(this.formActions?.value?.fechaProgramada).format('DD/MM/YYYY HH:mm:ss') : null;
-        this.formActions.value.subEstadoId = 2;
-        /*this._gestionarServiceService.addRequestExamen(this.formActions?.value).subscribe((response) => {
-            console.log(response);
-        });*/
+        this.formActions.value.subEstadoId = 1;
 
         this.createExamen(this.formActions?.value);
     }
@@ -78,7 +75,8 @@ export class GestionarExamenComponent implements OnInit {
 
     listaPostulantes() {
         const datosFiltro = {
-            estadoPostulanteId: 5
+            estadoPostulanteId: 5,
+            subEstadoExamen: 7
         };
         this._postulacionService.getPostulantes(datosFiltro).subscribe(response => (this.postulant = response.content));
     }

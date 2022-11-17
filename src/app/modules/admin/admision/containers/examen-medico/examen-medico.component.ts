@@ -60,16 +60,16 @@ export class ExamenMedicoComponent implements OnInit, AfterViewInit, OnDestroy {
                     const rawValue = this._postulacionService.eventFilters.value;
                     const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
                     const queryParamsByPaginator = { ...filters } as any;
-                    queryParamsByPaginator.limit = this.paginator.pageSize;
-                    queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
+                    queryParamsByPaginator.tamPagina = this.paginator.pageSize;
+                    queryParamsByPaginator.numPagina = queryParamsByPaginator.tamPagina * this.paginator.pageIndex;
                     queryParamsByPaginator.estadoPostulanteId = 5;
                     return this._postulacionService.getPostulantes(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
                 this._ngxSpinner.hide();
-                this.count = response?.count;
+                this.count = response?.numberOfElements;
                 this.dataSource = response?.content;
-                //console.log(this.dataSource);
+                console.log(this.dataSource);
 
                 this.dataSource.forEach(element => {
                     this.obtenerFoto(element.id);
