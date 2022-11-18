@@ -1,0 +1,139 @@
+table {
+  td {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.mat-column-celular {
+  text-align: center;
+}
+
+.mat-column-celularfamiliar {
+  text-align: center;
+}
+
+.mat-column-emailsecundario {
+  text-align: center;
+}
+
+.mat-column-domicilio {
+  text-align: center;
+}
+
+.mat-column-estadocivil {
+  text-align: center;
+}
+
+.mat-column-fechanacimiento {
+  text-align: center;
+}
+
+.mat-column-experiencia {
+  text-align: center;
+}
+
+.mat-column-disponibilidad {
+  text-align: center;
+}
+
+.mat-column-responsable {
+  text-align: 200px;
+}
+
+.status-INGRESADO {
+  width: 150px;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(11, 213, 248);
+}
+
+.status-VERIFICACION {
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(0, 83, 32);
+}
+
+.status-ENTREVISTA-PERSONAL {
+  width: 150px;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(251, 255, 0);
+}
+
+.status-FUERA-DEL-PROCESO {
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(255, 0, 0);
+}
+
+.status-EXAMEN-MÉDICO {
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(255, 153, 0);
+}
+
+.status-REFERENCIAS-PERSONALES {
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(158, 158, 158);
+}
+
+.status-POLIGRAFIA {
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(17, 0, 255);
+}
+
+.status-EVALUACIÓN-PSICOLABORAL {
+  width: 150px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(132, 0, 255);
+}
+
+.status-ALTA-EMPRESA {
+  width: 150px;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
+  margin: 5px 5px;
+  padding: 10px;
+  background-color: rgb(0, 255, 13);
+}
+
+.imagenPostulante {
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 100%;
+}

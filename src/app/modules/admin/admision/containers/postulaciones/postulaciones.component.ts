@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AdmisionService } from '../../admision.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Postulante } from '../../admision.interface';
@@ -13,7 +13,7 @@ import { SendEmailComponent } from './modal/send-email/send-email.component';
 import { AssignResponsibleComponent } from './modal/assign-responsible/assign-responsible.component';
 import { ChangeStatusPostulantComponent } from './modal/change-status-postulant/change-status-postulant.component';
 import { CancelProcessPostulantComponent } from './modal/cancel-process-postulant/cancel-process-postulant.component';
-import { ViewInformationComponent } from '../../components/view-information/view-information.component';
+import { ViewInformationComponent } from './view-information/view-information.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PrintComponent } from './modal/print/print.component';
 
@@ -31,7 +31,6 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
     displayedColumns: string[] = ['imagen', 'informacion', 'estado', 'responsable', 'actions'];
 
     fotoPostulante: string = "";
-
     count;
 
     changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -73,7 +72,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
                 this._ngxSpinner.hide();
                 this.count = response?.numberOfElements;
                 this.dataSource = response?.content;
-                //console.log(response);
+                console.log(response?.content);
 
                 this.dataSource.forEach(element => {
                     this.getPhotos(element.id);
@@ -170,12 +169,12 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
             const mensaje = await this._postulacionService.getPhoto(payload).toPromise();
             this.fotoPostulante = mensaje.data;
         } catch (err) {
-            await 'Error para obtuvo foto';
+            console.log('Error para obtuvo foto');
         }
     }
 
-    viewInformation(): void {
-        //console.log(ViewInformationComponent, '11');
+    viewInformation(element) {
+        this._admisionService.idPostulante = element;
     }
 
 }

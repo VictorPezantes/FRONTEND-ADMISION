@@ -1,100 +1,95 @@
 <mat-drawer-container class="flex-auto h-full bg-card dark:bg-transparent">
     <!-- Drawer -->
-    <mat-drawer class="w-full sm:w-100 dark:bg-gray-900" [opened]="false" [position]="'end'" [disableClose]="true"
+    <!-- <mat-drawer class="w-full sm:w-100 dark:bg-gray-900" [opened]="false" [position]="'end'" [disableClose]="true"
         #matDrawer>
         <router-outlet></router-outlet>
-    </mat-drawer>
+    </mat-drawer> -->
 
     <mat-drawer-content class="flex flex-col bg-gray-100 dark:bg-transparent">
         <!-- Main -->
         <div class="flex flex-col flex-auto">
             <article class="flex flex-row gap-2 w-full">
                 <!-- Comienza Parte Superior-->
-
                 <section class="flex flex-row w-full flex-col h-full">
-                    <mat-card>
-                        <mat-card-content>
-                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full"
-                                style="background-color: rgb(184, 214, 228)">
-                                <ng-container matColumnDef="imagen">
-                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
-                                        Imagen
-                                    </th>
-                                    <td mat-cell *matCellDef="let element">
-                                        <div class="relative w-20 h-20">
-                                            <img class="auto" src="assets/images/avatars/user_clean.png" />
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 w-full"
+                            style="background-color: skyblue">
+                            <ng-container matColumnDef="imagen">
+                                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
+                                    Imagen
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div class="relative w-30 h-30">
+                                        <img class="imagenPostulante" src="data:image/png;base64,{{fotoPostulante}}">
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="informacion">
+                                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
+                                    Información
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div class="flex flex-col">
+                                        <div class="font-extrabold text-primary-700">
+                                            {{ (element?.primerNombre || "-") + " " +
+                                            (element?.segundoNombre || "-") + " " +
+                                            (element?.apellidoPaterno || "-") + " " +
+                                            (element?.apellidoMaterno || "-") }}
                                         </div>
-                                    </td>
-                                </ng-container>
-                                <ng-container matColumnDef="informacion">
-                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500">
-                                        Información
-                                    </th>
-                                    <td mat-cell *matCellDef="let element">
-                                        <div class="flex flex-col">
-                                            <div class="font-extrabold text-primary-700">
-                                                {{ (element?.primerNombre || "-") +
-                                                " " +
-                                                (element?.segundoNombre || "-") +
-                                                " " +
-                                                (element?.apellidoPaterno || "-") +
-                                                " " +
-                                                (element?.apellidoMaterno || "-") }}
-                                            </div>
-                                            <div class="font-light">
-                                                {{ (element?.idDepartamento || "#Departamento") +
-                                                " " +
-                                                (element?.idProvincia || "#Provincia") +
-                                                " " +
-                                                (element?.idDistrito || "#Distrito") }}
-                                            </div>
-                                            <div class="font-light">
-                                                {{ element?.email || "-" }}
-                                            </div>
-                                            <div class="font-light">
-                                                {{ element?.profesion || "#PROFESION" }}
-                                            </div>
-                                            <div class="font-light">
-                                                {{ (element?.idDepartamento?.name || "#CARGO") + " " +
-                                                (element?.idDepartamento?.name ||
-                                                "#ULTIMO EMPRESA DE TRABAJO") }}
-                                            </div>
-                                            <div class="font-light">
-                                                {{ (element?.fechaIngresoTrabajoReciente || "#Ingreso") +
-                                                " - " +
-                                                (element?.fechaSalidaTrabajoReciente || "#Salida") }}
-                                            </div>
-                                            <div class="font-light">
-                                                {{ element?.motivoSalidaTrabajoReciente ||
-                                                "#MOTIVO DE SALIDA" }}
-                                            </div>
+                                        <div class="font-light">
+                                            {{ element?.profesion || "#PROFESION" }}
                                         </div>
-                                    </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="cargo">
-                                    <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"></th>
-                                    <td mat-cell *matCellDef="let element">
-                                        <div class="flex flex-col">
-                                            <div class="font-extrabold text-primary-700">
-                                                {{ element?.profesion || "-" }}
-                                            </div>
-                                            <br />
-                                            <button class="uppercase" style="width: 120px;
-                                                left: -25px; background-color: rgb(45, 214, 45);" mat-raised-button>
-                                                Verificación
-                                            </button>
+                                        <div class="font-light">
+                                            {{ element?.email || "#CORREO" }}
                                         </div>
-                                    </td>
-                                </ng-container>
+                                        <div class="font-light">
+                                            {{ (element?.Departamento || "#Departamento") + " " +
+                                            (element?.Provincia || "#Provincia") + " " +
+                                            (element?.Distrito || "#Distrito") }}
+                                        </div>
+                                    </div>
+                                </td>
+                            </ng-container>
 
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-                            </table>
-                        </mat-card-content>
-                    </mat-card>
-                    <br />
-
+                            <ng-container matColumnDef="cargo">
+                                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"></th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button *ngIf="element?.estadoPostulanteId === 1" class="status-INGRESADO">
+                                        INGRESADO
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 2" class="status-VERIFICACION">
+                                        VERIFICACION
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 3"
+                                        class="status-ENTREVISTA-PERSONAL">
+                                        ENTREVISTA PERSONAL
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 4" class="status-FUERA-DEL-PROCESO">
+                                        FUERA DEL PROCESO
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 5" class="status-EXAMEN-MÉDICO">
+                                        EXAMEN MÉDICO
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 6"
+                                        class="status-REFERENCIAS-PERSONALES">
+                                        REFERENCIAS PERSONALES
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 7" class="status-POLIGRAFIA">
+                                        POLIGRAFIA
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 8"
+                                        class="status-EVALUACIÓN-PSICOLABORAL">
+                                        EVALUACIÓN PSICOLABORAL
+                                    </button>
+                                    <button *ngIf="element?.estadoPostulanteId === 9" class="status-ALTA-EMPRESA">
+                                        ALTA EMPRESA
+                                    </button>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                        </table>
+                    </mat-card-content>
                     <!-- Finaliza Parte superior-->
 
                     <!-- Comienza Parte Inferior-->
@@ -156,7 +151,7 @@
                                     <td mat-cell *matCellDef="let element">
                                         <div class="flex flex-row flex justify-center">
                                             <div class="font-bold text-primary-350">
-                                                {{ element?.direccion + " " + element?.distrito || "-" }}
+                                                {{ element?.direccion + " - " + element?.Distrito || "-" }}
                                             </div>
                                         </div>
                                     </td>
@@ -169,7 +164,7 @@
                                     <td mat-cell *matCellDef="let element">
                                         <div class="flex flex-row flex justify-center">
                                             <div class="font-bold text-primary-350">
-                                                {{ element?.idEstadoCivil?.nombre || "#Estado Civil" }}
+                                                {{ element?.idEstadoCivil || "#Estado Civil" }}
                                             </div>
                                         </div>
                                     </td>
@@ -228,24 +223,17 @@
                                     <td mat-cell *matCellDef="let element">
                                         <div>
                                             <div class="relative w-15 h-15">
-                                                <img class="auto" src="assets/images/avatars/user_clean.png" />
+                                                <img class="relative w-15 h-15" src="assets/images/avatars/avatar_prueba.png">
                                             </div>
                                         </div>
                                         <div class="font-extrabold text-primary-700">
-                                            {{ (element?.primerNombre || "-") +
-                                            " " +
-                                            (element?.segundoNombre || "-") +
-                                            " " +
-                                            (element?.apellidoPaterno || "-") +
-                                            " " +
-                                            (element?.apellidoMaterno || "-") }}
+                                            {{ (element?.encargadoNombre || "-") }}
                                         </div>
                                         <div class="font-light">
-                                            {{ element?.motivoSalidaTrabajoReciente?.id ||
-                                            "#CORREO ELECTRONICO" }}
+                                            {{ element?.encargadoEmail || "#CORREO ELECTRONICO" }}
                                         </div>
                                         <div class="font-light">
-                                            {{ element?.motivoSalidaTrabajoReciente?.id || "#TELEFONO" }}
+                                            {{ element?.encargadoTelefono || "#TELEFONO" }}
                                         </div>
                                     </td>
                                 </ng-container>
@@ -345,10 +333,6 @@
         </div>
         <br />
 
-
-
-
-
-
     </mat-drawer-content>
+
 </mat-drawer-container>

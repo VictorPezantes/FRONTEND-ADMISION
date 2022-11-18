@@ -132,7 +132,8 @@
                             <button mat-menu-item>
                                 Exportar cv como pdf
                             </button>
-                            <a mat-menu-item routerLink="/recursos-humanos/admision/ver-informacion">
+                            <a mat-menu-item routerLink="/recursos-humanos/admision/ver-informacion"
+                                (click)="viewInformation(element)">
                                 Ver informacion
                             </a>
                             <button mat-menu-item (click)="assignResponsible(element)"

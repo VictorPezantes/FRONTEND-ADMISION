@@ -30,7 +30,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { PostulantFiltersComponent } from './components/postulant-filters/postulant-filters.component';
 import { EditOfferComponent } from './components/edit-offer/edit-offer.component';
 import { CreatePostulantComponent } from './components/create-postulant/create-postulant.component';
-import { ViewInformationComponent } from './components/view-information/view-information.component';
+import { ViewInformationComponent } from './containers/postulaciones/view-information/view-information.component';
 import { HistoryPostulantComponent } from './containers/postulaciones/history-postulant/history-postulant.component';
 import { FichaPostulantComponent } from './containers/postulaciones/ficha-postulant/ficha-postulant.component';
 import { CreateInterviewComponent } from './components/create-interview/create-interview.component';
