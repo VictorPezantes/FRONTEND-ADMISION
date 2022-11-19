@@ -129,9 +129,9 @@
                             <button mat-menu-item (click)="sendEmail(element)">
                                 Enviar cv via email
                             </button>
-                            <button mat-menu-item>
+                            <!-- <button mat-menu-item>
                                 Exportar cv como pdf
-                            </button>
+                            </button> -->
                             <a mat-menu-item routerLink="/recursos-humanos/admision/ver-informacion"
                                 (click)="viewInformation(element)">
                                 Ver informacion
@@ -145,7 +145,8 @@
                                 Cambiar sub estado
                             </button>
                             <a class="mat-menu-item" routerLink="/recursos-humanos/admision/ficha"
-                                *ngIf="element?.estadoPostulanteId === 9">Generar ficha postulante
+                                (click)="genFicha(element)" *ngIf="element?.estadoPostulanteId === 9">
+                                Generar ficha postulante
                             </a>
                             <button mat-menu-item (click)="cancelProcess(element)"
                                 *ngIf="(element?.estadoPostulanteId != 4)">

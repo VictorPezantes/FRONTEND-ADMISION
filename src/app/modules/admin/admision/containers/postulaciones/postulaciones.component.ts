@@ -174,7 +174,12 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     viewInformation(element) {
-        this._admisionService.idPostulante = element;
+        this._admisionService.postulante = element;
+    }
+
+    genFicha(element) {
+        this._admisionService.postulante = element;
+       // console.log(element);
     }
 
 }

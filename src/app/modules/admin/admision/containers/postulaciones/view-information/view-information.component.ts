@@ -83,7 +83,7 @@ export class ViewInformationComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        const aux = this._admisionService.idPostulante;
+        const aux = this._admisionService.postulante;
 
         this._postulacionService.getPhoto(aux.id).subscribe((reponse) => {
             this.fotoPostulante = reponse.data;

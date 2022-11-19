@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AdmisionService {
 
   title: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  public idPostulante: any;
+  public postulante: any;
   //@Output() disparador: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

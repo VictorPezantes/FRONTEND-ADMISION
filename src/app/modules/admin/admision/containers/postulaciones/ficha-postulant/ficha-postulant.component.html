@@ -1,20 +1,160 @@
-<div>
-    <mat-card class="mat-card mat-elevation-z0 w-full">
-        <mat-card-content>
-            <mat-card-title>Datos Personales</mat-card-title>
-        </mat-card-content>
-    </mat-card>
+<mat-card class="w-full">
+    <mat-card-title>
+        <b>NOMBRES Y APELLIDOS:</b>
+        {{(dataSource.primerNombre)+' '+(dataSource.segundoNombre)+' '+(dataSource.apellidoPaterno)+'
+        '+(dataSource.apellidoMaterno)}}
+        <br>
+        <b>D.N.I.:</b>
+        {{(dataSource.dni)}}
+    </mat-card-title>
+    <hr>
+    <mat-card-title>Datos Personales</mat-card-title>
+    <mat-card-content class="w-full">
+        <div [formGroup]="formDatos">
+            <mat-form-field class="w-5/12 mr-2" appearance="fill">
+                <mat-label>Nacionalidad</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="nacionalidad">
+                <mat-error *ngIf="formDatos.get('nacionalidad').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/12 mr-2" appearance="fill">
+                <mat-label>Grupos Sanguineo</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="grupoSanguineo">
+                <mat-error *ngIf="formDatos.get('grupoSanguineo').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-2/12 mr-2">
+                <mat-label>Sabe Nadar</mat-label>
+                <mat-select formControlName="sabeNadar">
+                    <mat-option [value]="1">Sí </mat-option>
+                    <mat-option [value]="2">No </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formDatos.get('sabeNadar').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-2/12 mr-2">
+                <mat-label>Fecha de Matrimonio</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fechaMatrimonio" (click)="picker.open()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="formDatos.get('fechaMatrimonio').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-card-title>Documento</mat-card-title>
+            <mat-form-field appearance="fill" class="w-2/12 mr-2">
+                <mat-label>Tipo de Documento</mat-label>
+                <mat-select formControlName="tDocumento">
+                    <mat-option [value]=""> ---- </mat-option>
+                    <mat-option [value]="1">D.N.I</mat-option>
+                    <mat-option [value]="2">PASAPORTE </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formDatos.get('tDocumento').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/12 mr-2" appearance="fill">
+                <mat-label>Nro. Documento</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="nDocumento">
+                <mat-error *ngIf="formDatos.get('nDocumento').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-2/12 mr-2">
+                <mat-label>Fecha de Emision</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fechaEmision" (click)="picker.open()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="formDatos.get('fechaEmision').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-2/12 mr-2">
+                <mat-label>Fecha de Vencimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fechaVencimiento" (click)="picker.open()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="formDatos.get('fechaVencimiento').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-3/12 mr-2" appearance="fill">
+                <mat-label>Lugar de Emision</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="lugarEmision">
+                <mat-error *ngIf="formDatos.get('lugarEmision').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/12 mr-2" appearance="fill">
+                <mat-label>Ubigeo</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido" formControlName="ubigeo">
+                <mat-error *ngIf="formDatos.get('ubigeo').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/12 mr-2" appearance="fill">
+                <mat-label>Grupo de Votación</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido" formControlName="gVotacion">
+                <mat-error *ngIf="formDatos.get('gVotacion').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="uppercase" mat-raised-button color="primary">Guardar </button>
+        <a mat-raised-button color="warn" class="uppercase ml-2"
+            routerLink="/recursos-humanos/admision/postulaciones">Cancelar </a>
+    </mat-card-actions>
+    <hr>
+    <mat-card-title>Familiares</mat-card-title>
+    <mat-card-content class="w-full">
+        <div [formGroup]="formFamiliares">
+            <mat-form-field class="w-2/12 mr-2" appearance="fill">
+                <mat-label>Primer Nombre</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="primerNombre">
+                <mat-error *ngIf="formFamiliares.get('primerNombre').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-3/12 mr-2" appearance="fill">
+                <mat-label>Segundo Nombre</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="segundoNombre">
+                <mat-error *ngIf="formFamiliares.get('segundoNombre').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-3/12 mr-2" appearance="fill">
+                <mat-label>Primer Apellido</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="primerApellido">
+                <mat-error *ngIf="formFamiliares.get('primerApellido').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-3/12 mr-2" appearance="fill">
+                <mat-label>Segundo Apellido</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+                    formControlName="segundoApellido">
+                <mat-error *ngIf="formFamiliares.get('segundoApellido').hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <button class="uppercase" mat-raised-button color="primary">Agregar </button>
+        </div>
+    </mat-card-content>
+    <hr>
+    <mat-card-title>Datos Adicionales</mat-card-title>
+    <mat-card-content class="w-full">
 
-    <div class="p-6 py-4 bg-gray-80 dark:bg-transparent mat-elevation-z1">
-        <button class="uppercase" mat-raised-button color="primary">
-            Enviar
-        </button>
-         
-        <!-- <button class="uppercase" (click)="eventCreate()" mat-raised-button color="primary">
-            Cancelar
-        </button> -->
-        <a mat-raised-button color="primary" class="uppercase"
-            routerLink="/recursos-humanos/admision/postulaciones">Cancelar
-        </a>
-    </div>
-</div>
+    </mat-card-content>
+</mat-card>
