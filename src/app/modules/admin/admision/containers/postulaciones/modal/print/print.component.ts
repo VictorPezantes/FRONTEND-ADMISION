@@ -26,7 +26,7 @@ export class PrintComponent implements OnInit {
         try {
             const mensaje = await this._postulacionService.getCV(payload).toPromise();
             this.cvPostulante = mensaje.data;
-            //console.log(this.cvPostulante);
+            console.log(this.cvPostulante);
         } catch (err) {
             throw new Error(err);
         }
