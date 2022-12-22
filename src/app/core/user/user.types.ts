@@ -11,8 +11,21 @@ export interface User
     avatar?: string;
     fotografia?: string;
     status?: string;
-    roles?: any;
+    roles?: Array<Roles>;
     authorities?: {
         authority: string
     }[];
+}
+export interface Roles
+{
+    id?: string;
+    rolNombre?: string;
+    
+}
+export interface usuario{
+  nombres: string,
+  apellidos:string,
+  correo?: string,
+  rol:string,
+  img:string;
 }

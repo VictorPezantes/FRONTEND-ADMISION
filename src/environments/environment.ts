@@ -4,11 +4,11 @@
 
 export const environment = {
     production: false,//puerto del tomcat
-    apiUrl: 'https://ttk-admision.herokuapp.com/api/v1/',
+    //apiUrl: 'https://ttk-admision.herokuapp.com/api/v1/',
 
     //apiUrl: 'http://212.90.120.46:8080/api/v1/',
 
-    //apiUrl: 'http://localhost:8001/api/v1/',
+    apiUrl: 'http://localhost:8080/api/v1/',
     // apiUrlV1: 'https://jwt-ttk.herokuapp.com/'
 };
 

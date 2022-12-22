@@ -19,12 +19,14 @@ import { SharedModule } from 'app/shared/shared.module';
 import { ClassyLayoutComponent } from 'app/layout/layouts/vertical/classy/classy.component';
 import { registerLocaleData } from '@angular/common';
 import localePy from '@angular/common/locales/es-PY';
+import { PerfilComponent } from './perfil/perfil.component';
 
 registerLocaleData(localePy, 'es');
 
 @NgModule({
     declarations: [
-        ClassyLayoutComponent
+        ClassyLayoutComponent,
+        PerfilComponent
     ],
     imports     : [
         HttpClientModule,

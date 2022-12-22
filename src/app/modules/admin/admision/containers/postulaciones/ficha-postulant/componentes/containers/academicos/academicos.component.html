@@ -1,0 +1,127 @@
+<div class="flex flex-col gap-2">
+    <div class="flex flex-row gap-2">
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Nivel </mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          placeholder="Ingrese su primer nombre"
+          [formControlName]="'primerNombre'"
+        />
+        <mat-error>
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Centro Educativo</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          placeholder="Ingrese su segundo nombre"
+          [formControlName]="'segundoNombre'"
+        />
+      </mat-form-field>
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Fecha de Inicio</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endDate"
+          autocomplete="off"
+          type="text"
+          placeholder="Fecha de nacimiento"
+          formControlName="fechaNacimiento"
+          (click)="endDate.open()"
+        />
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+        <mat-error
+          
+        >
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Fecha de Término</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endDate"
+          autocomplete="off"
+          type="text"
+          placeholder="Fecha de nacimiento"
+          formControlName="fechaNacimiento"
+          (click)="endDate.open()"
+        />
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+        <mat-error
+          
+        >
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+  
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-row gap-2">
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Domicilio</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="direccion"
+          placeholder="Ingrese su direccion"
+        />
+        <mat-error>
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="flex-col" appearance="fill">
+        <mat-label>Departamento</mat-label>
+        <mat-select
+          formControlName="idDepartamento"
+          placeholder="Selecciona departamento"
+        >
+          <mat-option [value]="null">----</mat-option>
+          <ng-container >
+            <mat-option ></mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error >
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="flex-col" appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <mat-select
+          formControlName="idProvincia"
+          placeholder="Selecciona provincia"
+        >
+          <mat-option [value]="null">----</mat-option>
+          <ng-container >
+            <mat-option></mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error >
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="flex-col" appearance="fill">
+        <mat-label>Distrito</mat-label>
+        <mat-select
+          formControlName="idDistrito"
+          placeholder="Selecciona distrito"
+        >
+          <mat-option [value]="null">----</mat-option>
+          <ng-container>
+            <mat-option></mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error >
+          Este campo es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>

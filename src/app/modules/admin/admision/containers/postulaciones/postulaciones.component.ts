@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { AdmisionService } from '../../admision.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Postulante } from '../../admision.interface';
@@ -38,6 +38,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
         private _messageProviderService: MessageProviderService,
         private _postulacionService: PostulacionesService,
         private _admisionService: AdmisionService,
+        private cd:ChangeDetectorRef
     ) {
         this._admisionService.title.next('Postulaciones');
     }
@@ -50,6 +51,7 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
     ngAfterViewInit(): void {
         this.paginator._intl.itemsPerPageLabel = 'Items por página.';
         this.initPagination();
+        this.cd.detectChanges();
     }
 
     initPagination(): void {

@@ -55,5 +55,6 @@ export interface Postulante {
     urlDniPosterior:string;
     urlFotografia:string;
     estado:number;
+    sexo:string;
 
 }

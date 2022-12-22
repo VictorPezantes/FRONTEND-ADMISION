@@ -10,6 +10,9 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FuseScrollbarDirective } from '@fuse/directives/scrollbar/scrollbar.directive';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { AuthService } from '../../../../app/core/auth/auth.service';
+import { usuario } from '../../../../app/core/user/user.types';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
     selector       : 'fuse-vertical-navigation',
@@ -22,6 +25,11 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class FuseVerticalNavigationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy
 {
+
+/* validate user */
+usuario:usuario;
+
+
 
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_inner: BooleanInput;
@@ -72,7 +80,7 @@ export class FuseVerticalNavigationComponent implements OnChanges, OnInit, After
         private _scrollStrategyOptions: ScrollStrategyOptions,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseUtilsService: FuseUtilsService,
-  
+        private _userService: UserService
     )
     {
         this._handleAsideOverlayClick = (): void => {
@@ -326,6 +334,19 @@ export class FuseVerticalNavigationComponent implements OnChanges, OnInit, After
                     this.closeAside();
                 }
             });
+        // get role user
+        this._userService.user$
+            .pipe((takeUntil(this._unsubscribeAll)))
+            .subscribe((user: User) => {
+                this.usuario = {
+                  nombres:null,
+                  apellidos: null,
+                  correo:null,
+                  rol:user.roles[0].rolNombre=='ROLE_ADMIN'?'ADMINISTRATIVO':'POSTULANTE',
+                  img:null
+                } 
+            });    
+            
     }
 
     /**

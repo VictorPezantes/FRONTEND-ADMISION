@@ -57,6 +57,15 @@ import { ChangeStatusPostulantComponent } from './containers/postulaciones/modal
 import { CancelProcessPostulantComponent } from './containers/postulaciones/modal/cancel-process-postulant/cancel-process-postulant.component';
 import { UploadResultsExamenComponent } from './containers/examen-medico/modal/upload-results-examen/upload-results-examen.component';
 import { ExamenFiltersComponent } from './components/examen-filters/examen-filters.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+import { EditInformationComponent } from './containers/postulaciones/ficha-postulant/componentes/edit-information/edit-information.component';
+import { PersonaComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/persona/persona.component';
+import { DocumentosComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/documentos/documentos.component';
+import { FamiliarComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/familiar/familiar.component';
+import { BancariosComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/bancarios/bancarios.component';
+import { AcademicosComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/academicos/academicos.component';
 
 
 const routes: Routes = [
@@ -104,7 +113,7 @@ const routes: Routes = [
             {
                 path: 'configuracion',
                 component: ConfiguracionComponent,
-            },
+            }
         ]
     }
 ];
@@ -150,7 +159,13 @@ const routes: Routes = [
         ChangeStatusPostulantComponent,
         CancelProcessPostulantComponent,
         UploadResultsExamenComponent,
-        ExamenFiltersComponent
+        ExamenFiltersComponent,
+        EditInformationComponent,
+        PersonaComponent,
+        DocumentosComponent,
+        FamiliarComponent,
+        BancariosComponent,
+        AcademicosComponent
     ],
     imports: [
         CommonModule,
@@ -170,6 +185,9 @@ const routes: Routes = [
         MatDialogModule,
         MatSidenavModule,
         SharedModule,
+        MatGridListModule,
+        MatRadioModule,
+        MatTabsModule
     ],
     entryComponents: [
         CreateOfferComponent,

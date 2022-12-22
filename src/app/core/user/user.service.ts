@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {map, Observable, ReplaySubject, tap} from 'rxjs';
 import {User} from 'app/core/user/user.types';
 import {environment} from '../../../environments/environment';
@@ -32,7 +32,7 @@ export class UserService {
 
     get user$(): Observable<User> {
         return this._user.asObservable();
-    }
+    }   
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods

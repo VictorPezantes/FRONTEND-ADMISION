@@ -20,52 +20,7 @@
             </div>
         </div>
         <!-- User -->
-        <div class="flex flex-col items-center w-full p-4">
-            <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_ADMIN'" class="relative w-30 h-30 ">
-                <img class="auto" src="assets/images/avatars/avatar_prueba.png">
-                <!--    <img
-                    class="w-full h-full rounded-full"
-                    *ngIf="user.fotografia"
-                    [src]="user.fotografia"  
-                    alt="User avatar"> -->
-                <!--   <mat-icon
-                    class="icon-size-24"
-                    *ngIf="!user.fotografia"
-                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
-            </div>
-            <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_USER'" class="relative w-30 h-30 ">
-                <img class="auto" src="assets/images/avatars/user_clean.png">
-                <!--    <img
-                    class="w-full h-full rounded-full"
-                    *ngIf="user.fotografia"
-                    [src]="user.fotografia"  
-                    alt="User avatar"> -->
-                <!--   <mat-icon
-                    class="icon-size-24"
-                    *ngIf="!user.fotografia"
-                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
-            </div>
-
-
-
-            <div class="flex flex-col items-center justify-center w-full mt-6">
-                <div
-                    class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-medium">
-                    {{user.nombre}} {{user.apellidos}}
-                </div>
-                <div
-                    class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
-                    {{user.email}}
-                </div>
-                <div
-                    class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
-
-                    <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_ADMIN' ">ADMINISTRATIVO</div>
-                    <div *ngIf="user?.roles?.[0]?.rolNombre === 'ROLE_USER' ">POSTULANTE</div>
-
-                </div>
-            </div>
-        </div>
+        <app-perfil></app-perfil>
     </ng-container>
     <!-- Navigation footer hook -->
 

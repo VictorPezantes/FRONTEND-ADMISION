@@ -4,11 +4,14 @@ import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
 import { environment } from '../../../environments/environment';
+import { User, Roles } from '../user/user.types';
 
 @Injectable()
 export class AuthService {
     private _authenticated: boolean = false;
     private apiUrl = environment.apiUrl;
+    private user: User;
+    
 
     /**
      * Constructor
@@ -17,6 +20,15 @@ export class AuthService {
         private _httpClient: HttpClient,
         private _userService: UserService
     ) {
+        console.log(this.accessToken);
+        
+    }
+
+    public getRol():Roles[]{
+        
+        const usuario:User =  JSON.parse(atob(this.accessToken.split('.')[1]))as User;
+
+        return usuario.roles;
     }
 
     // -----------------------------------------------------------------------------------------------------

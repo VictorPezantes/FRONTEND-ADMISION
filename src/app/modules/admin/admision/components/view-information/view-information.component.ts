@@ -93,7 +93,8 @@ export class ViewInformationComponent implements OnInit {
         ,
         urlDniPosterior: null
         ,
-        urlFotografia: null
+        urlFotografia: null,
+        sexo:null
     }];
 
     displayedColumns: string[] = ['imagen', 'informacion', 'cargo'];
@@ -110,6 +111,7 @@ export class ViewInformationComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
     }
 
     ngAfterViewInit(): void {

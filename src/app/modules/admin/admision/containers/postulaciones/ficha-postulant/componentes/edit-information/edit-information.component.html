@@ -1,0 +1,54 @@
+
+<mat-card class="mat-card mat-elevation-z0 w-full">
+  <mat-card-content class="flex flex-col gap-3" [formGroup]="">
+    <mat-tab-group animationDuration="900ms">
+      <mat-tab label="Generales">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos Personales</h1>
+          <app-persona [postulante] = "postulante"></app-persona>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Documentos">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Documentos</h1>
+          <app-documentos ></app-documentos>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Familiares">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos de Familiares</h1>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Hijos</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Pareja</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Padre</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Madre</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Hermanos</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Suegro</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Suegra</h1>
+          <app-familiar></app-familiar>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Bancarios">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos Bancarios</h1>
+          <app-bancarios ></app-bancarios>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Academicos">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos Academicos</h1>
+          <app-academicos ></app-academicos>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

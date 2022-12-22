@@ -4,6 +4,7 @@ import {NoAuthGuard} from 'app/core/auth/guards/noAuth.guard';
 import {LayoutComponent} from 'app/layout/layout.component';
 import {InitialDataResolver} from 'app/app.resolvers';
 import {EmpresaComponent} from './modules/admin/empresa/empresa.component';
+import { HasRoleGuard } from './has-role.guard';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -106,8 +107,12 @@ export const appRoutes: Route[] = [
 
     // Admin routes
     {
+        
         path: '',
-        canActivate: [AuthGuard], 
+        canActivate: [AuthGuard, HasRoleGuard],
+        data:{
+            expectedRoles: ['ROLE_ADMIN', 'ROLE_USER']
+        },
         canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
@@ -120,18 +125,35 @@ export const appRoutes: Route[] = [
             },
             {
                 path: 'empresa',
-                component: EmpresaComponent
+                component: EmpresaComponent,
+                canActivate: [AuthGuard, HasRoleGuard],
+                data:{
+                    expectedRoles: ['ROLE_USER', 'ROLE_ADMIN']
+                },
             },
             {
                 path: 'solicitud',
-                loadChildren: () => import('app/modules/admin/solicitud/solicitud.module').then(m => m.SolicitudModule)
+                canActivate: [AuthGuard, HasRoleGuard],
+                data:{
+                    expectedRoles: ['ROLE_ADMIN']
+                },
+                loadChildren: () => import('app/modules/admin/solicitud/solicitud.module').then(m => m.SolicitudModule),
+
             },
             {
                 path: 'usuario',
+                canActivate: [AuthGuard, HasRoleGuard],
+                data:{
+                    expectedRoles: ['ROLE_ADMIN']
+                },
                 loadChildren: () => import('app/modules/admin/usuario/usuario.module').then(m => m.usuariomodule)
             },
             {
                 path: 'recursos-humanos',
+                canActivate: [AuthGuard, HasRoleGuard],
+                data:{
+                    expectedRoles: [ 'ROLE_ADMIN']
+                },
                 children: [
                     {
                         path: 'admision',
