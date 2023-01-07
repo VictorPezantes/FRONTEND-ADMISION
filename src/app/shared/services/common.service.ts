@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { AbstractChoice, Departamento, Distrito, Estado, Provincia } from '../interfaces/common.interface';
+import { AbstractChoice, Departamento, Distrito, Estado, Provincia, NivelEstudio } from '../interfaces/common.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +38,10 @@ export class CommonService {
 
     getDistrito(queryParams = null): Observable<Distrito[]> {
         return this._httpClient.get<Distrito[]>(`${this.apiUrl}direccion/listar-distritos/${queryParams.id}`, { params: queryParams });
+    }
+
+    getNivelEstudio(queryParams = null): Observable<NivelEstudio[]> {
+        return this._httpClient.get<NivelEstudio[]>(`${this.apiUrl}nivelestudio/listar/`);
     }
 
     addEncargado(queryParams = null): Observable<any> {

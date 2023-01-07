@@ -1,52 +1,38 @@
+<div class="flex flex-col gap-2" [formGroup]="formActions">
+  <h1 class="text-primary-500 title-solicitud">Datos Personales</h1>
 <div class="flex flex-col gap-2">
   <div class="flex flex-row gap-2">
     <mat-form-field class="w-full" appearance="fill">
       <mat-label>Primer nombre</mat-label>
-      <input
-        matInput
-        autocomplete="off"
-        placeholder="Ingrese su primer nombre"
-        [formControlName]="'primerNombre'"
-      />
+      <input matInput autocomplete="off" placeholder="Ingrese su primer nombre"
+        [formControlName]="'primerNombre'" />
       <mat-error *ngIf="formActions.get('primerNombre').hasError('required')">
         Este campo es requerido
       </mat-error>
     </mat-form-field>
+
     <mat-form-field class="w-full" appearance="fill">
       <mat-label>Segundo nombre</mat-label>
-      <input
-        matInput
-        autocomplete="off"
-        placeholder="Ingrese su segundo nombre"
-        [formControlName]="'segundoNombre'"
-      />
+      <input matInput autocomplete="off" placeholder="Ingrese su segundo nombre"
+        [formControlName]="'segundoNombre'" />
     </mat-form-field>
     <mat-form-field class="w-full" appearance="fill">
-      <mat-label>Primer apellido</mat-label>
-      <input
-        matInput
-        autocomplete="off"
-        placeholder="Ingrese su primer apellido"
-        [formControlName]="'apellidoPaterno'"
-      />
-      <mat-error
-        *ngIf="formActions.get('apellidoPaterno').hasError('required')"
-      >
+      <mat-label>Apellido Paterno</mat-label>
+      <input matInput autocomplete="off" placeholder="Ingrese su primer apellido"
+        [formControlName]="'apellidoPaterno'" />
+      <mat-error *ngIf="formActions.get('apellidoPaterno').hasError('required')">
         Este campo es requerido
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-full" appearance="fill">
-      <mat-label>Segundo apellido</mat-label>
-      <input
-        matInput
-        autocomplete="off"
-        placeholder="Ingrese su segundo apellido"
-        [formControlName]="'apellidoMaterno'"
-      />
+      <mat-label>Apellido Materno</mat-label>
+      <input matInput autocomplete="off" placeholder="Ingrese su segundo apellido"
+        [formControlName]="'apellidoMaterno'" />
     </mat-form-field>
   </div>
 </div>
-<!--Fila 2-->
+</div>
+<!--Fila 2
 <div class="flex flex-col gap-2">
   <div class="flex flex-row gap-2">
     <mat-form-field class="w-full" appearance="fill">
@@ -115,7 +101,7 @@
     </mat-form-field>
   </div>
 </div>
-<!--Fila 3-->
+Fila 3
 <div class="flex flex-col gap-2">
     <div class="flex flex-row gap-2">
       
@@ -156,7 +142,7 @@
       </mat-form-field>
     </div>
   </div>
-<!--Fila 4-->
+Fila 4
 <div class="flex flex-col gap-2">
   <div class="flex flex-row gap-2">
     <mat-form-field class="w-full" appearance="fill">
@@ -222,7 +208,7 @@
     </mat-form-field>
   </div>
 </div>
-<!--Fila 5-->
+Fila 5
 <div class="flex flex-col gap-2">
     <div class="flex flex-row gap-2">
         <mat-form-field class="w-full" appearance="fill">
@@ -256,4 +242,4 @@
             </mat-error>
           </mat-form-field>
     </div>
-  </div>
+  </div>-->

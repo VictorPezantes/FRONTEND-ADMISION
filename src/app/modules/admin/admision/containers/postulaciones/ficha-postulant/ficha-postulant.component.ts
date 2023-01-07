@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { AdmisionService } from "../../../admision.service";
+import { PostulacionesService } from '../postulaciones.service';
 
 @Component({
   selector: "app-ficha-postulant",
@@ -8,7 +9,9 @@ import { AdmisionService } from "../../../admision.service";
 })
 export class FichaPostulantComponent implements OnInit {
   _variableprueba: string ='juanito';
-  constructor(private _admisionService: AdmisionService) {
+  constructor(private _admisionService: AdmisionService,
+    private _requestService:PostulacionesService
+    ) {
     this._admisionService.title.next("Ficha de Datos Personales");
   }
 
@@ -17,5 +20,15 @@ export class FichaPostulantComponent implements OnInit {
   @Input()
   set registros(value: string) {
     this._variableprueba = value;
+  }
+
+  eventCreate(): void {
+    console.log("Boton enviar");
+    this._requestService.eventCreate.next();
+    console.log("Boton enviar", this._requestService.eventCreate.next());
+  }
+
+  cancelOffer(): void {
+    // alert("alerta")
   }
 }

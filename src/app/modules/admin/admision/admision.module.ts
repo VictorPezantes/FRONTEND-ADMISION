@@ -60,12 +60,12 @@ import { ExamenFiltersComponent } from './components/examen-filters/examen-filte
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
-import { EditInformationComponent } from './containers/postulaciones/ficha-postulant/componentes/edit-information/edit-information.component';
 import { PersonaComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/persona/persona.component';
 import { DocumentosComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/documentos/documentos.component';
 import { FamiliarComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/familiar/familiar.component';
 import { BancariosComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/bancarios/bancarios.component';
 import { AcademicosComponent } from './containers/postulaciones/ficha-postulant/componentes/containers/academicos/academicos.component';
+import { ViewPostulanteComponent } from './containers/postulaciones/ficha-postulant/componentes/view-postulante/view-postulante.component';
 
 
 const routes: Routes = [
@@ -160,7 +160,8 @@ const routes: Routes = [
         CancelProcessPostulantComponent,
         UploadResultsExamenComponent,
         ExamenFiltersComponent,
-        EditInformationComponent,
+        ViewInformationComponent,
+        ViewPostulanteComponent,
         PersonaComponent,
         DocumentosComponent,
         FamiliarComponent,

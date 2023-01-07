@@ -41,6 +41,13 @@ export interface Distrito {
     name: string;
 }
 
+export interface NivelEstudio {
+    id: number;
+    nivelEstudioNombre: string;
+    estado: number;
+}
+
+
 export interface Encargado {
     id: number;
     nombre: string;

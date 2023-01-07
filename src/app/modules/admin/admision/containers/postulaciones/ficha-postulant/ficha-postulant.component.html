@@ -35,7 +35,19 @@
   <mat-card-content class="flex flex-col gap-3">
 
     <!--Ver si pueod meter tabla-->
-<app-edit-information></app-edit-information>
+<app-view-postulante></app-view-postulante>
+<div class="p-6 py-4 bg-gray-80 dark:bg-transparent mat-elevation-z1">
+  <button class="uppercase" (click)="eventCreate()" mat-raised-button color="primary">
+      Enviar
+  </button>
+   
+  <!-- <button class="uppercase" (click)="eventCreate()" mat-raised-button color="primary">
+      Cancelar
+  </button> -->
+  <button class="uppercase" (click)="cancelOffer()" mat-raised-button color="primary">
+      Cancelar
+  </button>
+</div>
   </mat-card-content>
 </mat-card>
 

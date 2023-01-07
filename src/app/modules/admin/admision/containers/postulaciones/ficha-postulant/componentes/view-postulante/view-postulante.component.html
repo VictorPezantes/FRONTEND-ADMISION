@@ -1,0 +1,918 @@
+<mat-card class="mat-card mat-elevation-z0 w-full">
+  <mat-card-content class="flex flex-col gap-3">
+   
+    <div class="flex flex-col gap-2"  [formGroup]="formPostulante">
+      <h1 class="text-primary-500 title-solicitud">Datos Personales</h1>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Primer nombre</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.primerNombre" placeholder="Ingrese su primer nombre"
+              [formControlName]="'primerNombre'" />
+            <mat-error *ngIf="formPostulante.get('primerNombre').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Segundo nombre</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.segundoNombre" placeholder="Ingrese su segundo nombre"
+              [formControlName]="'segundoNombre'" />
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Apellido Paterno</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.apellidoPaterno" placeholder="Ingrese su primer apellido"
+              [formControlName]="'apellidoPaterno'" />
+            <mat-error *ngIf="formPostulante.get('apellidoPaterno').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Apellido Materno</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.apellidoMaterno" placeholder="Ingrese su segundo apellido"
+              [formControlName]="'apellidoMaterno'" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Sexo</mat-label>
+            <mat-select formControlName="sexo" placeholder="Selecciona Sexo" [(ngModel)]="postulante.sexo" >
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let sexo of sexos">
+                <mat-option [value]="sexo">{{ sexo }}</mat-option>
+              </ng-container>
+            </mat-select>            <mat-error *ngIf="formPostulante.get('sexo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Estado civil</mat-label>
+            <mat-select formControlName="idEstadoCivil" placeholder="Selecciona estado civil" [(ngModel)]="postulante.idEstadoCivil" >
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of civilStatus$ | async">
+                <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idEstadoCivil').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [matDatepicker]="fechaNacimientoPostulante"  [(ngModel)]="date.value" autocomplete="off" placeholder="Fecha de nacimiento"
+            formControlName="fechaNacimiento" (click)="fechaNacimientoPostulante.open()">
+          <mat-datepicker-toggle matSuffix [for]="fechaNacimientoPostulante"></mat-datepicker-toggle>
+          <mat-datepicker #fechaNacimientoPostulante></mat-datepicker>
+          <mat-error *ngIf="formPostulante.get('fechaNacimiento').hasError('required')">
+            Este campo es requerido
+          </mat-error>
+
+          </mat-form-field>
+
+          
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Nacionalidad</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.idEstadoCivil" formControlName="nacionalidad" placeholder="Ingrese su nacionalidad" />
+            <mat-error *ngIf="formPostulante.get('nacionalidad').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Grupo sanguíneo</mat-label>
+            <mat-select formControlName="grupoSanguineo" placeholder="Selecciona su grupo sanguíneo">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let gruposanguineo of grupoSanguineos$">
+                <mat-option [value]="gruposanguineo">{{ gruposanguineo }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('grupoSanguineo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>¿Sabe Nadar?</mat-label>
+            <mat-select formControlName="sabeNadar" placeholder="Seleccione una opción">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let nadar of isNadar">
+                <mat-option [value]="nadar.value">{{nadar.option}}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('sabeNadar').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Domicilio</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" placeholder="Ingrese su domicilio" [formControlName]="'domicilio'">
+            <mat-error *ngIf="formPostulante.get('domicilio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Correo Electronico</mat-label>
+            <input [readonly]="true" matInput type="mail" autocomplete="off" placeholder="Ingrese su email" [formControlName]="'email'">
+            <mat-error *ngIf="formPostulante.get('email').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="formPostulante.get('email').hasError('email')">
+              Formato incorrecto
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Celular</mat-label>
+            <span matPrefix>+51 &nbsp;</span>
+            <input [readonly]="true" matInput autocomplete="off" placeholder="987-654-321" [formControlName]="'celular'">
+            <mat-error *ngIf="formPostulante.get('celular').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Departamento</mat-label>
+            <mat-select formControlName="idDepartamento" placeholder="Selecciona departamento">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of departamento">
+                <mat-option [value]="option.id" (click)="obtenerProvincia(option)">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idDepartamento').hasError('required')"> Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="idProvincia" placeholder="Selecciona provincia">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of provincia">
+                <mat-option [value]="option.id" (click)="obtenerDistrito(option)">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idProvincia').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Distrito</mat-label>
+            <mat-select formControlName="idDistrito" placeholder="Selecciona distrito">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of distrito">
+                <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idDistrito').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Lugar de Nacimiento</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" placeholder="Ingrese su lugar de nacimiento"
+              [formControlName]="'lugarNacimiento'">
+            <mat-error *ngIf="formPostulante.get('lugarNacimiento').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Matrominio/convivencia</mat-label>
+            <input [readonly]="true" matInput [matDatepicker]="dateMatrimonio" autocomplete="off" type="text"
+              placeholder="Fecha de nacimiento" formControlName="fechaMatrimonio" (click)="dateMatrimonio.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dateMatrimonio"></mat-datepicker-toggle>
+            <mat-datepicker #dateMatrimonio></mat-datepicker>
+            <mat-error *ngIf="formPostulante.get('fechaMatrimonio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <!--REGION POSTULANTE
+    <div class="flex flex-col gap-2"  [formGroup]="formPostulante">
+      <h1 class="text-primary-500 title-solicitud">Datos Personales</h1>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Primer nombre</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.primerNombre" placeholder="Ingrese su primer nombre"
+              [formControlName]="'primerNombre'" />
+            <mat-error *ngIf="formPostulante.get('primerNombre').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Segundo nombre</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.segundoNombre" placeholder="Ingrese su segundo nombre"
+              [formControlName]="'segundoNombre'" />
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Apellido Paterno</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.apellidoPaterno" placeholder="Ingrese su primer apellido"
+              [formControlName]="'apellidoPaterno'" />
+            <mat-error *ngIf="formPostulante.get('apellidoPaterno').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Apellido Materno</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" [(ngModel)]="postulante.apellidoMaterno" laceholder="Ingrese su segundo apellido"
+              [formControlName]="'apellidoMaterno'" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Sexo</mat-label>
+            <mat-select formControlName="sexo" [(value)]="sexoSelected" placeholder="Selecciona sexo">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let sexo of sexos$">
+                <mat-option [value]="sexo">{{ sexo }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('sexo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Estado civil</mat-label>
+            <mat-select formControlName="idEstadoCivil" placeholder="Selecciona estado civil">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of civilStatus$ | async">
+                <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idEstadoCivil').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input [readonly]="true" matInput [matDatepicker]="endDate" autocomplete="off" type="text" placeholder="Fecha de nacimiento"
+              formControlName="fechaNacimiento" (click)="endDate.open()" />
+            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+            <mat-error *ngIf="formPostulante.get('fechaNacimiento').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Nacionalidad</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" formControlName="nacionalidad" placeholder="Ingrese su nacionalidad" />
+            <mat-error *ngIf="formPostulante.get('nacionalidad').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Grupo sanguíneo</mat-label>
+            <mat-select formControlName="grupoSanguineo" placeholder="Selecciona su grupo sanguíneo">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let gruposanguineo of grupoSanguineos$">
+                <mat-option [value]="gruposanguineo">{{ gruposanguineo }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('grupoSanguineo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>¿Sabe Nadar?</mat-label>
+            <mat-select formControlName="sabeNadar" placeholder="Seleccione una opción">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let nadar of isNadar">
+                <mat-option [value]="nadar.value">{{nadar.option}}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('sabeNadar').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Domicilio</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" placeholder="Ingrese su domicilio" [formControlName]="'domicilio'">
+            <mat-error *ngIf="formPostulante.get('domicilio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Correo Electronico</mat-label>
+            <input [readonly]="true" matInput type="mail" autocomplete="off" placeholder="Ingrese su email" [formControlName]="'email'">
+            <mat-error *ngIf="formPostulante.get('email').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="formPostulante.get('email').hasError('email')">
+              Formato incorrecto
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Celular</mat-label>
+            <span matPrefix>+51 &nbsp;</span>
+            <input [readonly]="true" matInput autocomplete="off" placeholder="987-654-321" [formControlName]="'celular'">
+            <mat-error *ngIf="formPostulante.get('celular').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Departamento</mat-label>
+            <mat-select formControlName="idDepartamento" placeholder="Selecciona departamento">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of departamento">
+                <mat-option [value]="option.id" (click)="obtenerProvincia(option)">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idDepartamento').hasError('required')"> Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="idProvincia" placeholder="Selecciona provincia">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of provincia">
+                <mat-option [value]="option.id" (click)="obtenerDistrito(option)">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idProvincia').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Distrito</mat-label>
+            <mat-select formControlName="idDistrito" placeholder="Selecciona distrito">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of distrito">
+                <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formPostulante.get('idDistrito').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Lugar de Nacimiento</mat-label>
+            <input [readonly]="true" matInput autocomplete="off" placeholder="Ingrese su lugar de nacimiento"
+              [formControlName]="'lugarNacimiento'">
+            <mat-error *ngIf="formPostulante.get('lugarNacimiento').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Matrominio/convivencia</mat-label>
+            <input [readonly]="true" matInput [matDatepicker]="dateMatrimonio" autocomplete="off" type="text"
+              placeholder="Fecha de nacimiento" formControlName="fechaMatrimonio" (click)="dateMatrimonio.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dateMatrimonio"></mat-datepicker-toggle>
+            <mat-datepicker #dateMatrimonio></mat-datepicker>
+            <mat-error *ngIf="formPostulante.get('fechaMatrimonio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    REGION DOCUMENTOS 
+    <div class="flex flex-col gap-2">
+      <h1 class="text-primary-500 title-solicitud">Documentos</h1>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Tipo Documento</mat-label>
+            <mat-select [(value)]="dni" placeholder="Selecciona tipo documento">
+              <mat-option [value]="1">DNI</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Numero DNI</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su numero de DNI" [formControlName]="'dni'">
+            <mat-error *ngIf="formActions.get('dni').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="formActions.get('dni').hasError('minlength')"> Minimo 8 digitos
+            </mat-error>
+            <mat-error *ngIf="formActions.get('dni').hasError('maxlength')"> Superaste los 8 digitos
+            </mat-error>
+            <mat-error *ngIf="formActions.get('dni').hasError('pattern')"> Solo ingresar numeros
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Emisión</mat-label>
+            <input matInput [matDatepicker]="dateDniEmision" autocomplete="off" type="text"
+              placeholder="Fecha de nacimiento" formControlName="fechaDniEmision" (click)="dateDniEmision.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dateDniEmision"></mat-datepicker-toggle>
+            <mat-datepicker #dateDniEmision></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaDniEmision').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Vencimiento</mat-label>
+            <input matInput [matDatepicker]="dateDniVencimeinto" autocomplete="off" type="text"
+              placeholder="Fecha de Vencimiento" formControlName="fechaDniVencimiento"
+              (click)="dateDniVencimeinto.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dateDniVencimeinto"></mat-datepicker-toggle>
+            <mat-datepicker #dateDniVencimeinto></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaDniVencimiento').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Lugar de Emisión</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su lugar de Emisión"
+              [formControlName]="'lugarEmision'">
+            <mat-error *ngIf="formActions.get('lugarEmision').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Ubigeo</mat-label>
+            <input matInput autocomplete="off" placeholder="L-0344" [formControlName]="'ubigeo'">
+            <mat-error *ngIf="formActions.get('ubigeo').hasError('required')"> Este campo es requerido </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Grupo de Votación</mat-label>
+            <input matInput autocomplete="off" placeholder="2345" [formControlName]="'grupoVotacion'">
+            <mat-error *ngIf="formActions.get('grupoVotacion').hasError('required')"> Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    REGION DATOS BANCARIOS
+    <div class="flex flex-col gap-2">
+      <h1 class="text-primary-500 title-solicitud">Datos Bancarios</h1>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="moneda" placeholder="Selecciona moneda">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let moneda of monedas$">
+                <mat-option [value]="moneda">{{ moneda }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('moneda').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Banco</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su banco" [formControlName]="'banco'" />
+            <mat-error *ngIf="formActions.get('banco').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Cuenta</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su cuenta" [formControlName]="'cuenta'" />
+            <mat-error *ngIf="formActions.get('cuenta').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>CCI</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su CCI" [formControlName]="'cci'" />
+            <mat-error *ngIf="formActions.get('cci').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="formActions.get('cci').hasError('minlength')"> Minimo 20 digitos
+            </mat-error>
+            <mat-error *ngIf="formActions.get('cci').hasError('maxlength')"> Superaste los 20 digitos
+            </mat-error>
+            <mat-error *ngIf="formActions.get('cci').hasError('pattern')"> Solo ingresar numeros
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Observación</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su observación" [formControlName]="'observacion'" />
+            <mat-error *ngIf="formActions.get('observacion').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>RUC</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su RUC" [formControlName]="'ruc'" />
+            <mat-error *ngIf="formActions.get('ruc').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="formActions.get('ruc').hasError('minlength')"> Minimo 11 digitos
+            </mat-error>
+            <mat-error *ngIf="formActions.get('ruc').hasError('maxlength')"> Superaste los 11 digitos
+            </mat-error>
+            <mat-error *ngIf="formActions.get('ruc').hasError('pattern')"> Solo ingresar numeros
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Usuario</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su usuario" [formControlName]="'usuario'" />
+            <mat-error *ngIf="formActions.get('usuario').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Clave Sol</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su clave sol" [formControlName]="'claveSol'" />
+            <mat-error *ngIf="formActions.get('claveSol').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+
+        </div>
+      </div>
+    </div>
+
+    REGION DATOS ACADEMICOS
+    <div class="flex flex-col gap-2">
+      <h1 class="text-primary-500 title-solicitud">Datos Academicos</h1>
+
+      <h1 class="text-primary-500 ml-3 title-solicitud">Estudios Básicos</h1>
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Nivel de Estudios</mat-label>
+            <mat-select formControlName="nivelestudio" placeholder="Selecciona nivel de estudio">
+              <mat-option [value]="null">---</mat-option>
+              <ng-container *ngFor="let nivel of nivelEstudios">
+                <mat-option [value]="nivel.id">{{ nivel.nivelEstudioNombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('nivelestudio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Centro Educativo</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su centro educativo"
+              [formControlName]="'centroEducativo'" />
+            <mat-error *ngIf="formActions.get('centroEducativo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [matDatepicker]="dateInicio" autocomplete="off" type="text" placeholder="Fecha de Inicio"
+              formControlName="fechaInicio" (click)="dateInicio.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dateInicio"></mat-datepicker-toggle>
+            <mat-datepicker #dateInicio></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaInicio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Término</mat-label>
+            <input matInput [matDatepicker]="datefin" autocomplete="off" type="text" placeholder="Fecha de término"
+              formControlName="fechaTermino" (click)="datefin.open()" />
+            <mat-datepicker-toggle matSuffix [for]="datefin"></mat-datepicker-toggle>
+            <mat-datepicker #datefin></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaTermino').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex flex-row gap-2">
+
+            <mat-form-field class="w-full" appearance="fill">
+              <mat-label>Dirección</mat-label>
+              <input matInput autocomplete="off" placeholder="Ingrese su direccion" [formControlName]="'direccion'">
+              <mat-error *ngIf="formActions.get('direccion').hasError('required')">
+                Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="flex-col" appearance="fill">
+              <mat-label>Departamento</mat-label>
+              <mat-select formControlName="idDepartamento" placeholder="Selecciona departamento">
+                <mat-option [value]="null">----</mat-option>
+                <ng-container *ngFor="let option of departamento">
+                  <mat-option [value]="option.id" (click)="obtenerProvincia(option)">{{ option.nombre }}</mat-option>
+                </ng-container>
+              </mat-select>
+              <mat-error *ngIf="formActions.get('idDepartamento').hasError('required')"> Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="flex-col" appearance="fill">
+              <mat-label>Provincia</mat-label>
+              <mat-select formControlName="idProvincia" placeholder="Selecciona provincia">
+                <mat-option [value]="null">----</mat-option>
+                <ng-container *ngFor="let option of provincia">
+                  <mat-option [value]="option.id" (click)="obtenerDistrito(option)">{{ option.nombre }}</mat-option>
+                </ng-container>
+              </mat-select>
+              <mat-error *ngIf="formActions.get('idProvincia').hasError('required')"> Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="flex-col" appearance="fill">
+              <mat-label>Distrito</mat-label>
+              <mat-select formControlName="idDistrito" placeholder="Selecciona distrito">
+                <mat-option [value]="null">----</mat-option>
+                <ng-container *ngFor="let option of distrito">
+                  <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
+                </ng-container>
+              </mat-select>
+              <mat-error *ngIf="formActions.get('idDistrito').hasError('required')"> Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    REGION DATOS LABORALES
+    <div class="flex flex-col gap-2">
+      <h1 class="text-primary-500 title-solicitud">Datos Laborales</h1>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Trabajo</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su trabajo" [formControlName]="'trabajo'" />
+            <mat-error *ngIf="formActions.get('trabajo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Puesto</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su puesto" [formControlName]="'puesto'" />
+            <mat-error *ngIf="formActions.get('puesto').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>empresa</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su empresa" [formControlName]="'empresa'" />
+            <mat-error *ngIf="formActions.get('empresa').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [matDatepicker]="dateInicioLabor" autocomplete="off" type="text"
+              placeholder="Fecha de Inicio" formControlName="fechaInicio" (click)="dateInicioLabor.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dateInicioLabor"></mat-datepicker-toggle>
+            <mat-datepicker #dateInicioLabor></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaInicio').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Fecha de Término</mat-label>
+            <input matInput [matDatepicker]="datefinLabor" autocomplete="off" type="text" placeholder="Fecha de término"
+              formControlName="fechaTermino" (click)="datefinLabor.open()" />
+            <mat-datepicker-toggle matSuffix [for]="datefinLabor"></mat-datepicker-toggle>
+            <mat-datepicker #datefinLabor></mat-datepicker>
+            <mat-error *ngIf="formActions.get('fechaTermino').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese su direccion" [formControlName]="'direccion'">
+            <mat-error *ngIf="formActions.get('direccion').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Departamento</mat-label>
+            <mat-select formControlName="idDepartamento" placeholder="Selecciona departamento">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of departamento">
+                <mat-option [value]="option.id" (click)="obtenerProvincia(option)">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('idDepartamento').hasError('required')"> Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="idProvincia" placeholder="Selecciona provincia">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of provincia">
+                <mat-option [value]="option.id" (click)="obtenerDistrito(option)">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('idProvincia').hasError('required')"> Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-col" appearance="fill">
+            <mat-label>Distrito</mat-label>
+            <mat-select formControlName="idDistrito" placeholder="Selecciona distrito">
+              <mat-option [value]="null">----</mat-option>
+              <ng-container *ngFor="let option of distrito">
+                <mat-option [value]="option.id">{{ option.nombre }}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formActions.get('idDistrito').hasError('required')"> Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+
+    REGION MEDIDAS INDUMENTARIAS
+    <div class="flex flex-col gap-2">
+      <h1 class="text-primary-500 title-solicitud">Medidas Indumentarias</h1>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Polo</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese la medida de su polo" [formControlName]="'polo'" />
+            <mat-error *ngIf="formActions.get('polo').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Casaca</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese la medida de su casaca"
+              [formControlName]="'casaca'" />
+            <mat-error *ngIf="formActions.get('casaca').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Pantalon</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese la medida de su pantalon"
+              [formControlName]="'pantalon'" />
+            <mat-error *ngIf="formActions.get('pantalon').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Overol</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese la medida de su overol"
+              [formControlName]="'overol'" />
+            <mat-error *ngIf="formActions.get('overol').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Calzado</mat-label>
+            <input matInput autocomplete="off" placeholder="Ingrese la medida de su calzado"
+              [formControlName]="'calzado'" />
+            <mat-error *ngIf="formActions.get('calzado').hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+
+
+        REGION REDES SOCIALES
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Redes Sociales</h1>
+    
+          <div class="flex flex-col gap-2">
+            <div class="flex flex-row gap-2">
+    
+              <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese nombre de red social" [formControlName]="'nombre'" />
+                <mat-error *ngIf="formActions.get('nombre').hasError('required')">
+                  Este campo es requerido
+                </mat-error>
+              </mat-form-field>
+    
+              <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Link</mat-label>
+                <input matInput autocomplete="off" placeholder="Ingrese link de red social"
+                  [formControlName]="'link'" />
+                <mat-error *ngIf="formActions.get('link').hasError('required')">
+                  Este campo es requerido
+                </mat-error>
+              </mat-form-field>
+    
+            
+            </div>
+          </div>
+    
+        </div>
+      -->
+  </mat-card-content>
+</mat-card>
+
+<!--
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Documentos</h1>
+          <app-documentos ></app-documentos>
+        </div>
+
+
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos de Familiares</h1>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Hijos</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Pareja</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Padre</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Madre</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Hermanos</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Suegro</h1>
+          <app-familiar></app-familiar>
+          <h1 class="text-primary-500 ml-3 title-solicitud">Suegra</h1>
+          <app-familiar></app-familiar>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos Bancarios</h1>
+          <app-bancarios ></app-bancarios>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h1 class="text-primary-500 title-solicitud">Datos Academicos</h1>
+          <app-academicos ></app-academicos>
+        </div>-->
